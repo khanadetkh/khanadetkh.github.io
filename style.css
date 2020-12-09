@@ -576,14 +576,14 @@ a:focus,
 .mu-about-left {
 	display: inline;
 	float: left;
-	padding-right: 15px;
+	padding: 15px;
 	width: 100%;
 }
 
 .mu-about-right {
 	display: inline;
 	float: left;
-	padding-left: 15px;
+	padding: 15px;
 	width: 100%
 }
 
