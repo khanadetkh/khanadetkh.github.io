@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Khanadech Khongsombhatt | Product Owner & UX Strategist</title>
+    <title>Khanadech Khongsombhatt | UX/UI & Service Designer & Data-Driven Strategist</title>
 
-    <meta name="title" content="Khanadech Khongsombhatt | Product Owner & UX Strategist">
+    <meta name="title" content="Khanadech Khongsombhatt | UX/UI & Service & Designer Data-Driven Strategist">
     <meta name="description"
         content="Experienced Product Owner and UX/UI Designer specializing in Product Strategy, user-centric design, and data-driven improvements. View key achievements in E-commerce and Ad Revenue optimization.">
     <meta name="keywords"
@@ -49,8 +49,14 @@
                     colors: {
                         'primary-blue': '#2563EB', // Blue-600
                         'secondary-gray': '#F3F4F6', // Gray-100
-                        'accent-green': '#10B981', // Green-500
+                        'accent-green': '#00B400', // Green-500
+                        'accent-orange': '#FA4616', // New Color: #FA4616
+                        'accent-gable': '#f2900a', // G-ABLE brand color
                         'dark-bg': '#1F2937', // Gray-800
+                        'pink': '#ff8bf9', // Pink-500
+                        'accent-eatlab': '#fc6c24', // eatlab brand color
+                        'accent-apthai': '#921c1e', // apthai brand color
+                        'accent-learn': '#2879B9', // learn brand color
                     },
                     boxShadow: {
                         '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.1)',
@@ -71,8 +77,47 @@
             background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
         }
 
-        .skill-badge {
-            @apply inline-block px-3 py-1 text-sm font-medium rounded-full transition duration-150;
+        /* NOTE: The skill-badge class is now removed to use list-disc for bullet points */
+
+        .nav-icon {
+            /* กำหนดขนาดตามที่ต้องการ */
+            width: 32px;
+            height: 32px;
+
+            /* หากต้องการให้ไอคอนดูคมชัดขึ้นบนหน้าจอความละเอียดสูง */
+            display: block;
+
+            /* (เพิ่ม margin-right เพื่อเว้นระยะห่างจากชื่อเว็บไซต์ หากมี) */
+            /* margin-right: 8px; */
+        }
+
+        /* 1. กำหนดขนาดของ Logo */
+        .company-logo {
+            width: 50px;
+            /* ขนาดความกว้างที่ต้องการ */
+            height: 50px;
+            /* ขนาดความสูงที่ต้องการ */
+            margin-right: 8px;
+            /* เว้นระยะห่างระหว่าง Logo กับชื่อบริษัท */
+            margin-bottom: 20px;
+            /* เว้นระยะห่างระหว่าง Logo กับชื่อบริษัท */
+            display: block;
+            /* เพื่อความเข้ากันได้กับการจัดเรียง */
+        }
+
+        /* 2. ใช้ Flexbox เพื่อจัดเรียง Logo และ Text ให้อยู่ในบรรทัดเดียวกัน */
+        .company-info-container {
+            display: flex;
+            /* เปิดใช้งาน Flexbox */
+            align-items: center;
+            /* จัดองค์ประกอบ (Logo และ Text) ให้อยู่กึ่งกลางแนวตั้ง */
+            /* หากใช้ Tailwind CSS, อาจจะต้อง Overwrite margin เดิมของ p ด้วย */
+        }
+
+        /* 3. ปรับ Margin ของชื่อบริษัท (ถ้าจำเป็น) */
+        .company-info-container .text-lg.font-medium.text-accent-learn.mb-3 {
+            margin-bottom: 0;
+            /* ลบ margin ล่างออกจากชื่อบริษัท เพื่อให้อยู่ในแนวเดียวกับ Logo */
         }
     </style>
 </head>
@@ -86,9 +131,8 @@
     <header id="mu-hero" class="bg-white shadow-lg sticky top-0 z-40">
         <div class="container mx-auto px-4 lg:px-8">
             <nav class="flex items-center justify-between py-4" role="navigation" aria-label="Main Navigation">
-                <a class="text-2xl font-bold text-gray-800 hover:text-primary-blue transition duration-300"
-                    href="#mu-hero-banner" aria-label="Home">
-                    <span class="text-primary-blue">K.K.</span> Product/UX
+                <a href="/" class="navbar-brand">
+                    <img src="assets/images/icon.png" alt="K.K. Product/UX Logo" class="nav-icon">
                 </a>
 
                 <button class="md:hidden text-gray-800 text-2xl" id="menu-toggle" aria-label="Toggle Menu">
@@ -123,13 +167,17 @@
                             Hello, I'm Khanadech Khongsombhatt
                         </p>
                         <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
-                            Product Strategist & <span class="text-primary-blue">Experience Lead</span>
+                            UX/UI & Service Designer <span class="text-primary-blue">Data-Driven Strategist</span>
                         </h1>
                         <p class="text-xl text-gray-700 mb-10">
-                            A Product and UX/UI Leader experienced in defining **Product Strategy**, driving business
-                            growth through User-Centric Design, and utilizing **Data-Driven Decision Making** to build
-                            high-impact products. Highly skilled at translating complex business requirements into
-                            intuitive digital solutions and delivering measurable product improvements.
+                            A results-oriented professional with over 4 years of experience at the intersection of user
+                            experience and business objectives. I excel at bridging the gap between user needs and
+                            strategic goals, leveraging strong data analysis and interpretation skills to translate
+                            complex datasets into meaningful, actionable insights that drive business growth. My
+                            expertise spans requirement gathering, data visualization and reporting, process
+                            enhancement, and leading agile product development initiatives. I am adept at client
+                            collaboration, fostering strong relationships, and committed to delivering impactful digital
+                            solutions through a data-driven decision-making approach.
                         </p>
 
                         <div
@@ -156,12 +204,12 @@
         <section id="mu-portfolio" class="py-24 bg-secondary-gray">
             <div class="container mx-auto px-4 lg:px-8">
                 <header class="text-center mb-16" data-aos="fade-up">
-                    <span class="text-lg font-semibold text-accent-green uppercase tracking-wider">01. Key Initiatives &
+                    <span class="text-lg font-semibold text-accent-green uppercase tracking-wider">Key Initiatives &
                         Achievements</span>
                     <h2 class="text-4xl font-bold text-gray-800 mt-2">Results from Product and UX/UI Leadership</h2>
                     <p class="text-lg text-gray-600 mt-4 max-w-3xl mx-auto">
-                        Key projects showcasing the use of **UX/UI Design**, **Data Analysis**, and **Agile
-                        Methodology** to deliver measurable business outcomes.
+                        Key projects showcasing the use of UX/UI Design, Data Analysis, and Agile Methodology to deliver
+                        measurable business outcomes.
                     </p>
                 </header>
 
@@ -176,8 +224,8 @@
                             <h3 class="text-2xl font-bold text-gray-900 mb-3">Ad Viewability & Lazy Loading Project</h3>
                             <p class="text-gray-600 mb-4">
                                 Led the Agile project to analyze and optimize UX for advertising placement and implement
-                                Lazy Loading. **Result:** Achieved a **+12% increase in % Active Viewable Impressions**
-                                and **+8% growth in viewable ad revenue**, exceeding Google Ad Manager benchmarks.
+                                Lazy Loading. Result: Achieved a +12% increase in % Active Viewable Impressions and +8%
+                                growth in viewable ad revenue, exceeding Google Ad Manager benchmarks.
                             </p>
                             <a href="#mu-portfolio" aria-label="View details for Ad Viewability Project"
                                 class="text-lg font-semibold text-primary-blue inline-flex items-center">
@@ -214,9 +262,9 @@
                                 Executive Reporting (G-ABLE)</span>
                             <h3 class="text-2xl font-bold text-gray-900 mb-3">Executive Dashboard on Power BI</h3>
                             <p class="text-gray-600 mb-4">
-                                Designed and improved real-time quarterly company business overview dashboards on
-                                **Power BI** for executives, transforming raw data into meaningful, actionable insights.
-                                Bridged Product requirements with UX in data presentation (Data Visualization UX).
+                                Designed and improved real-time quarterly company business overview dashboards on Power
+                                BI for executives, transforming raw data into meaningful, actionable insights. Bridged
+                                Product requirements with UX in data presentation (Data Visualization UX).
                             </p>
                             <a href="#mu-portfolio" aria-label="View details for Power BI Dashboard Project"
                                 class="text-lg font-semibold text-primary-blue inline-flex items-center">
@@ -233,8 +281,8 @@
                                 Insights | Data-Backed Design (Eatlab)</span>
                             <h3 class="text-2xl font-bold text-gray-900 mb-3">Restaurant Sales Report Dashboard</h3>
                             <p class="text-gray-600 mb-4">
-                                Designed and improved the Sales Report Dashboard for restaurants, utilizing **POS data
-                                analysis** for sales forecasting. Employed **UX Research** (Interviews, observation, and
+                                Designed and improved the Sales Report Dashboard for restaurants, utilizing POS data
+                                analysis for sales forecasting. Employed UX Research (Interviews, observation, and
                                 questionnaires) to define the optimal interaction model and enhance user experience.
                             </p>
                             <a href="#mu-portfolio" aria-label="View details for Sales Report Dashboard"
@@ -253,10 +301,11 @@
                 </div>
             </div>
         </section>
+
         <section id="mu-service" class="py-24 bg-white">
             <div class="container mx-auto px-4 lg:px-8">
                 <header class="text-center mb-16" data-aos="fade-up">
-                    <span class="text-lg font-semibold text-accent-green uppercase tracking-wider">02. Core
+                    <span class="text-lg font-semibold text-accent-green uppercase tracking-wider">Core
                         Competencies</span>
                     <h2 class="text-4xl font-bold text-gray-800 mt-2">Specialized Skills & Tools</h2>
                 </header>
@@ -268,22 +317,13 @@
                         <h3 id="product-skills" class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
                             <i class="fas fa-sitemap text-primary-blue mr-3"></i> Product Strategy & Leadership
                         </h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span
-                                class="skill-badge bg-primary-blue/10 text-primary-blue hover:bg-primary-blue/20">Product
-                                Strategy</span>
-                            <span
-                                class="skill-badge bg-primary-blue/10 text-primary-blue hover:bg-primary-blue/20">Requirements
-                                Gathering & Analysis</span>
-                            <span class="skill-badge bg-primary-blue/10 text-primary-blue hover:bg-primary-blue/20">User
-                                Story & Journey Mapping</span>
-                            <span
-                                class="skill-badge bg-primary-blue/10 text-primary-blue hover:bg-primary-blue/20">Agile
-                                & Scrum Methodologies</span>
-                            <span
-                                class="skill-badge bg-primary-blue/10 text-primary-blue hover:bg-primary-blue/20">Product
-                                Leadership</span>
-                        </div>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-2">
+                            <li>Product Strategy</li>
+                            <li>Requirements Gathering & Analysis</li>
+                            <li>User Story & Journey Mapping</li>
+                            <li>Agile & Scrum Methodologies</li>
+                            <li>Product Leadership</li>
+                        </ul>
                     </div>
 
                     <div class="p-6 bg-secondary-gray rounded-xl shadow-lg border-t-4 border-accent-green" role="region"
@@ -291,24 +331,12 @@
                         <h3 id="uxui-skills" class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
                             <i class="fas fa-palette text-accent-green mr-3"></i> UX/UI Design & User Research
                         </h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-badge bg-accent-green/10 text-accent-green hover:bg-accent-green/20">User
-                                Research (Surveys, Interviews)</span>
-                            <span
-                                class="skill-badge bg-accent-green/10 text-accent-green hover:bg-accent-green/20">Usability
-                                Testing</span>
-                            <span
-                                class="skill-badge bg-accent-green/10 text-accent-green hover:bg-accent-green/20">Wireframing
-                                & Prototyping (Figma)</span>
-                            <span class="skill-badge bg-accent-green/10 text-accent-green hover:bg-accent-green/20">A/B
-                                Testing</span>
-                            <span
-                                class="skill-badge bg-accent-green/10 text-accent-green hover:bg-accent-green/20">Information
-                                Architecture (IA)</span>
-                            <span
-                                class="skill-badge bg-accent-green/10 text-accent-green hover:bg-accent-green/20">Design
-                                Thinking</span>
-                        </div>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-2">
+                            <li>User Research (Surveys, User Interviews, Usability Testing, A/B Testing)</li>
+                            <li>Design Thinking</li>
+                            <li>Information Architecture (IA)</li>
+                            <li>Wireframing & Prototyping (Figma)</li>
+                        </ul>
                     </div>
 
                     <div class="p-6 bg-secondary-gray rounded-xl shadow-lg border-t-4 border-yellow-600" role="region"
@@ -316,20 +344,14 @@
                         <h3 id="data-skills" class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
                             <i class="fas fa-chart-line text-yellow-600 mr-3"></i> Data Analytics
                         </h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-badge bg-yellow-600/10 text-yellow-600 hover:bg-yellow-600/20">GA4
-                                (Google Analytics 4)</span>
-                            <span
-                                class="skill-badge bg-yellow-600/10 text-yellow-600 hover:bg-yellow-600/20">Hotjar</span>
-                            <span class="skill-badge bg-yellow-600/10 text-yellow-600 hover:bg-yellow-600/20">Power
-                                BI</span>
-                            <span class="skill-badge bg-yellow-600/10 text-yellow-600 hover:bg-yellow-600/20">Looker
-                                Studio</span>
-                            <span
-                                class="skill-badge bg-yellow-600/10 text-yellow-600 hover:bg-yellow-600/20">Data-Driven
-                                Decision Making</span>
-                            <span class="skill-badge bg-yellow-600/10 text-yellow-600 hover:bg-yellow-600/20">VWO</span>
-                        </div>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-2">
+                            <li>GA4 (Google Analytics 4)</li>
+                            <li>Hotjar</li>
+                            <li>VWO</li>
+                            <li>Looker Studio</li>
+                            <li>Power BI</li>
+                            <li>Data-Driven Decision Making</li>
+                        </ul>
                     </div>
 
                     <div class="p-6 bg-secondary-gray rounded-xl shadow-lg border-t-4 border-red-500" role="region"
@@ -337,18 +359,14 @@
                         <h3 id="tech-skills" class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
                             <i class="fas fa-code text-red-500 mr-3"></i> Technical & Soft Skills
                         </h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-badge bg-red-500/10 text-red-500 hover:bg-red-500/20">HTML, CSS,
-                                JavaScript</span>
-                            <span class="skill-badge bg-red-500/10 text-red-500 hover:bg-red-500/20">JAVA</span>
-                            <span class="skill-badge bg-red-500/10 text-red-500 hover:bg-red-500/20">Flutter</span>
-                            <span
-                                class="skill-badge bg-red-500/10 text-red-500 hover:bg-red-500/20">Problem-Solving</span>
-                            <span class="skill-badge bg-red-500/10 text-red-500 hover:bg-red-500/20">Critical
-                                Thinking</span>
-                            <span class="skill-badge bg-red-500/10 text-red-500 hover:bg-red-500/20">Communication,
-                                Empathy</span>
-                        </div>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-2">
+                            <li>HTML, CSS, JavaScript</li>
+                            <li>JAVA</li>
+                            <li>Flutter</li>
+                            <li>Problem-Solving</li>
+                            <li>Critical Thinking</li>
+                            <li>Communication, Empathy</li>
+                        </ul>
                     </div>
 
                 </div>
@@ -357,7 +375,7 @@
         <section id="mu-experience" class="py-24 bg-secondary-gray">
             <div class="container mx-auto px-4 lg:px-8">
                 <header class="text-center mb-16" data-aos="fade-up">
-                    <span class="text-lg font-semibold text-accent-green uppercase tracking-wider">03. Professional
+                    <span class="text-lg font-semibold text-accent-green uppercase tracking-wider">Professional
                         Journey</span>
                     <h2 class="text-4xl font-bold text-gray-800 mt-2">Work Experience</h2>
                 </header>
@@ -376,20 +394,37 @@
                             </div>
 
                             <div
-                                class="sm:ml-10 flex-grow p-6 bg-white rounded-lg shadow-lg border-t-4 border-primary-blue hover:shadow-xl transition duration-300">
-                                <h3 class="text-xl font-bold text-gray-900">Senior Digital Experience and E-Commerce
-                                </h3>
-                                <p class="text-lg font-medium text-primary-blue mb-3">Learn corporation</p>
+                                class="sm:ml-10 flex-grow p-6 bg-white rounded-lg shadow-lg border-t-4 border-accent-learn hover:shadow-xl transition duration-300">
+                                <div class="company-info-container">
+                                    <img src="assets/images/learn-corp-logo.png" alt="Learn Corporation Logo"
+                                        class="company-logo">
+                                    <div class="company-detail">
+                                        <h3 class="text-xl font-bold text-gray-900">Senior Digital Experience and
+                                            E-Commerce </h3>
+                                        <p class="text-lg font-medium text-accent-learn">Learn corporation</p>
+                                    </div>
+                                </div>
+
                                 <ul class="list-disc list-inside space-y-1 text-gray-600">
-                                    <li>**Managed the Product Roadmap** and oversaw E-commerce operations to deliver a
-                                        seamless, user-focused shopping experience.</li>
-                                    <li>Defined **Success Metrics (KPIs)** and utilized A/B testing/UX enhancements to
-                                        drive sales and business goals.</li>
-                                    <li>Applied Agile methodology to plan, prioritize, and deliver improvements on time
-                                        and within scope.</li>
+                                    <li>Managed and optimized <a href="https://shop.ignitebyondemand.com"
+                                            target="_blank"
+                                            class="text-blue-600 hover:underline">shop.ignitebyondemand.com</a> to
+                                        deliver a seamless,
+                                        user-focused shopping experience across devices.</li>
+                                    <li>Collaborated with Marketing, Design, and Development teams to align website
+                                        content, campaigns, and features with business goals.</li>
+                                    <li>Monitored and analyzed site performance metrics (conversion rate, bounce rate,
+                                        traffic sources) to identify improvement opportunities.</li>
+                                    <li>Executed A/B testing and implemented UX/UI enhancements to boost engagement and
+                                        sales.</li>
+                                    <li>Oversaw product data accuracy, promotional updates, and campaign-specific
+                                        landing pages.</li>
+                                    <li>Ensured system stability, security, and speed through regular quality checks and
+                                        troubleshooting.</li>
+                                    <li>Applied Agile methodology to plan, prioritize, and deliver website improvements
+                                        on time and within scope.</li>
                                 </ul>
                             </div>
-                        </div>
                     </article>
 
                     <article class="relative pl-8 sm:pl-32 group" data-aos="fade-left" data-aos-delay="200">
@@ -405,15 +440,41 @@
 
                             <div
                                 class="sm:ml-10 flex-grow p-6 bg-white rounded-lg shadow-lg border-t-4 border-accent-green hover:shadow-xl transition duration-300">
-                                <h3 class="text-xl font-bold text-gray-900">User Experience Designer</h3>
-                                <p class="text-lg font-medium text-accent-green mb-3">Thairath Online</p>
+                                <div class="company-info-container">
+                                    <img src="assets/images/thairath-logo.png" alt="Learn Corporation Logo"
+                                        class="company-logo">
+                                    <div class="company-detail">
+                                        <h3 class="text-xl font-bold text-gray-900">User Experience Designer</h3>
+                                        <p class="text-lg font-medium text-accent-green mb-3">Thairath Online</p>
+                                    </div>
+                                </div>
+
                                 <ul class="list-disc list-inside space-y-1 text-gray-600">
-                                    <li>Led UX/UI design in developing **Mobile-First Responsive Layouts** across key
-                                        digital platforms.</li>
-                                    <li>Conducted in-depth **User Research** and Usability Testing to inform data-backed
-                                        design decisions and validate solutions.</li>
-                                    <li>Led the Ad Viewability Improvement project, successfully linking UX to the
-                                        Revenue Goal (+12% Active Viewable Impressions).</li>
+                                    <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                        <li>Analyzed intricate datasets (e.g., user behavior, app performance, KPIs)
+                                            using GA4 and Hotjar or VWO to identify trends, patterns, and outliers,
+                                            translating raw data into actionable insights for product improvement.</li>
+                                        <li>Engaged with product and development teams (internal clients) to understand
+                                            business needs, translating requirements into wireframes, mockups, and
+                                            interactive prototypes (comprehensive project deliverables).</li>
+                                        <li>Led the end-to-end Agile "Ad Viewability Improvement Project", defining
+                                            prioritization criteria and implementing data-driven strategies. Achieved a
+                                            +12% increase in % Active Viewable Impressions and +8% growth in
+                                            viewable ad revenue, demonstrating direct contribution to business
+                                            objectives.</li>
+                                        <li>Created visually compelling dashboards and reports on performance metrics,
+                                            tailoring presentations to effectively communicate complex insights to
+                                            stakeholders.</li>
+                                        <li>Identified operational inefficiencies in ad placement and content delivery
+                                            through data analysis, proposing and implementing solutions (e.g.,lazy
+                                            loading optimization) for process enhancement.</li>
+                                        <li>Conducted thorough user research (surveys, interviews, usability testing) to
+                                            elicit and document precise user requirements, ensuring alignment between
+                                            user needs and technical solutions.</li>
+                                        <li>Performed continuous testing (usability, A/B testing) to ensure features met
+                                            specified requirements and quality standards, with a focus on defect
+                                            identification and iterative improvement.</li>
+                                    </ul>
                                 </ul>
                             </div>
                         </div>
@@ -431,14 +492,29 @@
                             </div>
 
                             <div
-                                class="sm:ml-10 flex-grow p-6 bg-white rounded-lg shadow-lg border-t-4 border-yellow-600 hover:shadow-xl transition duration-300">
-                                <h3 class="text-xl font-bold text-gray-900">Product Designer (UX/UI)</h3>
-                                <p class="text-lg font-medium text-yellow-600 mb-3">AP (Thailand)</p>
+                                class="sm:ml-10 flex-grow p-6 bg-white rounded-lg shadow-lg border-t-4 border-accent-apthai hover:shadow-xl transition duration-300">
+                                <div class="company-info-container">
+                                    <img src="assets/images/apthai.jpg" alt="Learn Corporation Logo"
+                                        class="company-logo">
+                                    <div class="company-detail">
+                                        <h3 class="text-xl font-bold text-gray-900">Product Designer (UX/UI)</h3>
+                                        <p class="text-lg font-medium text-accent-apthai mb-3">AP (Thailand)</p>
+                                    </div>
+                                </div>
                                 <ul class="list-disc list-inside space-y-1 text-gray-600">
-                                    <li>Controlled and improved **User Experience Processes** following User-Centric
-                                        Design principles.</li>
-                                    <li>Conducted **UX/UI Flow Audits** and analysis to evaluate effectiveness and
-                                        identify product optimization opportunities.</li>
+                                    <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                        <li>Conducted comprehensive UX/UI flow audits and analysis to evaluate
+                                            effectiveness and identify optimization opportunities, demonstrating
+                                            ability
+                                            to analyze intricate datasets and propose process improvements.</li>
+                                        <li>Collaborated with cross-functional teams to create user-friendly
+                                            customer
+                                            flows, translating business goals into compelling user experiences.</li>
+                                        <li>Researched user needs to develop new features and optimize user
+                                            experience,
+                                            serving as a form of requirement elicitation and client collaboration.
+                                        </li>
+                                    </ul>
                                 </ul>
                             </div>
                         </div>
@@ -456,14 +532,28 @@
                             </div>
 
                             <div
-                                class="sm:ml-10 flex-grow p-6 bg-white rounded-lg shadow-lg border-t-4 border-red-500 hover:shadow-xl transition duration-300">
-                                <h3 class="text-xl font-bold text-gray-900">UX/UI Designer</h3>
-                                <p class="text-lg font-medium text-red-500 mb-3">G-ABLE</p>
+                                class="sm:ml-10 flex-grow p-6 bg-white rounded-lg shadow-lg border-t-4 border-accent-gable hover:shadow-xl transition duration-300">
+                                <div class="company-info-container">
+                                    <img src="assets/images/gable-logo.jpg" alt="Learn Corporation Logo"
+                                        class="company-logo">
+                                    <div class="company-detail">
+                                        <h3 class="text-xl font-bold text-gray-900">UX/UI Designer</h3>
+                                        <p class="text-lg font-medium text-accent-gable mb-3">G-ABLE</p>
+                                    </div>
+                                </div>
+
                                 <ul class="list-disc list-inside space-y-1 text-gray-600">
-                                    <li>Designed UX Web and Visual Communication seamlessly integrated with **Brand and
-                                        Product Strategies**.</li>
-                                    <li>Designed and improved real-time business data Dashboards on **Power BI** for
-                                        executives to support decision-making.</li>
+                                    <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                        <li>Designed and improved real-time quarterly company business overview
+                                            dashboards on Power BI for executives, effectively transforming raw data
+                                            into meaningful, actionable insights for strategic decision-making.</li>
+                                        <li>Collaborated with Strategic and Company Communication Teams on new feature
+                                            integration, acting as an internal stakeholder in requirement gathering
+                                            processes.</li>
+                                        <li>Improved news website reporting by optimizing daily/weekly/yearly business
+                                            analysis reports for marketers and sales, demonstrating proficiency in data
+                                            visualization and reporting for specific audiences.</li>
+                                    </ul>
                                 </ul>
                             </div>
                         </div>
@@ -481,14 +571,27 @@
                             </div>
 
                             <div
-                                class="sm:ml-10 flex-grow p-6 bg-white rounded-lg shadow-lg border-t-4 border-primary-blue/70 hover:shadow-xl transition duration-300">
-                                <h3 class="text-xl font-bold text-gray-900">Product Designer (UX/UI)</h3>
-                                <p class="text-lg font-medium text-primary-blue/70 mb-3">Eatlab</p>
+                                class="sm:ml-10 flex-grow p-6 bg-white rounded-lg shadow-lg border-t-4 border-accent-eatlab hover:shadow-xl transition duration-300">
+                                <div class="company-info-container">
+                                    <img src="assets/images/eatlab-logo.jpg" alt="Learn Corporation Logo"
+                                        class="company-logo">
+                                    <div class="company-detail">
+                                        <h3 class="text-xl font-bold text-gray-900">UX/UI Designer</h3>
+                                        <p class="text-lg font-medium text-accent-gable mb-3">Eatlab</p>
+                                    </div>
+                                </div>
+
                                 <ul class="list-disc list-inside space-y-1 text-gray-600">
-                                    <li>Conducted **Usability Testing** and gathered User Feedback to create Personas
-                                        and define Optimal Interaction Models.</li>
-                                    <li>Developed user-centric Wireframes and Prototypes to effectively communicate
-                                        design ideas to Developer and Product teams.</li>
+                                    <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                        <li>Conducted concept and usability testing and gathered user feedback,
+                                            performing initial phases of quality and functionality assurance by
+                                            identifying UX problems.</li>
+                                        <li>Analyzed extensive **POS data** to forecast sales and enhance user
+                                            experience for a restaurant sales report dashboard, showcasing ability to
+                                            analyze intricate datasets and present findings.</li>
+                                        <li>Developed user-centric wireframes and prototypes, translating product
+                                            specifications into clear requirements for developers.</li>
+                                    </ul>
                                 </ul>
                             </div>
                         </div>
@@ -497,25 +600,37 @@
                 </div>
             </div>
         </section>
+
         <section id="mu-education" class="py-24 bg-white">
             <div class="container mx-auto px-4 lg:px-8">
                 <header class="text-center mb-16" data-aos="fade-up">
-                    <span class="text-lg font-semibold text-accent-green uppercase tracking-wider">04. Education &
+                    <span class="text-lg font-semibold text-gray-600 uppercase tracking-wider">Education &
                         Qualifications</span>
                     <h2 class="text-4xl font-bold text-gray-800 mt-2">Academic Background</h2>
                 </header>
 
                 <div class="max-w-4xl mx-auto space-y-8">
-                    <div class="p-6 bg-secondary-gray rounded-xl shadow-lg border-l-4 border-primary-blue"
+                    <div class="p-6 bg-secondary-gray rounded-xl shadow-lg border-l-4 border-accent-orange"
                         role="article" aria-labelledby="kmut-education" data-aos="fade-up" data-aos-delay="100">
                         <div class="flex flex-col md:flex-row justify-between items-start">
                             <div class="md:w-3/4">
-                                <h3 id="kmut-education" class="text-xl font-bold text-gray-900">Bachelor of Science,
-                                    Information Technology</h3>
-                                <p class="text-lg font-medium text-gray-700 mb-1">King Mongkut's University of
-                                    Technology Thonburi (KMUTT)</p>
-                                <p class="text-gray-500 text-sm">Integrated IT knowledge, focusing on **Human-Computer
-                                    Interaction (HCI)** and Project Management principles.</p>
+                                <h3 id="kmut-education" class="text-xl font-bold text-gray-900 mb-1">King Mongkut's
+                                    University of Technology Thonburi (KMUTT)</h3>
+                                <p class="text-lg font-medium text-gray-700 mb-3">Bachelor of Science, Information
+                                    Technology</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-600 ml-4">
+                                    <p>Chernsavoey is a web application designed to facilitate convenient delivery
+                                        services, such as food and beverages, from on-campus stores. The delivery
+                                        personnel are students or university staff members who can earn extra income
+                                        during their free time.</p>
+
+                                    <p>promotes on-campus e-commerce and fosters a sharing economy, where
+                                        income is generated through mutual support within the university community. In
+                                        addition to creating economic opportunities, it also helps solve everyday
+                                        problems and provides convenience for students, faculty members, and staff
+                                        across the university.</p>
+                                    </li>
+                                </ul>
                             </div>
                             <div class="md:w-1/4 text-left md:text-right mt-3 md:mt-0">
                                 <p class="text-lg font-bold text-gray-500">2017 - 2021</p>
@@ -523,14 +638,16 @@
                         </div>
                     </div>
 
-                    <div class="p-6 bg-secondary-gray rounded-xl shadow-lg border-l-4 border-gray-400" role="article"
+                    <div class="p-6 bg-secondary-gray rounded-xl shadow-lg border-l-4 border-pink" role="article"
                         aria-labelledby="highschool-m46" data-aos="fade-up" data-aos-delay="200">
                         <div class="flex flex-col md:flex-row justify-between items-start">
                             <div class="md:w-3/4">
-                                <h3 id="highschool-m46" class="text-xl font-bold text-gray-900">Nakornrayongwittayakom
-                                    School</h3>
-                                <p class="text-lg font-medium text-gray-700 mb-1">Matthayom 4 - 6 | Major: Math &
-                                    Science</p>
+                                <h3 id="highschool-m46" class="text-xl font-bold text-gray-900 mb-1">
+                                    Nakornrayongwittayakom School</h3>
+                                <p class="text-lg font-medium text-gray-700 mb-3">Matthayom 4 - 6</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-600 ml-4">
+                                    <li>Major: Math & Science</li>
+                                </ul>
                             </div>
                             <div class="md:w-1/4 text-left md:text-right mt-3 md:mt-0">
                                 <p class="text-lg font-bold text-gray-500">2013 - 2016</p>
@@ -538,14 +655,16 @@
                         </div>
                     </div>
 
-                    <div class="p-6 bg-secondary-gray rounded-xl shadow-lg border-l-4 border-gray-400" role="article"
+                    <div class="p-6 bg-secondary-gray rounded-xl shadow-lg border-l-4 border-pink" role="article"
                         aria-labelledby="highschool-m13" data-aos="fade-up" data-aos-delay="300">
                         <div class="flex flex-col md:flex-row justify-between items-start">
                             <div class="md:w-3/4">
-                                <h3 id="highschool-m13" class="text-xl font-bold text-gray-900">Nakornrayongwittayakom
-                                    School</h3>
-                                <p class="text-lg font-medium text-gray-700 mb-1">Matthayom 1 - 3 | English Program (EP)
-                                </p>
+                                <h3 id="highschool-m13" class="text-xl font-bold text-gray-900 mb-1">
+                                    Nakornrayongwittayakom School</h3>
+                                <p class="text-lg font-medium text-gray-700 mb-3">Matthayom 1 - 3</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-600 ml-4">
+                                    <li>English Program (EP)</li>
+                                </ul>
                             </div>
                             <div class="md:w-1/4 text-left md:text-right mt-3 md:mt-0">
                                 <p class="text-lg font-bold text-gray-500">2010 - 2013</p>
@@ -564,8 +683,8 @@
                     <div class="md:col-span-1">
                         <h3 class="text-2xl font-bold text-white mb-4">Khanadech Khongsombhatt</h3>
                         <p class="text-gray-400 max-w-sm mx-auto md:mx-0">
-                            "A leader who blends **Product Strategy** with **User Experience** to build measurable
-                            digital solutions."
+                            "A leader who blends Product Strategy with User Experience to build measurable digital
+                            solutions."
                         </p>
                     </div>
 
@@ -614,8 +733,8 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
-            duration: 1000, // Animation duration in milliseconds
-            once: true,     // Animate only once
+            duration: 1000,
+            once: true,
         });
     </script>
 
@@ -629,14 +748,11 @@
                     const isHidden = navContent.classList.toggle('hidden');
 
                     if (!isHidden) {
-                        // Menu is opening (Mobile View)
-                        // Added z-index to ensure menu is on top of content
                         navContent.classList.add('absolute', 'top-full', 'left-0', 'right-0', 'bg-white', 'shadow-2xl', 'p-4', 'flex', 'flex-col', 'space-y-3', 'z-50');
                         navContent.classList.remove('md:flex', 'space-x-6');
                         navContent.querySelector('ul').classList.remove('flex-row', 'space-x-6');
                         navContent.querySelector('ul').classList.add('flex-col', 'space-y-3');
                     } else {
-                        // Menu is closing
                         navContent.classList.remove('absolute', 'top-full', 'left-0', 'right-0', 'bg-white', 'shadow-2xl', 'p-4', 'flex', 'flex-col', 'space-y-3', 'z-50');
                         navContent.classList.add('md:flex', 'space-x-6');
                         navContent.querySelector('ul').classList.remove('flex-col', 'space-y-3');
