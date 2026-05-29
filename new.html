@@ -1,350 +1,1001 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <title>Khanadech Khongsombhatt | UX/UI & Service Designer & Data-Driven Strategist</title>
-
-    <meta name="title" content="Khanadech Khongsombhatt | UX/UI & Service & Designer Data-Driven Strategist">
-    <meta name="description"
-        content="Experienced Product Owner and UX/UI Designer specializing in Product Strategy, user-centric design, and data-driven improvements. View key achievements in E-commerce and Ad Revenue optimization.">
-    <meta name="keywords"
-        content="Product Owner, UX/UI Designer, Product Strategy, Data Analytics, Agile, E-commerce Optimization, UX Strategy">
+    <meta name="description" content="Experienced Product Owner and UX/UI Designer specializing in Product Strategy, user-centric design, and data-driven improvements.">
     <meta name="author" content="Khanadech Khongsombhatt">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://khanadetkh.github.io/">
-    <meta property="og:title" content="Khanadech Khongsombhatt | Product Owner & UX Strategist">
-    <meta property="og:description"
-        content="Experienced Product Owner and UX/UI Designer specializing in Product Strategy and user-centric design.">
-    <meta property="og:image" content="assets/images/210820015033-L4n4.png">
-
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://khanadetkh.github.io/">
-    <meta property="twitter:title" content="Khanadech Khongsombhatt | Product Owner & UX Strategist">
-    <meta property="twitter:description"
-        content="Experienced Product Owner and UX/UI Designer specializing in Product Strategy and user-centric design.">
-    <meta property="twitter:image" content="assets/images/210820015033-L4n4.png">
-    <link rel="shortcut icon" type="image/icon" href="assets/images/favicon.ico" />
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'sans': ['IBM Plex Sans Thai', 'sans-serif'],
-                    },
-                    colors: {
-                        'primary-blue': '#2563EB', // Blue-600
-                        'secondary-gray': '#F3F4F6', // Gray-100
-                        'accent-green': '#00B400', // Green-500
-                        'accent-orange': '#FA4616', // New Color: #FA4616
-                        'accent-gable': '#f2900a', // G-ABLE brand color
-                        'dark-bg': '#1F2937', // Gray-800
-                        'pink': '#ff8bf9', // Pink-500
-                        'accent-eatlab': '#fc6c24', // eatlab brand color
-                        'accent-apthai': '#921c1e', // apthai brand color
-                        'accent-learn': '#2879B9', // learn brand color
-                    },
-                    boxShadow: {
-                        '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.1)',
-                    }
-                }
-            }
-        }
-    </script>
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
-
     <style>
-        .rounded-full-50 {
+        :root {
+            --gold: #C9A96E;
+            --gold-light: #E8D5A3;
+            --gold-dim: #8A6E3E;
+            --cream: #F5F0E8;
+            --off-white: #EDE8DE;
+            --bg-deep: #0A0A0A;
+            --bg-dark: #111111;
+            --bg-card: #161616;
+            --bg-card-hover: #1C1C1C;
+            --bg-surface: #1A1A1A;
+            --border: rgba(201,169,110,0.15);
+            --border-strong: rgba(201,169,110,0.35);
+            --text-primary: #F0EAD6;
+            --text-secondary: #9E9585;
+            --text-muted: #5A5550;
+            --accent-green: #4CAF7D;
+            --accent-blue: #4A90D9;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Google Sans', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 0.04em;
+        }
+
+        /* ── SCROLL TO TOP ── */
+        .scrollToTop {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 44px;
+            height: 44px;
+            background: var(--gold);
+            color: var(--bg-deep);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            text-decoration: none;
+            z-index: 100;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .scrollToTop:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(201,169,110,0.35); }
+
+        /* ── HEADER / NAV ── */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(10,10,10,0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 68px;
+        }
+
+        .nav-brand {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.4rem;
+            letter-spacing: 0.12em;
+            color: var(--gold);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .nav-brand:hover { opacity: 0.8; }
+
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-links a:hover::after { width: 100%; }
+
+        #menu-toggle {
+            display: none;
+            background: none;
+            border: 1px solid var(--border-strong);
+            color: var(--text-secondary);
+            width: 38px;
+            height: 38px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        #menu-toggle:hover { border-color: var(--gold); color: var(--gold); }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-deep);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 70% 50%, rgba(201,169,110,0.06) 0%, transparent 60%),
+                radial-gradient(ellipse 40% 60% at 20% 80%, rgba(74,144,217,0.04) 0%, transparent 50%);
+        }
+
+        /* Decorative large text watermark */
+        .hero-watermark {
+            position: absolute;
+            right: -2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(10rem, 20vw, 22rem);
+            letter-spacing: -0.02em;
+            color: rgba(201,169,110,0.04);
+            pointer-events: none;
+            user-select: none;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        .hero-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 6rem;
+            align-items: center;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .hero-eyebrow-line {
+            width: 40px;
+            height: 1px;
+            background: var(--gold);
+        }
+        .hero-eyebrow-text {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .hero-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(3.5rem, 7vw, 6.5rem);
+            line-height: 0.95;
+            letter-spacing: 0.02em;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+        .hero-title .highlight {
+            color: var(--gold);
+            display: block;
+        }
+
+        .hero-desc {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 540px;
+            margin-bottom: 2.5rem;
+            border-left: 2px solid var(--border-strong);
+            padding-left: 1.25rem;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.9rem 2rem;
+            background: var(--gold);
+            color: var(--bg-deep);
+            font-family: 'Google Sans', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: box-shadow 0.3s ease, transform 0.2s ease;
+        }
+        .btn-primary:hover {
+            box-shadow: 0 8px 32px rgba(201,169,110,0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.9rem 2rem;
+            background: transparent;
+            color: var(--gold);
+            font-family: 'Google Sans', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 1px solid var(--border-strong);
+            cursor: pointer;
+            transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+        }
+        .btn-outline:hover {
+            background: rgba(201,169,110,0.08);
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .hero-photo-wrap {
+            position: relative;
+            flex-shrink: 0;
+        }
+        .hero-photo-frame {
+            position: relative;
+            width: 320px;
+            height: 320px;
             border-radius: 50%;
         }
-
-        #mu-hero-banner {
-            background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+        .hero-photo-frame::before {
+            content: '';
+            position: absolute;
+            inset: -14px;
+            border: 1px solid var(--border-strong);
+            border-radius: 50%;
+            transition: transform 0.5s ease, opacity 0.3s;
+        }
+        .hero-photo-frame:hover::before { transform: scale(1.04); opacity: 0.7; }
+        .hero-photo-frame::after {
+            content: '';
+            position: absolute;
+            inset: -26px;
+            border: 1px solid rgba(201,169,110,0.12);
+            border-radius: 50%;
+            transition: transform 0.5s ease, opacity 0.3s;
+        }
+        .hero-photo-frame:hover::after { transform: scale(1.03); opacity: 0.5; }
+        .hero-photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            position: relative;
+            z-index: 1;
+            filter: grayscale(15%) contrast(1.05);
+            border: 2px solid var(--border-strong);
         }
 
-        /* NOTE: The skill-badge class is now removed to use list-disc for bullet points */
+        /* ── SECTION BASE ── */
+        section { position: relative; }
 
-        .nav-icon {
-            /* กำหนดขนาดตามที่ต้องการ */
-            width: 32px;
-            height: 32px;
-
-            /* หากต้องการให้ไอคอนดูคมชัดขึ้นบนหน้าจอความละเอียดสูง */
-            display: block;
-
-            /* (เพิ่ม margin-right เพื่อเว้นระยะห่างจากชื่อเว็บไซต์ หากมี) */
-            /* margin-right: 8px; */
+        .section-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 7rem 2rem;
         }
 
-        /* 1. กำหนดขนาดของ Logo */
-        .company-logo {
-            width: 50px;
-            /* ขนาดความกว้างที่ต้องการ */
-            height: 50px;
-            /* ขนาดความสูงที่ต้องการ */
-            margin-right: 8px;
-            /* เว้นระยะห่างระหว่าง Logo กับชื่อบริษัท */
-            margin-bottom: 20px;
-            /* เว้นระยะห่างระหว่าง Logo กับชื่อบริษัท */
-            display: block;
-            /* เพื่อความเข้ากันได้กับการจัดเรียง */
+        .section-header {
+            margin-bottom: 4rem;
         }
 
-        /* 2. ใช้ Flexbox เพื่อจัดเรียง Logo และ Text ให้อยู่ในบรรทัดเดียวกัน */
-        .company-info-container {
-            display: flex;
-            /* เปิดใช้งาน Flexbox */
+        .section-label {
+            display: inline-flex;
             align-items: center;
-            /* จัดองค์ประกอบ (Logo และ Text) ให้อยู่กึ่งกลางแนวตั้ง */
-            /* หากใช้ Tailwind CSS, อาจจะต้อง Overwrite margin เดิมของ p ด้วย */
+            gap: 0.75rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .section-label::before {
+            content: '';
+            width: 24px;
+            height: 1px;
+            background: var(--gold);
         }
 
-        /* 3. ปรับ Margin ของชื่อบริษัท (ถ้าจำเป็น) */
-        .company-info-container .text-lg.font-medium.text-accent-learn.mb-3 {
-            margin-bottom: 0;
-            /* ลบ margin ล่างออกจากชื่อบริษัท เพื่อให้อยู่ในแนวเดียวกับ Logo */
+        .section-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            letter-spacing: 0.04em;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-top: 1rem;
+            line-height: 1.8;
+        }
+
+        /* ── DIVIDER ── */
+        .gold-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+        }
+
+        /* ── PORTFOLIO SECTION ── */
+        #mu-portfolio { background: var(--bg-dark); }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+        }
+
+        .portfolio-card {
+            background: var(--bg-card);
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s ease;
+            cursor: default;
+        }
+        .portfolio-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        .portfolio-card:hover { background: var(--bg-card-hover); }
+        .portfolio-card:hover::before { transform: scaleX(1); }
+
+        .portfolio-card-index {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 4rem;
+            letter-spacing: 0.02em;
+            color: rgba(201,169,110,0.08);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+        .portfolio-card:hover .portfolio-card-index { color: rgba(201,169,110,0.15); }
+
+        .portfolio-card-tag {
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .portfolio-card h3 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.65rem;
+            letter-spacing: 0.04em;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            line-height: 1.1;
+        }
+
+        .portfolio-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.75;
+            margin-bottom: 1.5rem;
+        }
+
+        .portfolio-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            text-decoration: none;
+            transition: gap 0.2s ease;
+        }
+        .portfolio-link:hover { gap: 0.8rem; }
+
+        /* ── SKILLS SECTION ── */
+        #mu-service { background: var(--bg-deep); }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--border);
+        }
+
+        .skill-card {
+            background: var(--bg-deep);
+            padding: 2.5rem 2rem;
+            transition: background 0.3s;
+        }
+        .skill-card:hover { background: var(--bg-surface); }
+
+        .skill-card-icon {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border-strong);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 16px;
+            color: var(--gold);
+            transition: background 0.3s, border-color 0.3s;
+        }
+        .skill-card:hover .skill-card-icon {
+            background: rgba(201,169,110,0.08);
+            border-color: var(--gold);
+        }
+
+        .skill-card h3 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.2rem;
+            letter-spacing: 0.06em;
+            color: var(--text-primary);
+            margin-bottom: 1.25rem;
+            line-height: 1.2;
+        }
+
+        .skill-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .skill-list li {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            padding-left: 1rem;
+            position: relative;
+            line-height: 1.5;
+        }
+        .skill-list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--gold-dim);
+            font-size: 0.7rem;
+            top: 0.3em;
+        }
+
+        /* ── EXPERIENCE SECTION ── */
+        #mu-experience { background: var(--bg-dark); }
+
+        .experience-list { display: flex; flex-direction: column; gap: 0; }
+
+        .experience-item {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 3rem;
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            transition: background 0.3s;
+        }
+        .experience-item:first-child { border-top: 1px solid var(--border); }
+
+        .exp-meta { padding-top: 0.25rem; }
+
+        .exp-date {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .exp-company-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            margin-top: 1rem;
+            border-radius: 50%;
+            border: 1px solid var(--border-strong);
+        }
+
+        .exp-content { }
+
+        .exp-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.8rem;
+            letter-spacing: 0.04em;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+            line-height: 1;
+        }
+
+        .exp-company {
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gold-dim);
+            margin-bottom: 1.25rem;
+        }
+
+        .exp-bullets {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .exp-bullets li {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            padding-left: 1.25rem;
+            position: relative;
+            line-height: 1.65;
+        }
+        .exp-bullets li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.7em;
+            width: 5px;
+            height: 1px;
+            background: var(--gold-dim);
+        }
+
+        /* ── EDUCATION SECTION ── */
+        #mu-education { background: var(--bg-deep); }
+
+        .education-list { display: flex; flex-direction: column; gap: 1.5rem; }
+
+        .education-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            padding: 2rem 2.5rem;
+            background: var(--bg-card);
+            border-left: 2px solid var(--gold);
+            transition: background 0.3s ease, border-color 0.3s;
+        }
+        .education-item:hover { background: var(--bg-card-hover); }
+
+        .edu-school {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.35rem;
+            letter-spacing: 0.04em;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+        }
+        .edu-degree {
+            font-size: 0.85rem;
+            color: var(--gold-dim);
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+        .edu-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+        }
+        .edu-year {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.2rem;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            white-space: nowrap;
+            text-align: right;
+            padding-top: 0.15rem;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 5rem 2rem 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer-brand h3 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.6rem;
+            letter-spacing: 0.08em;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .footer-brand p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.75;
+            font-style: italic;
+            max-width: 320px;
+        }
+
+        .footer-col h4 {
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+        .footer-links a {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.87rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--gold); }
+        .footer-links i { color: var(--gold-dim); font-size: 0.85rem; }
+
+        .footer-socials {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 16px;
+            transition: border-color 0.2s, color 0.2s, background 0.2s;
+        }
+        .social-icon:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(201,169,110,0.05);
+        }
+
+        .footer-bottom {
+            padding: 1.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-bottom p {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            letter-spacing: 0.06em;
+        }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes lineExpand {
+            from { width: 0; }
+            to { width: 40px; }
+        }
+
+        /* AOS overrides for dark theme */
+        [data-aos] { will-change: transform, opacity; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .footer-brand { grid-column: 1 / -1; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-container { grid-template-columns: 1fr; text-align: center; }
+            .hero-photo-wrap { display: none; }
+            .hero-eyebrow { justify-content: center; }
+            .hero-desc { border-left: none; padding-left: 0; border-top: 1px solid var(--border-strong); padding-top: 1.25rem; }
+            .hero-ctas { justify-content: center; }
+            .experience-item { grid-template-columns: 1fr; gap: 0.5rem; }
+            .exp-meta { display: flex; align-items: center; gap: 1.5rem; }
+            .exp-company-logo { margin-top: 0; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .nav-links { display: none; }
+            #menu-toggle { display: flex; align-items: center; justify-content: center; }
+            .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+        }
+
+        /* Mobile nav */
+        #mobile-nav {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(10,10,10,0.97);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 2rem;
+        }
+        #mobile-nav.open { display: block; }
+        #mobile-nav ul { list-style: none; display: flex; flex-direction: column; gap: 0; }
+        #mobile-nav li { border-bottom: 1px solid var(--border); }
+        #mobile-nav li:last-child { border-bottom: none; }
+        #mobile-nav a {
+            display: block;
+            padding: 1rem 0;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        #mobile-nav a:hover { color: var(--gold); }
+
+        /* Visit portfolio button */
+        .visit-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.8rem 1.75rem;
+            border: 1px solid var(--border-strong);
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: border-color 0.2s, color 0.2s, background 0.2s;
+            margin-top: 3rem;
+        }
+        .visit-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(201,169,110,0.04);
         }
     </style>
 </head>
+<body>
 
-<body class="font-sans text-gray-800">
-
-    <a class="scrollToTop fixed bottom-6 right-6 p-3 bg-primary-blue text-white rounded-full shadow-lg hover:bg-blue-700 transition duration-300 z-50 hidden md:block"
-        href="#" aria-label="Scroll to top">
+    <a class="scrollToTop" href="#" aria-label="Scroll to top">
         <i class="fa fa-angle-up"></i>
     </a>
-    <header id="mu-hero" class="bg-white shadow-lg sticky top-0 z-40">
-        <div class="container mx-auto px-4 lg:px-8">
-            <nav class="flex items-center justify-between py-4" role="navigation" aria-label="Main Navigation">
-                <a href="/" class="navbar-brand">
-                    <img src="assets/images/icon.png" alt="K.K. Product/UX Logo" class="nav-icon">
-                </a>
 
-                <button class="md:hidden text-gray-800 text-2xl" id="menu-toggle" aria-label="Toggle Menu">
-                    <span class="fa fa-bars"></span>
+    <!-- HEADER -->
+    <header id="mu-hero">
+        <div class="nav-container" style="position:relative;">
+            <a href="/" class="nav-brand">KK</a>
+
+            <nav style="display:flex; align-items:center; gap:1rem;">
+                <ul class="nav-links" id="navbarSupportedContent">
+                    <li><a href="#mu-portfolio">Key Initiatives</a></li>
+                    <li><a href="#mu-service">Core Skills</a></li>
+                    <li><a href="#mu-experience">Experience</a></li>
+                    <li><a href="#mu-education">Education</a></li>
+                    <li><a href="#mu-footer">Contact</a></li>
+                </ul>
+                <button id="menu-toggle" aria-label="Toggle Menu">
+                    <i class="fa fa-bars"></i>
                 </button>
-
-                <div class="hidden md:flex" id="navbarSupportedContent">
-                    <ul class="flex space-x-6">
-                        <li><a class="text-gray-600 hover:text-primary-blue font-medium transition duration-300"
-                                href="#mu-portfolio">Key Initiatives</a></li>
-                        <li><a class="text-gray-600 hover:text-primary-blue font-medium transition duration-300"
-                                href="#mu-service">Core Skills</a></li>
-                        <li><a class="text-gray-600 hover:text-primary-blue font-medium transition duration-300"
-                                href="#mu-experience">Experience</a></li>
-                        <li><a class="text-gray-600 hover:text-primary-blue font-medium transition duration-300"
-                                href="#mu-education">Education</a></li>
-                        <li><a class="text-gray-600 hover:text-primary-blue font-medium transition duration-300"
-                                href="#mu-footer">Contact</a></li>
-                    </ul>
-                </div>
             </nav>
+
+            <div id="mobile-nav">
+                <ul>
+                    <li><a href="#mu-portfolio">Key Initiatives</a></li>
+                    <li><a href="#mu-service">Core Skills</a></li>
+                    <li><a href="#mu-experience">Experience</a></li>
+                    <li><a href="#mu-education">Education</a></li>
+                    <li><a href="#mu-footer">Contact</a></li>
+                </ul>
+            </div>
         </div>
     </header>
-    <main role="main">
-        <section id="mu-hero-banner" class="pt-24 pb-32 lg:pt-36 lg:pb-48">
-            <div class="container mx-auto px-4 lg:px-8">
-                <div class="flex flex-col md:flex-row items-center justify-between">
 
-                    <div class="max-w-xl md:text-left text-center md:order-1 order-2 mt-10 md:mt-0"
-                        data-aos="fade-right" data-aos-easing="ease-in-sine">
-                        <p class="text-lg font-bold text-accent-green uppercase mb-3 tracking-widest">
-                            Hello, I'm Khanadech Khongsombhatt
-                        </p>
-                        <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
-                            UX/UI & Service Designer <span class="text-primary-blue">Data-Driven Strategist</span>
-                        </h1>
-                        <p class="text-xl text-gray-700 mb-10">
-                            A results-oriented professional with over 4 years of experience at the intersection of user
-                            experience and business objectives. I excel at bridging the gap between user needs and
-                            strategic goals, leveraging strong data analysis and interpretation skills to translate
-                            complex datasets into meaningful, actionable insights that drive business growth. My
-                            expertise spans requirement gathering, data visualization and reporting, process
-                            enhancement, and leading agile product development initiatives. I am adept at client
-                            collaboration, fostering strong relationships, and committed to delivering impactful digital
-                            solutions through a data-driven decision-making approach.
-                        </p>
+    <main>
 
-                        <div
-                            class="flex flex-col sm:flex-row items-center justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
-                            <a href="#mu-portfolio"
-                                class="inline-flex items-center px-8 py-4 bg-primary-blue text-white font-bold text-lg rounded-xl shadow-2xl shadow-blue-400/50 hover:bg-blue-700 transition duration-300 transform hover:scale-[1.02] w-full sm:w-auto justify-center">
-                                View Key Achievements <i class="fas fa-arrow-right ml-3"></i>
-                            </a>
-                            <a href="assets/KHANADET KHONGSOMBHATT.pdf" target="_blank"
-                                class="inline-flex items-center px-8 py-4 bg-transparent text-primary-blue border-2 border-primary-blue font-bold text-lg rounded-xl hover:bg-primary-blue hover:text-white transition duration-300 w-full sm:w-auto justify-center">
-                                Download Resume <i class="fas fa-download ml-3"></i>
-                            </a>
-                        </div>
+        <!-- HERO -->
+        <section id="mu-hero-banner" class="hero">
+            <div class="hero-watermark" aria-hidden="true">KK</div>
+            <div class="hero-container">
+                <div data-aos="fade-right" data-aos-easing="ease-out-cubic" data-aos-duration="900">
+                    <div class="hero-eyebrow">
+                        <span class="hero-eyebrow-line"></span>
+                        <span class="hero-eyebrow-text">Hello, I'm Khanadech Khongsombhatt</span>
                     </div>
+                    <h1 class="hero-title">
+                        UX/UI &amp;<br>Service Designer
+                        <span class="highlight">Data-Driven<br>Strategist</span>
+                    </h1>
+                    <p class="hero-desc">
+                        A results-oriented professional with over 4 years of experience at the intersection of user experience and business objectives. Bridging user needs with strategic goals through data analysis, design thinking, and agile leadership.
+                    </p>
+                    <div class="hero-ctas">
+                        <a href="#mu-portfolio" class="btn-primary" style="display:none;">
+                            View Key Achievements <i class="fas fa-arrow-right" style="font-size:11px;"></i>
+                        </a>
+                        <a href="assets/KHANADET KHONGSOMBHATT.pdf" target="_blank" class="btn-outline">
+                            Download Resume <i class="fas fa-download" style="font-size:11px;"></i>
+                        </a>
+                    </div>
+                </div>
 
-                    <div class="md:w-1/3 md:order-2 order-1" data-aos="fade-left" data-aos-easing="ease-in-sine">
-                        <img src="assets/images/210820015033-L4n4.png"
-                            class="w-72 h-72 lg:w-96 lg:h-96 object-cover rounded-full-50 shadow-3xl mx-auto"
-                            alt="Professional profile image of Khanadech Khongsombhatt, Product Owner and UX/UI Designer">
+                <div class="hero-photo-wrap" data-aos="fade-left" data-aos-easing="ease-out-cubic" data-aos-duration="900" data-aos-delay="150">
+                    <div class="hero-photo-frame">
+                        <img src="assets/images/210820015033-L4n4.png" alt="Khanadech Khongsombhatt profile photo">
                     </div>
                 </div>
             </div>
         </section>
-        <section id="mu-portfolio" class="py-24 bg-secondary-gray">
-            <div class="container mx-auto px-4 lg:px-8">
-                <header class="text-center mb-16" data-aos="fade-up">
-                    <span class="text-lg font-semibold text-accent-green uppercase tracking-wider">Key Initiatives &
-                        Achievements</span>
-                    <h2 class="text-4xl font-bold text-gray-800 mt-2">Results from Product and UX/UI Leadership</h2>
-                    <p class="text-lg text-gray-600 mt-4 max-w-3xl mx-auto">
-                        Key projects showcasing the use of UX/UI Design, Data Analysis, and Agile Methodology to deliver
-                        measurable business outcomes.
-                    </p>
+
+        <div class="gold-divider" style="display:none;"></div>
+
+        <!-- PORTFOLIO -->
+        <section id="mu-portfolio" style="display:none;">
+            <div class="section-container">
+                <header class="section-header" data-aos="fade-up">
+                    <span class="section-label">Key Initiatives & Achievements</span>
+                    <h2 class="section-title">Results from Product<br>&amp; UX/UI Leadership</h2>
+                    <p class="section-subtitle">Key projects showcasing UX/UI Design, Data Analysis, and Agile Methodology to deliver measurable business outcomes.</p>
                 </header>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-
-                    <article
-                        class="bg-white rounded-2xl shadow-xl overflow-hidden group hover:shadow-2xl transition duration-500 transform hover:-translate-y-1"
-                        data-aos="zoom-in-up" data-aos-delay="100">
-                        <div class="p-8">
-                            <span class="text-sm font-semibold text-primary-blue mb-2 block">Product-Led Growth |
-                                Revenue Optimization (Thairath Online)</span>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Ad Viewability & Lazy Loading Project</h3>
-                            <p class="text-gray-600 mb-4">
-                                Led the Agile project to analyze and optimize UX for advertising placement and implement
-                                Lazy Loading. Result: Achieved a +12% increase in % Active Viewable Impressions and +8%
-                                growth in viewable ad revenue, exceeding Google Ad Manager benchmarks.
-                            </p>
-                            <a href="#mu-portfolio" aria-label="View details for Ad Viewability Project"
-                                class="text-lg font-semibold text-primary-blue inline-flex items-center">
-                                View Project Summary <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                            </a>
-                        </div>
+                <div class="portfolio-grid" data-aos="fade-up" data-aos-delay="100">
+                    <article class="portfolio-card">
+                        <div class="portfolio-card-index">01</div>
+                        <span class="portfolio-card-tag">Product-Led Growth · Revenue Optimization · Thairath Online</span>
+                        <h3>Ad Viewability &amp; Lazy Loading Project</h3>
+                        <p>Led the Agile project to analyze and optimize UX for advertising placement and implement Lazy Loading. Achieved a +12% increase in % Active Viewable Impressions and +8% growth in viewable ad revenue, exceeding Google Ad Manager benchmarks.</p>
+                        <a href="#mu-portfolio" class="portfolio-link" aria-label="View Ad Viewability Project">
+                            View Summary <i class="fas fa-arrow-right" style="font-size:10px;"></i>
+                        </a>
                     </article>
 
-                    <article
-                        class="bg-white rounded-2xl shadow-xl overflow-hidden group hover:shadow-2xl transition duration-500 transform hover:-translate-y-1"
-                        data-aos="zoom-in-up" data-aos-delay="200">
-                        <div class="p-8">
-                            <span class="text-sm font-semibold text-primary-blue mb-2 block">E-Commerce Product Strategy
-                                | UX/UI Redesign (Learn Corporation)</span>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Seamless E-Commerce Redesign</h3>
-                            <p class="text-gray-600 mb-4">
-                                Led the definition of requirements and the end-to-end UX/UI redesign for the E-commerce
-                                website to improve engagement and responsiveness. Collaborated cross-functionally to
-                                align design solutions with business goals, using Usability Testing to reduce friction
-                                and boost user satisfaction.
-                            </p>
-                            <a href="#mu-portfolio" aria-label="View details for E-Commerce Redesign"
-                                class="text-lg font-semibold text-primary-blue inline-flex items-center">
-                                View Full Case Study <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                            </a>
-                        </div>
+                    <article class="portfolio-card">
+                        <div class="portfolio-card-index">02</div>
+                        <span class="portfolio-card-tag">E-Commerce Strategy · UX/UI Redesign · Learn Corporation</span>
+                        <h3>Seamless E-Commerce Redesign</h3>
+                        <p>Led end-to-end UX/UI redesign for the E-commerce website to improve engagement and responsiveness. Collaborated cross-functionally to align design solutions with business goals, using Usability Testing to reduce friction and boost satisfaction.</p>
+                        <a href="#mu-portfolio" class="portfolio-link" aria-label="View E-Commerce Case Study">
+                            View Case Study <i class="fas fa-arrow-right" style="font-size:10px;"></i>
+                        </a>
                     </article>
 
-                    <article
-                        class="bg-white rounded-2xl shadow-xl overflow-hidden group hover:shadow-2xl transition duration-500 transform hover:-translate-y-1"
-                        data-aos="zoom-in-up" data-aos-delay="300">
-                        <div class="p-8">
-                            <span class="text-sm font-semibold text-primary-blue mb-2 block">Data Visualization UX |
-                                Executive Reporting (G-ABLE)</span>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Executive Dashboard on Power BI</h3>
-                            <p class="text-gray-600 mb-4">
-                                Designed and improved real-time quarterly company business overview dashboards on Power
-                                BI for executives, transforming raw data into meaningful, actionable insights. Bridged
-                                Product requirements with UX in data presentation (Data Visualization UX).
-                            </p>
-                            <a href="#mu-portfolio" aria-label="View details for Power BI Dashboard Project"
-                                class="text-lg font-semibold text-primary-blue inline-flex items-center">
-                                View Project Details <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                            </a>
-                        </div>
+                    <article class="portfolio-card">
+                        <div class="portfolio-card-index">03</div>
+                        <span class="portfolio-card-tag">Data Visualization UX · Executive Reporting · G-ABLE</span>
+                        <h3>Executive Dashboard on Power BI</h3>
+                        <p>Designed and improved real-time quarterly company business overview dashboards on Power BI for executives, transforming raw data into meaningful, actionable insights. Bridged Product requirements with UX in data presentation.</p>
+                        <a href="#mu-portfolio" class="portfolio-link" aria-label="View Power BI Dashboard Project">
+                            View Details <i class="fas fa-arrow-right" style="font-size:10px;"></i>
+                        </a>
                     </article>
 
-                    <article
-                        class="bg-white rounded-2xl shadow-xl overflow-hidden group hover:shadow-2xl transition duration-500 transform hover:-translate-y-1"
-                        data-aos="zoom-in-up" data-aos-delay="400">
-                        <div class="p-8">
-                            <span class="text-sm font-semibold text-primary-blue mb-2 block">UX Research for Product
-                                Insights | Data-Backed Design (Eatlab)</span>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Restaurant Sales Report Dashboard</h3>
-                            <p class="text-gray-600 mb-4">
-                                Designed and improved the Sales Report Dashboard for restaurants, utilizing POS data
-                                analysis for sales forecasting. Employed UX Research (Interviews, observation, and
-                                questionnaires) to define the optimal interaction model and enhance user experience.
-                            </p>
-                            <a href="#mu-portfolio" aria-label="View details for Sales Report Dashboard"
-                                class="text-lg font-semibold text-primary-blue inline-flex items-center">
-                                View Project Details <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                            </a>
-                        </div>
+                    <article class="portfolio-card">
+                        <div class="portfolio-card-index">04</div>
+                        <span class="portfolio-card-tag">UX Research · Data-Backed Design · Eatlab</span>
+                        <h3>Restaurant Sales Report Dashboard</h3>
+                        <p>Designed and improved the Sales Report Dashboard for restaurants, utilizing POS data analysis for sales forecasting. Employed UX Research (Interviews, observation, and questionnaires) to define the optimal interaction model.</p>
+                        <a href="#mu-portfolio" class="portfolio-link" aria-label="View Sales Dashboard Project">
+                            View Details <i class="fas fa-arrow-right" style="font-size:10px;"></i>
+                        </a>
                     </article>
                 </div>
 
-                <div class="text-center mt-16" data-aos="fade-up" data-aos-delay="500">
-                    <a href="https://khanadetkh.github.io" target="_blank"
-                        class="inline-flex items-center px-6 py-3 border border-gray-400 text-gray-700 font-semibold rounded-lg hover:bg-gray-100 transition duration-300">
-                        Visit Full Portfolio Website <i class="fas fa-external-link-alt ml-2"></i>
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <a href="https://khanadetkh.github.io" target="_blank" class="visit-btn">
+                        Visit Full Portfolio <i class="fas fa-external-link-alt" style="font-size:10px;"></i>
                     </a>
                 </div>
             </div>
         </section>
 
-        <section id="mu-service" class="py-24 bg-white">
-            <div class="container mx-auto px-4 lg:px-8">
-                <header class="text-center mb-16" data-aos="fade-up">
-                    <span class="text-lg font-semibold text-accent-green uppercase tracking-wider">Core
-                        Competencies</span>
-                    <h2 class="text-4xl font-bold text-gray-800 mt-2">Specialized Skills & Tools</h2>
+        <div class="gold-divider"></div>
+
+        <!-- SKILLS -->
+        <section id="mu-service">
+            <div class="section-container">
+                <header class="section-header" data-aos="fade-up">
+                    <span class="section-label">Core Competencies</span>
+                    <h2 class="section-title">Specialized Skills<br>&amp; Tools</h2>
                 </header>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-
-                    <div class="p-6 bg-secondary-gray rounded-xl shadow-lg border-t-4 border-primary-blue" role="region"
-                        aria-labelledby="product-skills" data-aos="fade-up" data-aos-delay="100">
-                        <h3 id="product-skills" class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-                            <i class="fas fa-sitemap text-primary-blue mr-3"></i> Product Strategy & Leadership
-                        </h3>
-                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-2">
+                <div class="skills-grid" data-aos="fade-up" data-aos-delay="100">
+                    <div class="skill-card">
+                        <div class="skill-card-icon"><i class="fas fa-sitemap"></i></div>
+                        <h3>Product Strategy &amp; Leadership</h3>
+                        <ul class="skill-list">
                             <li>Product Strategy</li>
-                            <li>Requirements Gathering & Analysis</li>
-                            <li>User Story & Journey Mapping</li>
-                            <li>Agile & Scrum Methodologies</li>
+                            <li>Requirements Gathering &amp; Analysis</li>
+                            <li>User Story &amp; Journey Mapping</li>
+                            <li>Agile &amp; Scrum Methodologies</li>
                             <li>Product Leadership</li>
                         </ul>
                     </div>
-
-                    <div class="p-6 bg-secondary-gray rounded-xl shadow-lg border-t-4 border-accent-green" role="region"
-                        aria-labelledby="uxui-skills" data-aos="fade-up" data-aos-delay="200">
-                        <h3 id="uxui-skills" class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-                            <i class="fas fa-palette text-accent-green mr-3"></i> UX/UI Design & User Research
-                        </h3>
-                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-2">
-                            <li>User Research (Surveys, User Interviews, Usability Testing, A/B Testing)</li>
+                    <div class="skill-card">
+                        <div class="skill-card-icon"><i class="fas fa-palette"></i></div>
+                        <h3>UX/UI Design &amp; User Research</h3>
+                        <ul class="skill-list">
+                            <li>User Research (Surveys, Interviews, Usability Testing, A/B Testing)</li>
                             <li>Design Thinking</li>
                             <li>Information Architecture (IA)</li>
-                            <li>Wireframing & Prototyping (Figma)</li>
+                            <li>Wireframing &amp; Prototyping (Figma)</li>
                         </ul>
                     </div>
-
-                    <div class="p-6 bg-secondary-gray rounded-xl shadow-lg border-t-4 border-yellow-600" role="region"
-                        aria-labelledby="data-skills" data-aos="fade-up" data-aos-delay="300">
-                        <h3 id="data-skills" class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-                            <i class="fas fa-chart-line text-yellow-600 mr-3"></i> Data Analytics
-                        </h3>
-                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-2">
+                    <div class="skill-card">
+                        <div class="skill-card-icon"><i class="fas fa-chart-line"></i></div>
+                        <h3>Data Analytics</h3>
+                        <ul class="skill-list">
                             <li>GA4 (Google Analytics 4)</li>
                             <li>Hotjar</li>
                             <li>VWO</li>
@@ -353,415 +1004,215 @@
                             <li>Data-Driven Decision Making</li>
                         </ul>
                     </div>
-
-                    <div class="p-6 bg-secondary-gray rounded-xl shadow-lg border-t-4 border-red-500" role="region"
-                        aria-labelledby="tech-skills" data-aos="fade-up" data-aos-delay="400">
-                        <h3 id="tech-skills" class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-                            <i class="fas fa-code text-red-500 mr-3"></i> Technical & Soft Skills
-                        </h3>
-                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-2">
+                    <div class="skill-card">
+                        <div class="skill-card-icon"><i class="fas fa-code"></i></div>
+                        <h3>Technical &amp; Soft Skills</h3>
+                        <ul class="skill-list">
                             <li>HTML, CSS, JavaScript</li>
                             <li>JAVA</li>
                             <li>Flutter</li>
                             <li>Problem-Solving</li>
                             <li>Critical Thinking</li>
-                            <li>Communication, Empathy</li>
+                            <li>Communication &amp; Empathy</li>
                         </ul>
                     </div>
-
                 </div>
             </div>
         </section>
-        <section id="mu-experience" class="py-24 bg-secondary-gray">
-            <div class="container mx-auto px-4 lg:px-8">
-                <header class="text-center mb-16" data-aos="fade-up">
-                    <span class="text-lg font-semibold text-accent-green uppercase tracking-wider">Professional
-                        Journey</span>
-                    <h2 class="text-4xl font-bold text-gray-800 mt-2">Work Experience</h2>
+
+        <div class="gold-divider"></div>
+
+        <!-- EXPERIENCE -->
+        <section id="mu-experience">
+            <div class="section-container">
+                <header class="section-header" data-aos="fade-up">
+                    <span class="section-label">Professional Journey</span>
+                    <h2 class="section-title">Work Experience</h2>
                 </header>
 
-                <div class="max-w-4xl mx-auto space-y-12">
+                <div class="experience-list">
 
-                    <article class="relative pl-8 sm:pl-32 group" data-aos="fade-right" data-aos-delay="100">
-                        <div class="flex flex-col sm:flex-row items-start">
-                            <div class="hidden sm:block absolute left-0 w-px bg-primary-blue h-full top-2"></div>
-                            <div class="hidden sm:block absolute left-[-6px] w-4 h-4 bg-primary-blue rounded-full z-10">
-                            </div>
-
-                            <div
-                                class="sm:w-32 sm:flex-shrink-0 mb-4 sm:mb-0 text-lg font-bold text-gray-500 sm:text-right">
-                                AUG. 2025 - NOW
-                            </div>
-
-                            <div
-                                class="sm:ml-10 flex-grow p-6 bg-white rounded-lg shadow-lg border-t-4 border-accent-learn hover:shadow-xl transition duration-300">
-                                <div class="company-info-container">
-                                    <img src="assets/images/learn-corp-logo.png" alt="Learn Corporation Logo"
-                                        class="company-logo">
-                                    <div class="company-detail">
-                                        <h3 class="text-xl font-bold text-gray-900">Senior Digital Experience and
-                                            E-Commerce </h3>
-                                        <p class="text-lg font-medium text-accent-learn">Learn corporation</p>
-                                    </div>
-                                </div>
-
-                                <ul class="list-disc list-inside space-y-1 text-gray-600">
-                                    <li>Managed and optimized <a href="https://shop.ignitebyondemand.com"
-                                            target="_blank"
-                                            class="text-blue-600 hover:underline">shop.ignitebyondemand.com</a> to
-                                        deliver a seamless,
-                                        user-focused shopping experience across devices.</li>
-                                    <li>Collaborated with Marketing, Design, and Development teams to align website
-                                        content, campaigns, and features with business goals.</li>
-                                    <li>Monitored and analyzed site performance metrics (conversion rate, bounce rate,
-                                        traffic sources) to identify improvement opportunities.</li>
-                                    <li>Executed A/B testing and implemented UX/UI enhancements to boost engagement and
-                                        sales.</li>
-                                    <li>Oversaw product data accuracy, promotional updates, and campaign-specific
-                                        landing pages.</li>
-                                    <li>Ensured system stability, security, and speed through regular quality checks and
-                                        troubleshooting.</li>
-                                    <li>Applied Agile methodology to plan, prioritize, and deliver website improvements
-                                        on time and within scope.</li>
-                                </ul>
-                            </div>
-                    </article>
-
-                    <article class="relative pl-8 sm:pl-32 group" data-aos="fade-left" data-aos-delay="200">
-                        <div class="flex flex-col sm:flex-row items-start">
-                            <div class="hidden sm:block absolute left-0 w-px bg-primary-blue h-full top-2"></div>
-                            <div class="hidden sm:block absolute left-[-6px] w-4 h-4 bg-primary-blue rounded-full z-10">
-                            </div>
-
-                            <div
-                                class="sm:w-32 sm:flex-shrink-0 mb-4 sm:mb-0 text-lg font-bold text-gray-500 sm:text-right">
-                                SEP. 2022 - AUG. 2025
-                            </div>
-
-                            <div
-                                class="sm:ml-10 flex-grow p-6 bg-white rounded-lg shadow-lg border-t-4 border-accent-green hover:shadow-xl transition duration-300">
-                                <div class="company-info-container">
-                                    <img src="assets/images/thairath-logo.png" alt="Learn Corporation Logo"
-                                        class="company-logo">
-                                    <div class="company-detail">
-                                        <h3 class="text-xl font-bold text-gray-900">User Experience Designer</h3>
-                                        <p class="text-lg font-medium text-accent-green mb-3">Thairath Online</p>
-                                    </div>
-                                </div>
-
-                                <ul class="list-disc list-inside space-y-1 text-gray-600">
-                                    <ul class="list-disc list-inside space-y-1 text-gray-600">
-                                        <li>Analyzed intricate datasets (e.g., user behavior, app performance, KPIs)
-                                            using GA4 and Hotjar or VWO to identify trends, patterns, and outliers,
-                                            translating raw data into actionable insights for product improvement.</li>
-                                        <li>Engaged with product and development teams (internal clients) to understand
-                                            business needs, translating requirements into wireframes, mockups, and
-                                            interactive prototypes (comprehensive project deliverables).</li>
-                                        <li>Led the end-to-end Agile "Ad Viewability Improvement Project", defining
-                                            prioritization criteria and implementing data-driven strategies. Achieved a
-                                            +12% increase in % Active Viewable Impressions and +8% growth in
-                                            viewable ad revenue, demonstrating direct contribution to business
-                                            objectives.</li>
-                                        <li>Created visually compelling dashboards and reports on performance metrics,
-                                            tailoring presentations to effectively communicate complex insights to
-                                            stakeholders.</li>
-                                        <li>Identified operational inefficiencies in ad placement and content delivery
-                                            through data analysis, proposing and implementing solutions (e.g.,lazy
-                                            loading optimization) for process enhancement.</li>
-                                        <li>Conducted thorough user research (surveys, interviews, usability testing) to
-                                            elicit and document precise user requirements, ensuring alignment between
-                                            user needs and technical solutions.</li>
-                                        <li>Performed continuous testing (usability, A/B testing) to ensure features met
-                                            specified requirements and quality standards, with a focus on defect
-                                            identification and iterative improvement.</li>
-                                    </ul>
-                                </ul>
-                            </div>
+                    <div class="experience-item" data-aos="fade-up" data-aos-delay="50">
+                        <div class="exp-meta">
+                            <div class="exp-date">Aug 2025<br>— Present</div>
+                            <img src="assets/images/learn-corp-logo.png" alt="Learn Corporation" class="exp-company-logo">
                         </div>
-                    </article>
-
-                    <article class="relative pl-8 sm:pl-32 group" data-aos="fade-right" data-aos-delay="300">
-                        <div class="flex flex-col sm:flex-row items-start">
-                            <div class="hidden sm:block absolute left-0 w-px bg-primary-blue h-full top-2"></div>
-                            <div class="hidden sm:block absolute left-[-6px] w-4 h-4 bg-primary-blue rounded-full z-10">
-                            </div>
-
-                            <div
-                                class="sm:w-32 sm:flex-shrink-0 mb-4 sm:mb-0 text-lg font-bold text-gray-500 sm:text-right">
-                                MAY - AUG. 2022
-                            </div>
-
-                            <div
-                                class="sm:ml-10 flex-grow p-6 bg-white rounded-lg shadow-lg border-t-4 border-accent-apthai hover:shadow-xl transition duration-300">
-                                <div class="company-info-container">
-                                    <img src="assets/images/apthai.jpg" alt="Learn Corporation Logo"
-                                        class="company-logo">
-                                    <div class="company-detail">
-                                        <h3 class="text-xl font-bold text-gray-900">Product Designer (UX/UI)</h3>
-                                        <p class="text-lg font-medium text-accent-apthai mb-3">AP (Thailand)</p>
-                                    </div>
-                                </div>
-                                <ul class="list-disc list-inside space-y-1 text-gray-600">
-                                    <ul class="list-disc list-inside space-y-1 text-gray-600">
-                                        <li>Conducted comprehensive UX/UI flow audits and analysis to evaluate
-                                            effectiveness and identify optimization opportunities, demonstrating
-                                            ability
-                                            to analyze intricate datasets and propose process improvements.</li>
-                                        <li>Collaborated with cross-functional teams to create user-friendly
-                                            customer
-                                            flows, translating business goals into compelling user experiences.</li>
-                                        <li>Researched user needs to develop new features and optimize user
-                                            experience,
-                                            serving as a form of requirement elicitation and client collaboration.
-                                        </li>
-                                    </ul>
-                                </ul>
-                            </div>
+                        <div class="exp-content">
+                            <h3 class="exp-title">Senior Digital Experience and E-Commerce</h3>
+                            <div class="exp-company">Learn Corporation</div>
+                            <ul class="exp-bullets">
+                                <li>Managed and optimized <a href="https://shop.ignitebyondemand.com" target="_blank" style="color:var(--gold); text-decoration:none;">shop.ignitebyondemand.com</a> to deliver a seamless, user-focused shopping experience across devices.</li>
+                                <li>Collaborated with Marketing, Design, and Development teams to align website content, campaigns, and features with business goals.</li>
+                                <li>Monitored and analyzed site performance metrics (conversion rate, bounce rate, traffic sources) to identify improvement opportunities.</li>
+                                <li>Executed A/B testing and implemented UX/UI enhancements to boost engagement and sales.</li>
+                                <li>Applied Agile methodology to plan, prioritize, and deliver website improvements on time and within scope.</li>
+                            </ul>
                         </div>
-                    </article>
+                    </div>
 
-                    <article class="relative pl-8 sm:pl-32 group" data-aos="fade-left" data-aos-delay="400">
-                        <div class="flex flex-col sm:flex-row items-start">
-                            <div class="hidden sm:block absolute left-0 w-px bg-primary-blue h-full top-2"></div>
-                            <div class="hidden sm:block absolute left-[-6px] w-4 h-4 bg-primary-blue rounded-full z-10">
-                            </div>
-
-                            <div
-                                class="sm:w-32 sm:flex-shrink-0 mb-4 sm:mb-0 text-lg font-bold text-gray-500 sm:text-right">
-                                JUN. - NOV. 2021
-                            </div>
-
-                            <div
-                                class="sm:ml-10 flex-grow p-6 bg-white rounded-lg shadow-lg border-t-4 border-accent-gable hover:shadow-xl transition duration-300">
-                                <div class="company-info-container">
-                                    <img src="assets/images/gable-logo.jpg" alt="Learn Corporation Logo"
-                                        class="company-logo">
-                                    <div class="company-detail">
-                                        <h3 class="text-xl font-bold text-gray-900">UX/UI Designer</h3>
-                                        <p class="text-lg font-medium text-accent-gable mb-3">G-ABLE</p>
-                                    </div>
-                                </div>
-
-                                <ul class="list-disc list-inside space-y-1 text-gray-600">
-                                    <ul class="list-disc list-inside space-y-1 text-gray-600">
-                                        <li>Designed and improved real-time quarterly company business overview
-                                            dashboards on Power BI for executives, effectively transforming raw data
-                                            into meaningful, actionable insights for strategic decision-making.</li>
-                                        <li>Collaborated with Strategic and Company Communication Teams on new feature
-                                            integration, acting as an internal stakeholder in requirement gathering
-                                            processes.</li>
-                                        <li>Improved news website reporting by optimizing daily/weekly/yearly business
-                                            analysis reports for marketers and sales, demonstrating proficiency in data
-                                            visualization and reporting for specific audiences.</li>
-                                    </ul>
-                                </ul>
-                            </div>
+                    <div class="experience-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="exp-meta">
+                            <div class="exp-date">Sep 2022<br>— Aug 2025</div>
+                            <img src="assets/images/thairath-logo.png" alt="Thairath Online" class="exp-company-logo">
                         </div>
-                    </article>
-
-                    <article class="relative pl-8 sm:pl-32 group" data-aos="fade-right" data-aos-delay="500">
-                        <div class="flex flex-col sm:flex-row items-start">
-                            <div class="hidden sm:block absolute left-0 w-px bg-primary-blue h-full top-2"></div>
-                            <div class="hidden sm:block absolute left-[-6px] w-4 h-4 bg-primary-blue rounded-full z-10">
-                            </div>
-
-                            <div
-                                class="sm:w-32 sm:flex-shrink-0 mb-4 sm:mb-0 text-lg font-bold text-gray-500 sm:text-right">
-                                JAN - APR 2021
-                            </div>
-
-                            <div
-                                class="sm:ml-10 flex-grow p-6 bg-white rounded-lg shadow-lg border-t-4 border-accent-eatlab hover:shadow-xl transition duration-300">
-                                <div class="company-info-container">
-                                    <img src="assets/images/eatlab-logo.jpg" alt="Learn Corporation Logo"
-                                        class="company-logo">
-                                    <div class="company-detail">
-                                        <h3 class="text-xl font-bold text-gray-900">UX/UI Designer</h3>
-                                        <p class="text-lg font-medium text-accent-gable mb-3">Eatlab</p>
-                                    </div>
-                                </div>
-
-                                <ul class="list-disc list-inside space-y-1 text-gray-600">
-                                    <ul class="list-disc list-inside space-y-1 text-gray-600">
-                                        <li>Conducted concept and usability testing and gathered user feedback,
-                                            performing initial phases of quality and functionality assurance by
-                                            identifying UX problems.</li>
-                                        <li>Analyzed extensive **POS data** to forecast sales and enhance user
-                                            experience for a restaurant sales report dashboard, showcasing ability to
-                                            analyze intricate datasets and present findings.</li>
-                                        <li>Developed user-centric wireframes and prototypes, translating product
-                                            specifications into clear requirements for developers.</li>
-                                    </ul>
-                                </ul>
-                            </div>
+                        <div class="exp-content">
+                            <h3 class="exp-title">User Experience Designer</h3>
+                            <div class="exp-company">Thairath Online</div>
+                            <ul class="exp-bullets">
+                                <li>Analyzed intricate datasets (user behavior, app performance, KPIs) using GA4 and Hotjar/VWO to identify trends, patterns, and outliers.</li>
+                                <li>Led the end-to-end Agile "Ad Viewability Improvement Project" — achieved +12% Active Viewable Impressions and +8% viewable ad revenue.</li>
+                                <li>Created visually compelling dashboards and reports tailored to effectively communicate complex insights to stakeholders.</li>
+                                <li>Conducted thorough user research (surveys, interviews, usability testing) to elicit and document precise user requirements.</li>
+                                <li>Performed continuous testing (usability, A/B testing) with focus on defect identification and iterative improvement.</li>
+                            </ul>
                         </div>
-                    </article>
+                    </div>
+
+                    <div class="experience-item" data-aos="fade-up" data-aos-delay="150">
+                        <div class="exp-meta">
+                            <div class="exp-date">May 2022<br>— Aug 2022</div>
+                            <img src="assets/images/apthai.jpg" alt="AP Thailand" class="exp-company-logo">
+                        </div>
+                        <div class="exp-content">
+                            <h3 class="exp-title">Product Designer (UX/UI)</h3>
+                            <div class="exp-company">AP (Thailand)</div>
+                            <ul class="exp-bullets">
+                                <li>Conducted comprehensive UX/UI flow audits and analysis to evaluate effectiveness and identify optimization opportunities.</li>
+                                <li>Collaborated with cross-functional teams to create user-friendly customer flows, translating business goals into compelling user experiences.</li>
+                                <li>Researched user needs to develop new features and optimize user experience.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="experience-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="exp-meta">
+                            <div class="exp-date">Jun 2021<br>— Nov 2021</div>
+                            <img src="assets/images/gable-logo.jpg" alt="G-ABLE" class="exp-company-logo">
+                        </div>
+                        <div class="exp-content">
+                            <h3 class="exp-title">UX/UI Designer</h3>
+                            <div class="exp-company">G-ABLE</div>
+                            <ul class="exp-bullets">
+                                <li>Designed and improved real-time quarterly business overview dashboards on Power BI for executives, transforming raw data into actionable insights.</li>
+                                <li>Collaborated with Strategic and Company Communication Teams on new feature integration.</li>
+                                <li>Improved news website reporting by optimizing daily/weekly/yearly business analysis reports for marketers and sales.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="experience-item" data-aos="fade-up" data-aos-delay="250">
+                        <div class="exp-meta">
+                            <div class="exp-date">Jan 2021<br>— Apr 2021</div>
+                            <img src="assets/images/eatlab-logo.jpg" alt="Eatlab" class="exp-company-logo">
+                        </div>
+                        <div class="exp-content">
+                            <h3 class="exp-title">UX/UI Designer</h3>
+                            <div class="exp-company">Eatlab</div>
+                            <ul class="exp-bullets">
+                                <li>Conducted concept and usability testing, identifying UX problems in initial quality and functionality phases.</li>
+                                <li>Analyzed extensive POS data to forecast sales and enhance user experience for a restaurant sales report dashboard.</li>
+                                <li>Developed user-centric wireframes and prototypes, translating product specifications into clear requirements for developers.</li>
+                            </ul>
+                        </div>
+                    </div>
 
                 </div>
             </div>
         </section>
 
-        <section id="mu-education" class="py-24 bg-white">
-            <div class="container mx-auto px-4 lg:px-8">
-                <header class="text-center mb-16" data-aos="fade-up">
-                    <span class="text-lg font-semibold text-gray-600 uppercase tracking-wider">Education &
-                        Qualifications</span>
-                    <h2 class="text-4xl font-bold text-gray-800 mt-2">Academic Background</h2>
+        <div class="gold-divider"></div>
+
+        <!-- EDUCATION -->
+        <section id="mu-education">
+            <div class="section-container">
+                <header class="section-header" data-aos="fade-up">
+                    <span class="section-label">Education &amp; Qualifications</span>
+                    <h2 class="section-title">Academic Background</h2>
                 </header>
 
-                <div class="max-w-4xl mx-auto space-y-8">
-                    <div class="p-6 bg-secondary-gray rounded-xl shadow-lg border-l-4 border-accent-orange"
-                        role="article" aria-labelledby="kmut-education" data-aos="fade-up" data-aos-delay="100">
-                        <div class="flex flex-col md:flex-row justify-between items-start">
-                            <div class="md:w-3/4">
-                                <h3 id="kmut-education" class="text-xl font-bold text-gray-900 mb-1">King Mongkut's
-                                    University of Technology Thonburi (KMUTT)</h3>
-                                <p class="text-lg font-medium text-gray-700 mb-3">Bachelor of Science, Information
-                                    Technology</p>
-                                <ul class="list-disc list-inside space-y-1 text-gray-600 ml-4">
-                                    <p>Chernsavoey is a web application designed to facilitate convenient delivery
-                                        services, such as food and beverages, from on-campus stores. The delivery
-                                        personnel are students or university staff members who can earn extra income
-                                        during their free time.</p>
-
-                                    <p>promotes on-campus e-commerce and fosters a sharing economy, where
-                                        income is generated through mutual support within the university community. In
-                                        addition to creating economic opportunities, it also helps solve everyday
-                                        problems and provides convenience for students, faculty members, and staff
-                                        across the university.</p>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="md:w-1/4 text-left md:text-right mt-3 md:mt-0">
-                                <p class="text-lg font-bold text-gray-500">2017 - 2021</p>
-                            </div>
+                <div class="education-list">
+                    <div class="education-item" data-aos="fade-up" data-aos-delay="50">
+                        <div>
+                            <div class="edu-school">King Mongkut's University of Technology Thonburi (KMUTT)</div>
+                            <div class="edu-degree">Bachelor of Science, Information Technology</div>
+                            <div class="edu-desc">Chernsavoey — a web application facilitating convenient delivery services from on-campus stores. Promotes on-campus e-commerce and a sharing economy within the university community.</div>
                         </div>
+                        <div class="edu-year">2017<br>— 2021</div>
                     </div>
 
-                    <div class="p-6 bg-secondary-gray rounded-xl shadow-lg border-l-4 border-pink" role="article"
-                        aria-labelledby="highschool-m46" data-aos="fade-up" data-aos-delay="200">
-                        <div class="flex flex-col md:flex-row justify-between items-start">
-                            <div class="md:w-3/4">
-                                <h3 id="highschool-m46" class="text-xl font-bold text-gray-900 mb-1">
-                                    Nakornrayongwittayakom School</h3>
-                                <p class="text-lg font-medium text-gray-700 mb-3">Matthayom 4 - 6</p>
-                                <ul class="list-disc list-inside space-y-1 text-gray-600 ml-4">
-                                    <li>Major: Math & Science</li>
-                                </ul>
-                            </div>
-                            <div class="md:w-1/4 text-left md:text-right mt-3 md:mt-0">
-                                <p class="text-lg font-bold text-gray-500">2013 - 2016</p>
-                            </div>
+                    <div class="education-item" data-aos="fade-up" data-aos-delay="100">
+                        <div>
+                            <div class="edu-school">Nakornrayongwittayakom School</div>
+                            <div class="edu-degree">Matthayom 4 – 6</div>
+                            <div class="edu-desc">Major: Math &amp; Science</div>
                         </div>
+                        <div class="edu-year">2013<br>— 2016</div>
                     </div>
 
-                    <div class="p-6 bg-secondary-gray rounded-xl shadow-lg border-l-4 border-pink" role="article"
-                        aria-labelledby="highschool-m13" data-aos="fade-up" data-aos-delay="300">
-                        <div class="flex flex-col md:flex-row justify-between items-start">
-                            <div class="md:w-3/4">
-                                <h3 id="highschool-m13" class="text-xl font-bold text-gray-900 mb-1">
-                                    Nakornrayongwittayakom School</h3>
-                                <p class="text-lg font-medium text-gray-700 mb-3">Matthayom 1 - 3</p>
-                                <ul class="list-disc list-inside space-y-1 text-gray-600 ml-4">
-                                    <li>English Program (EP)</li>
-                                </ul>
-                            </div>
-                            <div class="md:w-1/4 text-left md:text-right mt-3 md:mt-0">
-                                <p class="text-lg font-bold text-gray-500">2010 - 2013</p>
-                            </div>
+                    <div class="education-item" data-aos="fade-up" data-aos-delay="150">
+                        <div>
+                            <div class="edu-school">Nakornrayongwittayakom School</div>
+                            <div class="edu-degree">Matthayom 1 – 3</div>
+                            <div class="edu-desc">English Program (EP)</div>
                         </div>
+                        <div class="edu-year">2010<br>— 2013</div>
                     </div>
-
                 </div>
             </div>
         </section>
-        <footer id="mu-footer" class="bg-dark-bg text-white pt-12" role="contentinfo">
-            <div class="container mx-auto px-4 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-10 border-b border-gray-700 pb-10 mb-8 text-center md:text-left"
-                    data-aos="fade-up">
 
-                    <div class="md:col-span-1">
-                        <h3 class="text-2xl font-bold text-white mb-4">Khanadech Khongsombhatt</h3>
-                        <p class="text-gray-400 max-w-sm mx-auto md:mx-0">
-                            "A leader who blends Product Strategy with User Experience to build measurable digital
-                            solutions."
-                        </p>
-                    </div>
-
-                    <div class="md:col-span-1">
-                        <h3 class="text-xl font-bold text-white mb-4">Get in Touch</h3>
-                        <ul class="list-none space-y-3">
-                            <li
-                                class="text-gray-400 hover:text-primary-blue transition duration-300 flex items-center justify-center md:justify-start">
-                                <span class="fa fa-phone mr-3 w-5 text-center"></span>
-                                <a href="tel:+66830822189">(+66) 830822189</a>
-                            </li>
-                            <li
-                                class="text-gray-400 hover:text-primary-blue transition duration-300 flex items-center justify-center md:justify-start">
-                                <span class="fa fa-envelope mr-3 w-5 text-center"></span>
-                                <a href="mailto: KHANADETKH@HOTMAIL.COM">KHANADETKH@HOTMAIL.COM</a>
-                            </li>
-                            <li
-                                class="text-gray-400 hover:text-primary-blue transition duration-300 flex items-center justify-center md:justify-start">
-                                <span class="fas fa-link mr-3 w-5 text-center"></span>
-                                <a href="https://khanadetkh.github.io" target="_blank">KHANADETKH.GITHUB.IO</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="md:col-span-1">
-                        <h3 class="text-xl font-bold text-white mb-4">Connect</h3>
-                        <div class="flex justify-center md:justify-start space-x-6 text-3xl">
-                            <a class="text-gray-400 hover:text-primary-blue transition duration-300"
-                                href="https://github.com/khanadetkh" target="_blank" aria-label="Github profile"><i
-                                    class="fab fa-github"></i></a>
-                            <a class="text-gray-400 hover:text-primary-blue transition duration-300"
-                                href="https://linkedin.com/in/khanadetkh" target="_blank"
-                                aria-label="LinkedIn profile"><i class="fab fa-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-gray-900 text-center py-4">
-                <p class="text-sm text-gray-500">&copy; 2025 Khanadech Khongsombhatt. Product/UX Portfolio | All rights
-                    reserved.</p>
-            </div>
-        </footer>
     </main>
+
+    <!-- FOOTER -->
+    <footer id="mu-footer">
+        <div class="footer-container">
+            <div class="footer-grid" data-aos="fade-up">
+                <div class="footer-brand">
+                    <h3>Khanadech Khongsombhatt</h3>
+                    <p>"A leader who blends Product Strategy with User Experience to build measurable digital solutions."</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Get in Touch</h4>
+                    <ul class="footer-links">
+                        <li><a href="tel:+66830822189"><i class="fa fa-phone"></i>(+66) 830822189</a></li>
+                        <li><a href="mailto:KHANADETKH@HOTMAIL.COM"><i class="fa fa-envelope"></i>KHANADETKH@HOTMAIL.COM</a></li>
+                        <li><a href="https://khanadetkh.github.io" target="_blank"><i class="fas fa-link"></i>KHANADETKH.GITHUB.IO</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <div class="footer-socials">
+                        <a href="https://github.com/khanadetkh" target="_blank" class="social-icon" aria-label="Github">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/khanadetkh" target="_blank" class="social-icon" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Khanadech Khongsombhatt — Product/UX Portfolio</p>
+                <p style="letter-spacing:0.1em; font-size:0.7rem; color:var(--text-muted);">ALL RIGHTS RESERVED</p>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 1000,
-            once: true,
-        });
-    </script>
+        AOS.init({ duration: 800, once: true, easing: 'ease-out-cubic', offset: 60 });
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const toggleButton = document.getElementById('menu-toggle');
-            const navContent = document.getElementById('navbarSupportedContent');
-
-            if (toggleButton && navContent) {
-                toggleButton.addEventListener('click', function () {
-                    const isHidden = navContent.classList.toggle('hidden');
-
-                    if (!isHidden) {
-                        navContent.classList.add('absolute', 'top-full', 'left-0', 'right-0', 'bg-white', 'shadow-2xl', 'p-4', 'flex', 'flex-col', 'space-y-3', 'z-50');
-                        navContent.classList.remove('md:flex', 'space-x-6');
-                        navContent.querySelector('ul').classList.remove('flex-row', 'space-x-6');
-                        navContent.querySelector('ul').classList.add('flex-col', 'space-y-3');
-                    } else {
-                        navContent.classList.remove('absolute', 'top-full', 'left-0', 'right-0', 'bg-white', 'shadow-2xl', 'p-4', 'flex', 'flex-col', 'space-y-3', 'z-50');
-                        navContent.classList.add('md:flex', 'space-x-6');
-                        navContent.querySelector('ul').classList.remove('flex-col', 'space-y-3');
-                        navContent.querySelector('ul').classList.add('flex-row', 'space-x-6');
-                    }
-                });
-            }
-        });
+        const toggle = document.getElementById('menu-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        if (toggle && mobileNav) {
+            toggle.addEventListener('click', () => mobileNav.classList.toggle('open'));
+            mobileNav.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', () => mobileNav.classList.remove('open'));
+            });
+        }
     </script>
 </body>
-
 </html>
