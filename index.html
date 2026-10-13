@@ -330,6 +330,12 @@
 
         .section-header {
             margin-bottom: 4rem;
+            /* Undo the sticky nav styles the bare `header` selector applies */
+            position: static;
+            background: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            border-bottom: none;
         }
 
         .section-label {
@@ -455,6 +461,10 @@
             transition: gap 0.2s ease;
         }
         .portfolio-link:hover { gap: 0.8rem; }
+
+        /* Fifth card spans both columns so the grid has no empty cell */
+        .portfolio-card--wide { grid-column: 1 / -1; }
+        .portfolio-card--wide p { max-width: 70ch; }
 
         /* ── SKILLS SECTION ── */
         #mu-service { background: var(--bg-deep); }
@@ -882,7 +892,7 @@
                         A results-oriented professional with over 4 years of experience at the intersection of user experience and business objectives. Bridging user needs with strategic goals through data analysis, design thinking, and agile leadership.
                     </p>
                     <div class="hero-ctas">
-                        <a href="#mu-portfolio" class="btn-primary" style="display:none;">
+                        <a href="#mu-portfolio" class="btn-primary">
                             View Key Achievements <i class="fas fa-arrow-right" style="font-size:11px;"></i>
                         </a>
                         <a href="assets/Khanadech_Resume.pdf" target="_blank" class="btn-outline">
@@ -899,10 +909,10 @@
             </div>
         </section>
 
-        <div class="gold-divider" style="display:none;"></div>
+        <div class="gold-divider"></div>
 
         <!-- PORTFOLIO -->
-        <section id="mu-portfolio" style="display:none;">
+        <section id="mu-portfolio">
             <div class="section-container">
                 <header class="section-header" data-aos="fade-up">
                     <span class="section-label">Key Initiatives & Achievements</span>
@@ -948,6 +958,16 @@
                         <p>Designed and improved the Sales Report Dashboard for restaurants, utilizing POS data analysis for sales forecasting. Employed UX Research (Interviews, observation, and questionnaires) to define the optimal interaction model.</p>
                         <a href="#mu-portfolio" class="portfolio-link" aria-label="View Sales Dashboard Project">
                             View Details <i class="fas fa-arrow-right" style="font-size:10px;"></i>
+                        </a>
+                    </article>
+
+                    <article class="portfolio-card portfolio-card--wide">
+                        <div class="portfolio-card-index">05</div>
+                        <span class="portfolio-card-tag">Design Thinking · UX Research · Thairath Online</span>
+                        <h3>Thairath Money</h3>
+                        <p>A Design Thinking case study for the Business section of Thairath Online: empathizing with investors and advertisers through 13 interviews, a 23-person survey and 5 competitor reviews, then defining the problems as How Might We questions and turning each into a design direction.</p>
+                        <a href="thairath-money.html" class="portfolio-link" aria-label="View Thairath Money Case Study">
+                            View Case Study <i class="fas fa-arrow-right" style="font-size:10px;"></i>
                         </a>
                     </article>
                 </div>

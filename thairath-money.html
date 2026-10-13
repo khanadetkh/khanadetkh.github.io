@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Thairath Money: UX Case Study | Khanadech Khongsombhatt</title>
+    <meta name="description" content="UX case study: research-led direction for the Business section of Thairath Online. Competitor analysis, in-depth interviews, personas, journey maps and an advertiser survey.">
+    <meta name="author" content="Khanadech Khongsombhatt">
+
+    <!-- Language is decided before first paint: ?lang= → saved choice → browser language → English -->
+    <script>
+        (function () {
+            var l = null;
+            try { l = new URLSearchParams(location.search).get('lang') || localStorage.getItem('kk-lang'); } catch (e) {}
+            if (l !== 'th' && l !== 'en') {
+                l = (navigator.language || '').toLowerCase().indexOf('th') === 0 ? 'th' : 'en';
+            }
+            var d = document.documentElement;
+            d.lang = l;
+            d.setAttribute('data-lang', l);
+            d.classList.add('js');
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Kanit:wght@500;600&family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* ── TOKENS (same as index.html) ── */
+        :root {
+            --gold: #C9A96E;
+            --gold-light: #E8D5A3;
+            --gold-dim: #8A6E3E;
+            --bg-deep: #0A0A0A;
+            --bg-dark: #111111;
+            --bg-card: #161616;
+            --bg-card-hover: #1C1C1C;
+            --border: rgba(201,169,110,0.15);
+            --border-strong: rgba(201,169,110,0.35);
+            --text-primary: #F0EAD6;
+            --text-secondary: #A69D8D;
+            --text-dim: #8A8275;
+
+            --font-body: 'Google Sans', 'Noto Sans Thai', sans-serif;
+            --font-display: 'Bebas Neue', 'Kanit', sans-serif;
+            --display-tracking: 0.04em;
+            --display-leading: 1;
+            --display-scale: 1;
+            --label-tracking: 0.22em;
+            --label-size: 0.7rem;
+        }
+
+        /* Thai mode: Bebas Neue has no Thai glyphs, so display type moves to Kanit */
+        html[data-lang="th"] {
+            --font-display: 'Kanit', 'Noto Sans Thai', sans-serif;
+            --display-tracking: 0;
+            --display-leading: 1.3;
+            --display-scale: 0.68;
+            --label-tracking: 0.04em;
+            --label-size: 0.8rem;
+        }
+
+        /* ── LANGUAGE SWITCHING ── */
+        html[data-lang="en"] [lang="th"],
+        html[data-lang="th"] [lang="en"] { display: none !important; }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        html[data-lang="th"] body { line-height: 1.85; }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 400;
+            letter-spacing: var(--display-tracking);
+            line-height: var(--display-leading);
+        }
+        html[data-lang="th"] h1, html[data-lang="th"] h2,
+        html[data-lang="th"] h3, html[data-lang="th"] h4 { font-weight: 500; }
+
+        a { color: inherit; }
+        ul, ol { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+        /* ── SCROLL TO TOP ── */
+        .scrollToTop {
+            position: fixed; bottom: 2rem; right: 2rem;
+            width: 44px; height: 44px;
+            background: var(--gold); color: var(--bg-deep);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px; text-decoration: none; z-index: 100;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .scrollToTop:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(201,169,110,0.35); }
+
+        /* ── HEADER / NAV ── */
+        .site-header {
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(10,10,10,0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-container {
+            max-width: 1280px; margin: 0 auto; padding: 0 2rem;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 68px; position: relative;
+        }
+        .nav-brand {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem; letter-spacing: 0.12em;
+            color: var(--gold); text-decoration: none;
+        }
+        .nav-right { display: flex; align-items: center; gap: 1.75rem; }
+        .nav-links { display: flex; gap: 2.25rem; }
+        .nav-links a {
+            font-size: 0.8rem; font-weight: 500;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            color: var(--text-secondary); text-decoration: none;
+            transition: color 0.2s; position: relative;
+        }
+        html[data-lang="th"] .nav-links a { letter-spacing: 0.02em; font-size: 0.9rem; }
+        .nav-links { gap: 1.9rem; }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 1px; background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .lang-switch { display: flex; border: 1px solid var(--border-strong); }
+        .lang-switch button {
+            font-family: var(--font-body);
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
+            min-width: 44px; height: 34px; padding: 0 0.7rem;
+            background: transparent; color: var(--text-secondary);
+            border: none; cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .lang-switch button + button { border-left: 1px solid var(--border-strong); }
+        .lang-switch button:hover { color: var(--gold); }
+        .lang-switch button[aria-pressed="true"] { background: var(--gold); color: var(--bg-deep); }
+
+        #menu-toggle {
+            display: none; background: none;
+            border: 1px solid var(--border-strong); color: var(--text-secondary);
+            width: 38px; height: 34px; cursor: pointer; font-size: 15px;
+        }
+        #mobile-nav {
+            display: none; position: absolute; top: 100%; left: 0; right: 0;
+            background: rgba(10,10,10,0.97);
+            border-bottom: 1px solid var(--border);
+            padding: 0.5rem 2rem 1rem;
+        }
+        #mobile-nav.open { display: block; }
+        #mobile-nav li { border-bottom: 1px solid var(--border); }
+        #mobile-nav li:last-child { border-bottom: none; }
+        #mobile-nav a {
+            display: block; padding: 0.9rem 0;
+            font-size: 0.9rem; font-weight: 500;
+            color: var(--text-secondary); text-decoration: none;
+        }
+        #mobile-nav a:hover { color: var(--gold); }
+
+        /* ── SHARED SECTION PARTS ── */
+        .wrap { max-width: 1280px; margin: 0 auto; padding: 6rem 2rem; }
+        .band-dark { background: var(--bg-dark); }
+        .band-deep { background: var(--bg-deep); }
+        .gold-divider {
+            width: 100%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+        }
+
+        .label {
+            display: inline-flex; align-items: center; gap: 0.75rem;
+            font-size: var(--label-size); font-weight: 600;
+            letter-spacing: var(--label-tracking); text-transform: uppercase;
+            color: var(--gold); margin-bottom: 1rem;
+        }
+        .label::before { content: ''; width: 24px; height: 1px; background: var(--gold); flex: none; }
+
+        .title {
+            font-size: calc(clamp(2.4rem, 4.6vw, 3.8rem) * var(--display-scale));
+            color: var(--text-primary);
+            max-width: 22ch;
+        }
+        html[data-lang="th"] .title { max-width: 28ch; }
+        .lede {
+            font-size: 1.02rem; color: var(--text-secondary);
+            max-width: 66ch; margin-top: 1.1rem;
+        }
+        .head { margin-bottom: 3.25rem; }
+
+        .sub {
+            font-size: calc(1.7rem * var(--display-scale) + 0.12rem);
+            color: var(--text-primary);
+            margin: 4rem 0 0.6rem;
+        }
+        .sub-note { font-size: 0.92rem; color: var(--text-secondary); max-width: 66ch; margin-bottom: 1.75rem; }
+
+        .small-head {
+            font-family: var(--font-body);
+            font-size: var(--label-size); font-weight: 600;
+            letter-spacing: var(--label-tracking); text-transform: uppercase;
+            line-height: 1.5;
+            color: var(--text-dim); margin-bottom: 0.7rem;
+        }
+        html[data-lang="th"] .small-head { font-weight: 600; }
+
+        .dash-list { display: flex; flex-direction: column; gap: 0.5rem; }
+        .dash-list li {
+            position: relative; padding-left: 1.25rem;
+            font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;
+        }
+        html[data-lang="th"] .dash-list li { line-height: 1.75; }
+        .dash-list li::before {
+            content: ''; position: absolute; left: 0; top: 0.75em;
+            width: 7px; height: 1px; background: var(--gold-dim);
+        }
+        .dash-list strong, .findings strong, .pairs strong { color: var(--text-primary); font-weight: 600; }
+
+        .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .chips li {
+            font-size: 0.78rem; color: var(--text-secondary);
+            border: 1px solid var(--border-strong);
+            padding: 0.15rem 0.6rem; line-height: 1.6;
+        }
+
+        /* ── HERO ── */
+        .case-hero { position: relative; overflow: hidden; background: var(--bg-deep); }
+        .case-hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse 45% 60% at 82% 55%, rgba(201,169,110,0.09) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .hero-grid {
+            max-width: 1280px; margin: 0 auto; padding: 3.5rem 2rem 0;
+            display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 4rem;
+            align-items: end; position: relative;
+        }
+        .hero-text { padding-bottom: 4.5rem; }
+        .back-link {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            font-size: 0.82rem; font-weight: 500; color: var(--text-secondary);
+            text-decoration: none; margin-bottom: 3.5rem;
+            transition: color 0.2s, gap 0.2s;
+        }
+        .back-link:hover { color: var(--gold); gap: 0.85rem; }
+        .hero-kicker { font-size: 0.95rem; color: var(--gold); margin-bottom: 0.5rem; }
+        .hero-title {
+            font-family: 'Bebas Neue', sans-serif !important;
+            font-weight: 400 !important;
+            font-size: clamp(4rem, 11vw, 9.5rem);
+            line-height: 0.9 !important; letter-spacing: 0.01em !important;
+            color: var(--text-primary);
+            margin-bottom: 1.75rem;
+        }
+        .hero-lede {
+            font-size: 1.15rem; color: var(--text-primary);
+            max-width: 46ch; line-height: 1.65;
+        }
+        html[data-lang="th"] .hero-lede { line-height: 1.8; max-width: 52ch; }
+
+        .facts {
+            display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+            margin-top: 3.25rem; border-top: 1px solid var(--border-strong);
+        }
+        .facts > div { padding: 1.1rem 1.25rem 0 0; }
+        .facts dt {
+            font-size: var(--label-size); font-weight: 600;
+            letter-spacing: var(--label-tracking); text-transform: uppercase;
+            color: var(--text-dim); margin-bottom: 0.3rem;
+        }
+        .facts dd { font-size: 0.9rem; color: var(--text-primary); line-height: 1.5; }
+        html[data-lang="th"] .facts dd { line-height: 1.65; }
+        .facts a { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--border-strong); }
+        .facts a:hover { border-bottom-color: var(--gold); }
+
+        .phone { align-self: end; }
+        .phone img {
+            width: 100%; height: auto;
+            -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
+            mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
+        }
+
+        /* ── PROBLEM ── */
+        .split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 4.5rem; }
+        .prose p { color: var(--text-secondary); max-width: 60ch; }
+        .prose p + p { margin-top: 1rem; }
+        .hyps { display: flex; flex-direction: column; gap: 2px; }
+        .hyp {
+            display: grid; grid-template-columns: 3.25rem minmax(0, 1fr); gap: 1.25rem;
+            background: var(--bg-card); padding: 1.6rem 1.75rem;
+            border-left: 2px solid var(--gold);
+        }
+        .hyp-tag { font-family: 'Bebas Neue', sans-serif; font-size: 1.9rem; line-height: 1; color: var(--gold); padding-top: 0.2rem; }
+        .hyp p { color: var(--text-primary); font-size: 0.98rem; }
+        .hyp small { display: block; font-size: 0.8rem; color: var(--text-dim); margin-top: 0.5rem; }
+
+        /* ── PROCESS ── */
+        .steps {
+            display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));
+            border-top: 1px solid var(--border-strong);
+        }
+        .step { padding: 1.5rem 1.5rem 0 0; position: relative; }
+        .step::before {
+            content: ''; position: absolute; top: -4px; left: 0;
+            width: 7px; height: 7px; background: var(--gold);
+        }
+        .step-no { font-family: 'Bebas Neue', sans-serif; font-size: 2.6rem; line-height: 1; color: var(--gold); }
+        .step h3 { font-size: calc(1.45rem * var(--display-scale) + 0.14rem); margin: 0.5rem 0 0.6rem; color: var(--text-primary); }
+        .step p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; }
+        html[data-lang="th"] .step p { line-height: 1.75; }
+        .step .out { margin-top: 0.9rem; padding-top: 0.9rem; border-top: 1px solid var(--border); color: var(--text-primary); }
+        .step .out b { display: block; font-size: var(--label-size); letter-spacing: var(--label-tracking); text-transform: uppercase; color: var(--text-dim); font-weight: 600; margin-bottom: 0.2rem; }
+        .step a { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--border-strong); }
+        .role-note { margin-top: 3.5rem; max-width: 70ch; color: var(--text-secondary); border-left: 2px solid var(--border-strong); padding-left: 1.25rem; }
+
+        /* ── COMPETITOR TABLE ── */
+        .table-scroll { overflow-x: auto; }
+        .cmp { width: 100%; min-width: 880px; border-collapse: collapse; font-size: 0.88rem; }
+        .cmp th {
+            text-align: left; vertical-align: bottom;
+            font-size: var(--label-size); font-weight: 600;
+            letter-spacing: var(--label-tracking); text-transform: uppercase;
+            color: var(--text-dim);
+            padding: 0 1.25rem 0.8rem 0; border-bottom: 1px solid var(--border-strong);
+        }
+        .cmp td { vertical-align: top; padding: 1.25rem 1.25rem 1.25rem 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); line-height: 1.6; }
+        html[data-lang="th"] .cmp td { line-height: 1.75; }
+        .cmp td:first-child { color: var(--text-primary); font-weight: 600; white-space: nowrap; }
+        .cmp col.c-brand { width: 15%; } .cmp col.c-cat { width: 15%; } .cmp col.c-tone { width: 24%; }
+        .cat { display: flex; align-items: center; gap: 0.7rem; }
+        .cat b { font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 1.5rem; line-height: 1; color: var(--text-primary); width: 1.6rem; }
+        .cat i { display: block; height: 8px; background: var(--gold); border-radius: 0 2px 2px 0; }
+        .table-note { font-size: 0.88rem; color: var(--text-secondary); max-width: 74ch; margin-top: 1.5rem; }
+
+        .takeaways { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px; margin-top: 1.5rem; }
+        .takeaways li { background: var(--bg-card); padding: 1.6rem 1.75rem; border-top: 2px solid var(--gold); }
+        .takeaways h4 { font-size: calc(1.3rem * var(--display-scale) + 0.16rem); margin-bottom: 0.5rem; color: var(--text-primary); }
+        .takeaways p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; }
+        html[data-lang="th"] .takeaways p { line-height: 1.75; }
+
+        /* ── INTERVIEW SEGMENTS ── */
+        .segments { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px; }
+        .segment { background: var(--bg-card); padding: 1.5rem 1.75rem; }
+        .segment h4 { font-size: calc(1.3rem * var(--display-scale) + 0.16rem); color: var(--text-primary); }
+        .segment p { font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.15rem; }
+        .dots { display: flex; gap: 6px; margin-top: 1rem; }
+        .dots i { width: 12px; height: 12px; border-radius: 50%; background: var(--gold); }
+        .dots i.off { background: transparent; border: 1px solid var(--border-strong); }
+        .fine { font-size: 0.82rem; color: var(--text-dim); margin-top: 1rem; max-width: 74ch; }
+
+        /* ── PERSONAS ── */
+        .personas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px; }
+        .persona { background: var(--bg-card); padding: 2.25rem; }
+        .persona-top { display: flex; gap: 1.25rem; align-items: center; }
+        .avatar {
+            flex: none; width: 64px; height: 64px; border-radius: 50%;
+            border: 1px solid var(--border-strong);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Bebas Neue', 'Kanit', sans-serif; font-size: 1.7rem; color: var(--gold);
+        }
+        .persona h4 { font-size: calc(1.9rem * var(--display-scale) + 0.1rem); color: var(--text-primary); }
+        .persona-type { font-size: 0.85rem; color: var(--gold); }
+        .persona-meta { font-size: 0.82rem; color: var(--text-dim); margin-top: 0.1rem; }
+        .persona blockquote {
+            font-size: 1.2rem; line-height: 1.45; color: var(--text-primary);
+            margin: 1.6rem 0 1.1rem; padding-left: 1.1rem; border-left: 2px solid var(--gold);
+        }
+        html[data-lang="th"] .persona blockquote { line-height: 1.6; }
+        .persona-bg { font-size: 0.9rem; color: var(--text-secondary); }
+        .persona-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.75rem; margin-top: 1.75rem; }
+        .persona-foot { margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: grid; gap: 1.1rem; }
+        .follows { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+        .follows b { color: var(--text-primary); font-weight: 600; }
+
+        /* ── JOURNEY ── */
+        .tabs { display: flex; flex-wrap: wrap; gap: 0; border-bottom: 1px solid var(--border-strong); }
+        .tabs button {
+            font-family: var(--font-body); font-size: 0.9rem; font-weight: 600;
+            color: var(--text-secondary); background: transparent;
+            border: none; border-bottom: 2px solid transparent; margin-bottom: -1px;
+            padding: 0.8rem 1.5rem 0.8rem 0; margin-right: 1.5rem; cursor: pointer;
+            transition: color 0.2s;
+        }
+        .tabs button:hover { color: var(--text-primary); }
+        .tabs button[aria-selected="true"] { color: var(--gold); border-bottom-color: var(--gold); }
+        html:not(.js) .tabs { display: none; }
+        html.js .journey[hidden] { display: none; }
+        .journey { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px; margin-top: 1.5rem; }
+        .journey-title { display: none; grid-column: 1 / -1; color: var(--gold); font-size: 0.95rem; font-weight: 600; margin-top: 1.5rem; }
+        html:not(.js) .journey-title { display: block; }
+        .period { background: var(--bg-card); padding: 1.5rem; display: flex; flex-direction: column; }
+        .period > h4 { font-size: calc(1.5rem * var(--display-scale) + 0.14rem); color: var(--gold); padding-bottom: 0.8rem; border-bottom: 1px solid var(--border); }
+        .moment { padding: 1.1rem 0; }
+        .moment + .moment { border-top: 1px dashed var(--border); }
+        .moment h5 { font-family: var(--font-body); font-size: 0.92rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.35rem; }
+        .moment p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+        html[data-lang="th"] .moment p { line-height: 1.75; }
+        .moment .chips { margin-top: 0.7rem; }
+        .goal { margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border); }
+        .goal .dash-list li { font-size: 0.85rem; color: var(--text-primary); }
+
+        /* ── DECISION FLOWS ── */
+        .flows { display: flex; flex-direction: column; gap: 2px; }
+        .flow { background: var(--bg-card); padding: 1.6rem 1.75rem; display: grid; grid-template-columns: 15rem minmax(0, 1fr); gap: 2rem; }
+        .flow h4 { font-size: calc(1.5rem * var(--display-scale) + 0.14rem); color: var(--text-primary); margin-bottom: 0.5rem; }
+        .flow-meta { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.6; }
+        .flow-meta b { color: var(--text-dim); font-weight: 600; }
+        .flow ol { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 2.25rem; }
+        .flow ol li { position: relative; font-size: 0.86rem; color: var(--text-secondary); line-height: 1.6; padding-top: 0.9rem; border-top: 1px solid var(--border-strong); }
+        html[data-lang="th"] .flow ol li { line-height: 1.75; }
+        .flow ol li b { display: block; color: var(--gold); font-weight: 600; font-size: 0.82rem; margin-bottom: 0.25rem; }
+        .flow ol li + li::before {
+            content: ''; position: absolute; top: -5px; left: -1.45rem;
+            width: 8px; height: 8px; border-top: 1px solid var(--gold); border-right: 1px solid var(--gold);
+            transform: rotate(45deg);
+        }
+
+        /* ── FINDINGS ── */
+        .findings { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 4rem; counter-reset: f; }
+        .findings li {
+            counter-increment: f; position: relative;
+            padding: 1.4rem 0 1.4rem 3rem; border-top: 1px solid var(--border);
+            color: var(--text-secondary); font-size: 0.95rem;
+        }
+        .findings li::before {
+            content: counter(f); position: absolute; left: 0; top: 1.25rem;
+            font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem; line-height: 1; color: var(--gold);
+        }
+
+        /* ── SURVEY CHARTS ── */
+        .keyfacts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px; margin-bottom: 2px; }
+        .keyfact { background: var(--bg-card); padding: 1.5rem 1.75rem; display: flex; align-items: baseline; gap: 1rem; }
+        .keyfact b { font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 2.6rem; line-height: 1; color: var(--text-primary); }
+        .keyfact span { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; }
+        .charts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px; }
+        .chart { background: var(--bg-card); padding: 2rem 2rem 1.75rem; }
+        .chart h4 { font-size: calc(1.45rem * var(--display-scale) + 0.14rem); color: var(--text-primary); }
+        .chart-sub { font-size: 0.8rem; color: var(--text-dim); margin: 0.2rem 0 1.4rem; }
+        .bars { display: flex; flex-direction: column; gap: 0.7rem; }
+        .bars li { display: grid; grid-template-columns: minmax(0, 12.5rem) minmax(0, 1fr) 3.4rem; align-items: center; gap: 0.9rem; }
+        .bars .n { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.35; }
+        html[data-lang="th"] .bars .n { line-height: 1.5; }
+        .bars .t { display: block; height: 10px; border-left: 1px solid var(--border-strong); }
+        .bars .f { display: block; height: 100%; background: var(--gold); border-radius: 0 3px 3px 0; }
+        .bars .v { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); text-align: right; font-variant-numeric: tabular-nums; }
+        .bars li:hover .f { background: var(--gold-light); }
+        .bars li:hover .n { color: var(--text-primary); }
+
+        /* ── DIRECTION ── */
+        .pairs { border-top: 1px solid var(--border-strong); }
+        .pair { display: grid; grid-template-columns: minmax(0, 1fr) 2.5rem minmax(0, 1fr); gap: 1.5rem; padding: 1.75rem 0; border-bottom: 1px solid var(--border); align-items: start; }
+        .pair-head { padding: 0 0 0.8rem; border-bottom: 1px solid var(--border-strong); }
+        .pair-head div { font-size: var(--label-size); font-weight: 600; letter-spacing: var(--label-tracking); text-transform: uppercase; color: var(--text-dim); }
+        .pair .ev { font-size: 0.92rem; color: var(--text-secondary); }
+        .pair .ev small { display: block; font-size: 0.78rem; color: var(--text-dim); margin-top: 0.4rem; }
+        .pair .arrow { color: var(--gold); padding-top: 0.2rem; font-size: 0.85rem; }
+        .pair .dir h4 { font-size: calc(1.5rem * var(--display-scale) + 0.14rem); color: var(--text-primary); margin-bottom: 0.35rem; }
+        .pair .dir p { font-size: 0.92rem; color: var(--text-secondary); }
+        .handoff { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 4.5rem; margin-top: 4.5rem; }
+        .handoff h3:not(.small-head) { font-size: calc(1.7rem * var(--display-scale) + 0.12rem); margin-bottom: 0.8rem; }
+
+        /* ── LEARNINGS ── */
+        .learn { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 4.5rem; }
+        .learn h3 { font-size: calc(1.7rem * var(--display-scale) + 0.12rem); margin-bottom: 1.25rem; }
+        .lessons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px; }
+        .lessons li { background: var(--bg-card); padding: 1.4rem 1.6rem; }
+        .lessons h4 { font-family: var(--font-body); font-size: 0.98rem; font-weight: 600; letter-spacing: 0; line-height: 1.45; color: var(--text-primary); margin-bottom: 0.3rem; }
+        .lessons p { font-size: 0.87rem; color: var(--text-secondary); line-height: 1.6; }
+        html[data-lang="th"] .lessons p { line-height: 1.75; }
+        .closing {
+            margin-top: 4.5rem; padding: 2.5rem 0 0; border-top: 1px solid var(--border-strong);
+            font-family: var(--font-display); font-weight: 400;
+            font-size: calc(clamp(1.7rem, 3.2vw, 2.7rem) * var(--display-scale) + 0.1rem);
+            letter-spacing: var(--display-tracking);
+            line-height: 1.15; color: var(--text-primary); max-width: 30ch;
+        }
+        html[data-lang="th"] .closing { line-height: 1.45; font-weight: 500; max-width: 36ch; }
+
+        .cta-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.75rem; }
+        .btn-primary, .btn-outline {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            padding: 0.9rem 1.75rem;
+            font-family: var(--font-body); font-size: 0.82rem; font-weight: 700;
+            letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
+            transition: box-shadow 0.3s ease, transform 0.2s ease, background 0.3s ease, border-color 0.3s ease;
+        }
+        html[data-lang="th"] .btn-primary, html[data-lang="th"] .btn-outline { letter-spacing: 0.02em; font-size: 0.92rem; font-weight: 600; }
+        .btn-primary { background: var(--gold); color: var(--bg-deep); }
+        .btn-primary:hover { box-shadow: 0 8px 32px rgba(201,169,110,0.4); transform: translateY(-2px); }
+        .btn-outline { color: var(--gold); border: 1px solid var(--border-strong); }
+        .btn-outline:hover { background: rgba(201,169,110,0.08); border-color: var(--gold); transform: translateY(-2px); }
+
+        /* ── FOOTER (same as index.html) ── */
+        footer { background: var(--bg-card); border-top: 1px solid var(--border); }
+        .footer-container { max-width: 1280px; margin: 0 auto; padding: 5rem 2rem 0; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border); }
+        .footer-brand h3 { font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 1.6rem; letter-spacing: 0.08em; line-height: 1.2; color: var(--gold); margin-bottom: 1rem; }
+        .footer-brand p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.75; font-style: italic; max-width: 340px; }
+        html[data-lang="th"] .footer-brand p { font-style: normal; }
+        .footer-col h4 { font-family: var(--font-body); font-size: var(--label-size); font-weight: 600; letter-spacing: var(--label-tracking); text-transform: uppercase; color: var(--text-dim); margin-bottom: 1.5rem; line-height: 1.5; }
+        .footer-links { display: flex; flex-direction: column; gap: 0.75rem; }
+        .footer-links a { display: flex; align-items: center; gap: 0.6rem; font-size: 0.87rem; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--gold); }
+        .footer-links i { color: var(--gold-dim); font-size: 0.85rem; }
+        .footer-socials { display: flex; gap: 1rem; }
+        .social-icon { width: 40px; height: 40px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--text-secondary); text-decoration: none; font-size: 16px; transition: border-color 0.2s, color 0.2s; }
+        .social-icon:hover { border-color: var(--gold); color: var(--gold); }
+        .footer-bottom { padding: 1.5rem 0; display: flex; justify-content: space-between; align-items: center; }
+        .footer-bottom p { font-size: 0.78rem; color: var(--text-dim); letter-spacing: 0.06em; }
+
+
+        /* ── DESIGN THINKING ADDITIONS ── */
+        .step-sub { font-size: 0.82rem; color: var(--gold); margin: -0.35rem 0 0.6rem; }
+        .step.is-next::before { background: var(--bg-deep); border: 1px solid var(--gold); }
+        .step.is-next .step-no { color: var(--gold-dim); }
+        .dt-legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; margin-top: 2.25rem; font-size: 0.82rem; color: var(--text-dim); }
+        .dt-legend span { display: inline-flex; align-items: center; gap: 0.55rem; }
+        .dt-legend i { width: 7px; height: 7px; background: var(--gold); display: inline-block; }
+        .dt-legend i.next { background: transparent; border: 1px solid var(--gold); }
+        .sub.first { margin-top: 0; }
+
+        .insight-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 4rem; }
+        .insight-groups .findings { grid-template-columns: 1fr; margin-top: 0.75rem; }
+        .insight-groups .small-head { margin-top: 1.5rem; }
+
+        .hmw .hyp { grid-template-columns: 4.6rem minmax(0, 1fr); align-items: start; }
+        .hmw .hyp-tag { font-size: 1.35rem; padding-top: 0.15rem; white-space: nowrap; }
+        .hmw .hyp p { font-size: 1.02rem; }
+        .hmw-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px; }
+        .hmw-grid .hyp:last-child:nth-child(odd) { grid-column: 1 / -1; }
+
+        .hmw-ref { display: inline-block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; color: var(--gold); border: 1px solid var(--border-strong); padding: 0 0.45rem; margin-bottom: 0.5rem; }
+
+        .proto { display: grid; grid-template-columns: minmax(0, 1fr) 300px minmax(0, 1fr); gap: 3.5rem; align-items: start; }
+        .proto-phone { position: relative; }
+        .proto-phone img { width: 100%; height: auto; -webkit-mask-image: linear-gradient(to bottom, #000 90%, transparent 100%); mask-image: linear-gradient(to bottom, #000 90%, transparent 100%); }
+        .pin {
+            position: absolute; right: -14px; transform: translateY(-50%);
+            width: 28px; height: 28px; border-radius: 50%;
+            background: var(--gold); color: var(--bg-deep);
+            font-family: 'Bebas Neue', sans-serif; font-size: 1.05rem; line-height: 28px; text-align: center;
+            box-shadow: 0 0 0 4px var(--bg-deep);
+        }
+        .pins { counter-reset: pin; display: flex; flex-direction: column; }
+        .pins li { counter-increment: pin; position: relative; padding: 1.2rem 0 1.2rem 2.75rem; border-top: 1px solid var(--border); }
+        .pins li:last-child { border-bottom: 1px solid var(--border); }
+        .pins li::before {
+            content: counter(pin); position: absolute; left: 0; top: 1.2rem;
+            width: 28px; height: 28px; border-radius: 50%; background: var(--gold); color: var(--bg-deep);
+            font-family: 'Bebas Neue', sans-serif; font-size: 1.05rem; line-height: 28px; text-align: center;
+        }
+        .pins p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+        html[data-lang="th"] .pins p { line-height: 1.75; }
+        .pins p b { color: var(--text-primary); font-weight: 600; }
+        .pins small { display: block; margin-top: 0.35rem; font-size: 0.78rem; color: var(--gold); }
+
+        .tag { display: inline-block; font-family: 'Bebas Neue', sans-serif; font-size: 1.05rem; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 0.4rem; }
+        .next-note { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; color: var(--text-dim); border: 1px dashed var(--border-strong); padding: 0.35rem 0.8rem; margin-top: 1.25rem; }
+
+        @media (max-width: 1100px) {
+            .proto { grid-template-columns: minmax(0, 1fr) 260px; }
+            .proto > :first-child { grid-column: 1 / -1; }
+        }
+        @media (max-width: 900px) {
+            .insight-groups, .hmw-grid { grid-template-columns: 1fr; }
+            .proto { grid-template-columns: 1fr; gap: 2.5rem; }
+            .proto-phone { max-width: 250px; margin: 0 auto; }
+        }
+        @media (max-width: 640px) {
+            .hmw .hyp { grid-template-columns: 1fr; }
+        }
+
+        /* ── HERO LOAD (the page's one orchestrated motion) ── */
+        @media (prefers-reduced-motion: no-preference) {
+            html.js .hero-text > *, html.js .phone { animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+            html.js .hero-text > :nth-child(2) { animation-delay: 0.05s; }
+            html.js .hero-text > :nth-child(3) { animation-delay: 0.1s; }
+            html.js .hero-text > :nth-child(4) { animation-delay: 0.18s; }
+            html.js .hero-text > :nth-child(5) { animation-delay: 0.26s; }
+            html.js .phone { animation-delay: 0.3s; }
+            @keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+        }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1100px) {
+            .nav-links { display: none; }
+            #menu-toggle { display: flex; align-items: center; justify-content: center; }
+            .nav-right { gap: 0.75rem; }
+            .steps { grid-template-columns: 1fr; border-top: none; border-left: 1px solid var(--border-strong); }
+            .step { padding: 0 0 2.25rem 1.75rem; display: grid; grid-template-columns: 3.5rem minmax(0, 1fr); column-gap: 1rem; }
+            .step:last-child { padding-bottom: 0; }
+            .step::before { top: 0.6rem; left: -4px; }
+            .step-no { grid-row: 1 / span 3; }
+            .step h3 { margin-top: 0.2rem; }
+            .step h3, .step p { grid-column: 2; }
+            .journey { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .flow { grid-template-columns: 1fr; gap: 1.25rem; }
+            .takeaways, .segments, .keyfacts { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 900px) {
+            .wrap { padding: 4.5rem 1.25rem; }
+            .nav-container { padding: 0 1.25rem; }
+            #mobile-nav { padding: 0.5rem 1.25rem 1rem; }
+            .hero-grid { grid-template-columns: 1fr; gap: 0; padding: 2.25rem 1.25rem 0; }
+            .hero-text { padding-bottom: 2.5rem; }
+            .back-link { margin-bottom: 2.25rem; }
+            .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .facts > div { padding-bottom: 0.4rem; }
+            .phone { max-width: 250px; margin: 0 auto; }
+            .split, .handoff, .learn { grid-template-columns: 1fr; gap: 2.5rem; }
+            .personas, .charts, .findings, .lessons { grid-template-columns: 1fr; }
+            .persona { padding: 1.75rem 1.5rem; }
+            .pair { grid-template-columns: 1fr; gap: 0.6rem; }
+            .pair .arrow { transform: rotate(90deg); width: 1rem; padding: 0; }
+            .pair-head { display: none; }
+            .footer-container { padding: 4rem 1.25rem 0; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+            .scrollToTop { right: 1.25rem; bottom: 1.25rem; }
+        }
+        @media (max-width: 640px) {
+            .journey, .persona-cols { grid-template-columns: 1fr; }
+            .flow ol { grid-auto-flow: row; gap: 1rem; }
+            .flow ol li + li::before { display: none; }
+            .bars li { grid-template-columns: minmax(0, 1fr) 3.4rem; row-gap: 0.25rem; }
+            .bars .n { grid-column: 1 / -1; }
+            .chart { padding: 1.5rem 1.25rem; }
+            .hyp { grid-template-columns: 1fr; gap: 0.5rem; padding: 1.4rem 1.25rem; }
+            .tabs button { margin-right: 0.75rem; padding-right: 0.75rem; }
+        }
+    </style>
+</head>
+<body id="top">
+
+    <a class="scrollToTop" href="#top" data-i18n-attr="aria-label" data-en="Scroll to top" data-th="กลับขึ้นด้านบน" aria-label="Scroll to top">
+        <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </a>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand" data-i18n-attr="aria-label" data-en="Khanadech Khongsombhatt, home" data-th="Khanadech Khongsombhatt หน้าแรก" aria-label="Khanadech Khongsombhatt, home">KK</a>
+
+            <div class="nav-right">
+                <nav data-i18n-attr="aria-label" data-en="Sections of this case study" data-th="หัวข้อในกรณีศึกษานี้" aria-label="Sections of this case study">
+                    <ul class="nav-links">
+                        <li><a href="#empathize"><span lang="en">Empathize</span><span lang="th">เข้าใจผู้ใช้</span></a></li>
+                        <li><a href="#define"><span lang="en">Define</span><span lang="th">กำหนดปัญหา</span></a></li>
+                        <li><a href="#ideate"><span lang="en">Ideate</span><span lang="th">สร้างไอเดีย</span></a></li>
+                        <li><a href="#prototype"><span lang="en">Prototype</span><span lang="th">ต้นแบบ</span></a></li>
+                        <li><a href="#test"><span lang="en">Test</span><span lang="th">ทดสอบ</span></a></li>
+                        <li><a href="#learnings"><span lang="en">Learnings</span><span lang="th">บทเรียน</span></a></li>
+                    </ul>
+                </nav>
+                <div class="lang-switch" role="group" aria-label="Language / ภาษา">
+                    <button type="button" data-set-lang="th" aria-pressed="false" aria-label="ภาษาไทย">TH</button>
+                    <button type="button" data-set-lang="en" aria-pressed="true" aria-label="English">EN</button>
+                </div>
+                <button id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" data-i18n-attr="aria-label" data-en="Open menu" data-th="เปิดเมนู" aria-label="Open menu">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div id="mobile-nav">
+                <ul>
+                    <li><a href="#empathize"><span lang="en">Empathize</span><span lang="th">เข้าใจผู้ใช้</span></a></li>
+                    <li><a href="#define"><span lang="en">Define</span><span lang="th">กำหนดปัญหา</span></a></li>
+                    <li><a href="#ideate"><span lang="en">Ideate</span><span lang="th">สร้างไอเดีย</span></a></li>
+                    <li><a href="#prototype"><span lang="en">Prototype</span><span lang="th">ต้นแบบ</span></a></li>
+                    <li><a href="#test"><span lang="en">Test</span><span lang="th">ทดสอบ</span></a></li>
+                    <li><a href="#learnings"><span lang="en">Learnings</span><span lang="th">บทเรียน</span></a></li>
+                    <li><a href="index.html#mu-portfolio"><span lang="en">Back to Key Initiatives</span><span lang="th">กลับไปหน้า Key Initiatives</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- HERO -->
+        <section class="case-hero">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <a href="index.html#mu-portfolio" class="back-link">
+                        <i class="fas fa-arrow-left" aria-hidden="true" style="font-size:11px;"></i>
+                        <span lang="en">Key Initiatives</span><span lang="th">กลับไปหน้า Key Initiatives</span>
+                    </a>
+                    <p class="hero-kicker"><span lang="en">Design Thinking case study, Thairath Online</span><span lang="th">กรณีศึกษา Design Thinking จากไทยรัฐออนไลน์</span></p>
+                    <h1 class="hero-title">Thairath Money</h1>
+                    <p class="hero-lede">
+                        <span lang="en">How Design Thinking set the direction for the Business section of Thairath Online: start from the people who read and the people who advertise, then design news that is easier to find, quicker to take in, and worth more to advertisers.</span><span lang="th">ใช้กระบวนการ Design Thinking กำหนดทิศทางหมวด Business ของไทยรัฐออนไลน์ เริ่มจากทำความเข้าใจทั้งคนอ่านและคนลงโฆษณา แล้วออกแบบให้ข่าวการลงทุนหาเจอง่าย อ่านเข้าใจเร็ว และตอบโจทย์ผู้ลงโฆษณามากขึ้น</span>
+                    </p>
+                    <dl class="facts">
+                        <div>
+                            <dt><span lang="en">Role</span><span lang="th">บทบาท</span></dt>
+                            <dd><span lang="en">User Experience Designer, Product Team</span><span lang="th">User Experience Designer ในทีม Product</span></dd>
+                        </div>
+                        <div>
+                            <dt><span lang="en">Timeline</span><span lang="th">ระยะเวลา</span></dt>
+                            <dd><span lang="en">November to December 2022, 4 sprints</span><span lang="th">พ.ย. ถึง ธ.ค. 2022 รวม 4 สปรินต์</span></dd>
+                        </div>
+                        <div>
+                            <dt><span lang="en">Approach</span><span lang="th">แนวทาง</span></dt>
+                            <dd><span lang="en">Design Thinking: Empathize, Define, Ideate, Prototype, Test</span><span lang="th">Design Thinking: Empathize, Define, Ideate, Prototype, Test</span></dd>
+                        </div>
+                        <div>
+                            <dt><span lang="en">Website</span><span lang="th">เว็บไซต์</span></dt>
+                            <dd><a href="https://www.thairath.co.th/money" target="_blank" rel="noopener">thairath.co.th/money</a></dd>
+                        </div>
+                    </dl>
+                </div>
+
+                <figure class="phone">
+                    <img src="assets/images/thairath-money/thairath-money-mobile.webp" width="640" height="1158"
+                         data-i18n-attr="alt"
+                         data-en="Thairath Money on a phone: the Investment section's Gold page, with tabs for All, Stocks, Fund, Gold and Oil, and today's gold price."
+                         data-th="Thairath Money บนมือถือ หน้า Gold ในหมวด Investment มีแท็บ All, Stocks, Fund, Gold, Oil และราคาทองวันนี้"
+                         alt="Thairath Money on a phone: the Investment section's Gold page, with tabs for All, Stocks, Fund, Gold and Oil, and today's gold price.">
+                </figure>
+            </div>
+        </section>
+
+        <div class="gold-divider"></div>
+
+        <!-- PROBLEM -->
+        <section id="problem" class="band-dark">
+            <div class="wrap">
+                <div class="split">
+                    <div>
+                        <span class="label"><span lang="en">Starting point</span><span lang="th">จุดเริ่มต้น</span></span>
+                        <h2 class="title"><span lang="en">A section with room to earn more</span><span lang="th">หมวดที่ยังสร้างรายได้ได้อีกมาก</span></h2>
+                        <div class="prose" style="margin-top:1.5rem;">
+                            <p><span lang="en">Thairath Online saw an opportunity to grow revenue from its Business category, an area with high potential for advertising sales. But the way the section's content was structured and presented wasn't fully optimised.</span><span lang="th">ไทยรัฐออนไลน์เห็นโอกาสเพิ่มรายได้จากหมวด Business ซึ่งมีศักยภาพในการขายโฆษณาสูง แต่โครงสร้างและวิธีนำเสนอเนื้อหาของหมวดนี้ยังไม่ถูกปรับให้ได้ผลเต็มที่</span></p>
+                            <p><span lang="en">Management asked each unit to come back with proposals for optimising the section. The Product Team took on the research.</span><span lang="th">ทีมผู้บริหารจึงให้แต่ละหน่วยงานเตรียมข้อมูลมาเสนอแนวทางปรับปรุง และทีม Product รับหน้าที่ทำงานวิจัย</span></p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="small-head" style="margin-bottom:1rem;"><span lang="en">Two hypotheses, two audiences</span><span lang="th">สมมติฐาน 2 ข้อ สำหรับผู้ใช้ 2 กลุ่ม</span></h3>
+                        <div class="hyps">
+                            <div class="hyp">
+                                <span class="hyp-tag" aria-hidden="true">H1</span>
+                                <div>
+                                    <p><span lang="en">If we improve the content structure and add features tailored to investors, engagement and content accessibility will go up.</span><span lang="th">ถ้าเราปรับโครงสร้างเนื้อหาและเพิ่มฟีเจอร์ที่ตอบโจทย์นักลงทุน ผู้ใช้จะมีส่วนร่วมมากขึ้นและเข้าถึงเนื้อหาได้ง่ายขึ้น</span></p>
+                                    <small><span lang="en">Audience: readers who invest</span><span lang="th">กลุ่มผู้ใช้: ผู้อ่านที่ลงทุน</span></small>
+                                </div>
+                            </div>
+                            <div class="hyp">
+                                <span class="hyp-tag" aria-hidden="true">H2</span>
+                                <div>
+                                    <p><span lang="en">If we understand what drives ad purchases, we can shape the advertising strategy around what businesses and advertisers expect.</span><span lang="th">ถ้าเราเข้าใจปัจจัยที่มีผลต่อการตัดสินใจซื้อโฆษณา เราจะปรับกลยุทธ์โฆษณาให้ตรงกับความต้องการของธุรกิจและความคาดหวังของผู้ลงโฆษณาได้</span></p>
+                                    <small><span lang="en">Audience: executives who buy media</span><span lang="th">กลุ่มผู้ใช้: ผู้บริหารที่ตัดสินใจซื้อสื่อ</span></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="gold-divider"></div>
+
+        <!-- PROCESS: DESIGN THINKING OVERVIEW -->
+        <section id="process" class="band-deep">
+            <div class="wrap">
+                <header class="head">
+                    <span class="label"><span lang="en">Design Thinking process</span><span lang="th">กระบวนการ Design Thinking</span></span>
+                    <h2 class="title"><span lang="en">Five stages, from people to product</span><span lang="th">5 ขั้นตอน จากความเข้าใจคนสู่ผลิตภัณฑ์</span></h2>
+                    <p class="lede"><span lang="en">We began with people, not pages. First we understood investors and advertisers, then framed what we learned as problems worth solving, generated directions from the evidence, and handed them on to be built and tested.</span><span lang="th">เราเริ่มจากคน ไม่ใช่จากหน้าเว็บ ทำความเข้าใจนักลงทุนและผู้ลงโฆษณาก่อน แล้วสรุปสิ่งที่ได้เป็นปัญหาที่ควรแก้ สร้างแนวทางจากหลักฐานที่มี และส่งต่อไปพัฒนาและทดสอบ</span></p>
+                </header>
+
+                <ol class="steps">
+                    <li class="step">
+                        <div class="step-no" aria-hidden="true">01</div>
+                        <h3><a href="#empathize" style="border:none;color:inherit;">Empathize</a></h3>
+                        <p class="step-sub"><span lang="en">Understand people</span><span lang="th">เข้าใจผู้ใช้</span></p>
+                        <p><span lang="en">Competitor analysis of 5 brands, 13 in-depth interviews with investors, and a survey of 23 executives who buy media.</span><span lang="th">วิเคราะห์คู่แข่ง 5 แบรนด์ สัมภาษณ์เชิงลึกนักลงทุน 13 คน และแบบสอบถามผู้บริหารที่ซื้อสื่อ 23 คน</span></p>
+                        <p class="out"><b><span lang="en">Output</span><span lang="th">ผลลัพธ์</span></b><span lang="en">Behaviour, needs and pain points of readers and advertisers</span><span lang="th">พฤติกรรม ความต้องการ และ pain point ของผู้อ่านและผู้ลงโฆษณา</span></p>
+                    </li>
+                    <li class="step">
+                        <div class="step-no" aria-hidden="true">02</div>
+                        <h3><a href="#define" style="border:none;color:inherit;">Define</a></h3>
+                        <p class="step-sub"><span lang="en">Frame the problem</span><span lang="th">กำหนดปัญหา</span></p>
+                        <p><span lang="en">Synthesised the research into personas, daily journeys and decision flows, then framed the problems as How Might We questions.</span><span lang="th">สังเคราะห์ผลวิจัยเป็น Persona, Journey ในหนึ่งวัน และขั้นตอนการตัดสินใจ แล้วตั้งโจทย์เป็นคำถาม How Might We</span></p>
+                        <p class="out"><b><span lang="en">Output</span><span lang="th">ผลลัพธ์</span></b><span lang="en">2 personas, journey maps, 4 decision flows, 5 HMW questions</span><span lang="th">Persona 2 แบบ Journey map ขั้นตอนการตัดสินใจ 4 แบบ และคำถาม HMW 5 ข้อ</span></p>
+                    </li>
+                    <li class="step">
+                        <div class="step-no" aria-hidden="true">03</div>
+                        <h3><a href="#ideate" style="border:none;color:inherit;">Ideate</a></h3>
+                        <p class="step-sub"><span lang="en">Generate directions</span><span lang="th">สร้างไอเดีย</span></p>
+                        <p><span lang="en">Answered each HMW with a design direction for structure, content formats, branding, tools or ads.</span><span lang="th">ตอบคำถาม HMW แต่ละข้อด้วยแนวทางออกแบบ ด้านโครงสร้าง รูปแบบเนื้อหา แบรนด์ เครื่องมือ และโฆษณา</span></p>
+                        <p class="out"><b><span lang="en">Output</span><span lang="th">ผลลัพธ์</span></b><span lang="en">5 design directions, each traced to evidence</span><span lang="th">แนวทางออกแบบ 5 ข้อ ที่ย้อนกลับไปหาหลักฐานได้ทุกข้อ</span></p>
+                    </li>
+                    <li class="step is-next">
+                        <div class="step-no" aria-hidden="true">04</div>
+                        <h3><a href="#prototype" style="border:none;color:inherit;">Prototype</a></h3>
+                        <p class="step-sub"><span lang="en">Make it real</span><span lang="th">สร้างต้นแบบ</span></p>
+                        <p><span lang="en">Handed the directions to the teams building the site, as input for how information is laid out.</span><span lang="th">ส่งต่อแนวทางให้ทีมที่พัฒนาเว็บไซต์ เป็น input ในการวางข้อมูลบนหน้าเว็บ</span></p>
+                        <p class="out"><b><span lang="en">Output</span><span lang="th">ผลลัพธ์</span></b><span lang="en">Thairath Money mobile design</span><span lang="th">ดีไซน์ Thairath Money บนมือถือ</span></p>
+                    </li>
+                    <li class="step is-next">
+                        <div class="step-no" aria-hidden="true">05</div>
+                        <h3><a href="#test" style="border:none;color:inherit;">Test</a></h3>
+                        <p class="step-sub"><span lang="en">Check it works</span><span lang="th">ทดสอบ</span></p>
+                        <p><span lang="en">Next step: check the design against the two starting hypotheses, with readers and with advertisers.</span><span lang="th">ขั้นถัดไป: ตรวจสอบดีไซน์กับสมมติฐานตั้งต้นทั้ง 2 ข้อ ทั้งกับผู้อ่านและผู้ลงโฆษณา</span></p>
+                        <p class="out"><b><span lang="en">Output</span><span lang="th">ผลลัพธ์</span></b><span lang="en">Test plan</span><span lang="th">แผนการทดสอบ</span></p>
+                    </li>
+                </ol>
+                <p class="dt-legend">
+                    <span><i></i><span lang="en">Covered by this research project</span><span lang="th">ขั้นที่โปรเจกต์วิจัยนี้ทำ</span></span>
+                    <span><i class="next"></i><span lang="en">Carried on by the build teams, or next steps</span><span lang="th">ส่งต่อให้ทีมพัฒนา หรือเป็นขั้นถัดไป</span></span>
+                </p>
+
+                <p class="role-note"><span lang="en">As part of the Product Team, our role was to run the research and propose optimisations for the Business section. We worked with business stakeholders, advertisers and the content teams so that UX improvements lined up with business goals.</span><span lang="th">ในฐานะส่วนหนึ่งของทีม Product หน้าที่ของเราคือทำงานวิจัยและเสนอแนวทางปรับปรุงหมวด Business โดยทำงานร่วมกับผู้มีส่วนได้ส่วนเสียฝั่งธุรกิจ ผู้ลงโฆษณา และทีมคอนเทนต์ เพื่อให้การปรับปรุง UX ไปในทิศทางเดียวกับเป้าหมายทางธุรกิจ</span></p>
+            </div>
+        </section>
+
+        <div class="gold-divider"></div>
+
+        <!-- 01 EMPATHIZE: COMPETITORS -->
+        <section id="empathize" class="band-dark">
+            <div class="wrap">
+                <header class="head">
+                    <span class="label"><span lang="en">01 Empathize: desk research</span><span lang="th">01 Empathize เข้าใจผู้ใช้: Desk research</span></span>
+                    <h2 class="title"><span lang="en">Competitor analysis</span><span lang="th">วิเคราะห์คู่แข่ง</span></h2>
+                    <p class="lede"><span lang="en">Empathy started with the market readers already use. We reviewed five brands through three lenses: what each does well and badly, how it talks to readers, and how its site is organised.</span><span lang="th">การทำความเข้าใจเริ่มจากสื่อที่ผู้อ่านใช้อยู่แล้ว เราศึกษา 5 แบรนด์ผ่าน 3 มุม ได้แก่ จุดแข็งและจุดอ่อน น้ำเสียงที่ใช้สื่อสารกับผู้อ่าน และการจัดโครงสร้างเว็บไซต์</span></p>
+                </header>
+
+                <div class="table-scroll" tabindex="0" role="region" data-i18n-attr="aria-label" data-en="Competitor comparison table" data-th="ตารางเปรียบเทียบคู่แข่ง" aria-label="Competitor comparison table">
+                    <table class="cmp">
+                        <colgroup><col class="c-brand"><col class="c-cat"><col class="c-tone"><col><col></colgroup>
+                        <thead>
+                            <tr>
+                                <th scope="col"><span lang="en">Brand</span><span lang="th">แบรนด์</span></th>
+                                <th scope="col"><span lang="en">Menu categories</span><span lang="th">จำนวนหมวดหมู่</span></th>
+                                <th scope="col"><span lang="en">Voice and content style</span><span lang="th">น้ำเสียงและการนำเสนอ</span></th>
+                                <th scope="col"><span lang="en">Works well</span><span lang="th">จุดแข็ง</span></th>
+                                <th scope="col"><span lang="en">Creates friction</span><span lang="th">จุดอ่อน</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span lang="en">Prachachat Turakij</span><span lang="th">ประชาชาติธุรกิจ</span></td>
+                                <td><div class="cat"><b>19</b><i style="width:calc((100% - 2.3rem) * 1)"></i></div></td>
+                                <td><span lang="en">Formal and factual. General news coverage.</span><span lang="th">เป็นทางการ พูดตามจริง นำเสนอข่าวทั่วไป</span></td>
+                                <td><span lang="en">Long-standing, credible name. Goes deeper into a story than the others.</span><span lang="th">มีชื่อเสียงมานาน น่าเชื่อถือ เจาะลึกเนื้อหาข่าวได้มากกว่าคอนเทนต์เจ้าอื่น</span></td>
+                                <td><span lang="en">So many sub-categories that some menus are hard to find. No article recommendations.</span><span lang="th">แยกย่อยหมวดหมู่เยอะ ทำให้หาบางเมนูยาก และไม่มีระบบแนะนำข่าวหรือบทความ</span></td>
+                            </tr>
+                            <tr>
+                                <td><span lang="en">Bangkok Biz News</span><span lang="th">กรุงเทพธุรกิจ</span></td>
+                                <td><div class="cat"><b>11</b><i style="width:calc((100% - 2.3rem) * 0.579)"></i></div></td>
+                                <td><span lang="en">Formal and factual. General news with a deeper business focus and business interviews.</span><span lang="th">เป็นทางการ พูดตามจริง นำเสนอข่าวทั่วไปแต่เน้นเจาะลึกข่าวธุรกิจ มีบทสัมภาษณ์ด้านธุรกิจ</span></td>
+                                <td><span lang="en">Business expertise and frequent business events. Recommends related articles by tag.</span><span lang="th">เชี่ยวชาญด้านธุรกิจ จัดกิจกรรมด้านธุรกิจบ่อย มีระบบแนะนำบทความที่เกี่ยวข้องกับ tag ของข่าว</span></td>
+                                <td><span lang="en">The navigation bar isn't sticky, so readers scroll back up to change menu.</span><span lang="th">Navigation bar ไม่ sticky ผู้ใช้ต้องเลื่อนกลับขึ้นไปเพื่อเปลี่ยนเมนู</span></td>
+                            </tr>
+                            <tr>
+                                <td>The Standard Wealth</td>
+                                <td><div class="cat"><b>8</b><i style="width:calc((100% - 2.3rem) * 0.421)"></i></div></td>
+                                <td><span lang="en">Plain language, not very formal. Brings new angles with the writer's own analysis.</span><span lang="th">ใช้ภาษาเข้าใจง่าย ไม่เป็นทางการมาก เสนอประเด็นใหม่ ๆ พร้อมบทวิเคราะห์จากนักเขียน</span></td>
+                                <td><span lang="en">Modern image, exclusive content and a well-known KOL. Present on every channel.</span><span lang="th">ภาพลักษณ์ทันสมัย มี exclusive content และ KOL คอนเทนต์มีครบทุกช่องทาง</span></td>
+                                <td><span lang="en">Only Home and Exclusive pages get their own design. Menus behave differently when opened.</span><span lang="th">มีแค่หน้า Home กับ Exclusive content ที่ดีไซน์แตกต่าง และแต่ละเมนูใน Navigation bar กดแล้วแสดงไม่เหมือนกัน</span></td>
+                            </tr>
+                            <tr>
+                                <td><span lang="en">Longtunman</span><span lang="th">ลงทุนแมน</span></td>
+                                <td><div class="cat"><b>9</b><i style="width:calc((100% - 2.3rem) * 0.474)"></i></div></td>
+                                <td><span lang="en">Semi-casual, sometimes spoken language. Strong infographics, bullet summaries, a blank line every 2 to 5 lines.</span><span lang="th">ไม่ค่อยเป็นทางการ บางข่าวใช้ภาษาพูด โดดเด่นเรื่อง infographic สรุปประเด็นเป็น bullet และเว้นบรรทัดทุก 2–5 บรรทัดให้อ่านง่าย</span></td>
+                                <td><span lang="en">Content built around summaries you can grasp in a single image.</span><span lang="th">คอนเทนต์เน้นการสรุป ให้เข้าใจได้ในภาพเดียว</span></td>
+                                <td><span lang="en">A gallery layout that looks the same everywhere. Weak article recommendations.</span><span lang="th">วาง layout เป็น gallery เหมือนกันหมด และระบบแนะนำบทความยังไม่ค่อยดี</span></td>
+                            </tr>
+                            <tr>
+                                <td>Money Buffalo</td>
+                                <td><div class="cat"><b>14</b><i style="width:calc((100% - 2.3rem) * 0.737)"></i></div></td>
+                                <td><span lang="en">Friendly, fun, easy to read. A mascot, "Pi Tui", tells the story, with jokes mixed in.</span><span lang="th">เฟรนด์ลี่ สนุก อ่านง่าย เล่าเรื่องผ่านคาแรกเตอร์ “พี่ทุย” และสอดแทรกมุก</span></td>
+                                <td><span lang="en">Focused only on money and investing. A distinctive character in every piece.</span><span lang="th">เน้นคอนเทนต์การเงินการลงทุนโดยเฉพาะ มีคาแรกเตอร์ที่เป็นเอกลักษณ์ในทุกคอนเทนต์</span></td>
+                                <td><span lang="en">New content doesn't come out very fast.</span><span lang="th">ออกคอนเทนต์ใหม่ไม่ค่อยเร็ว</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="table-note"><span lang="en">The two sites with the fewest categories, The Standard Wealth and Longtunman, have no sub-categories at all: a category opens straight onto articles. Prachachat's 19 categories carry sub-sections and sub-brands one level down, which makes them harder to reach.</span><span lang="th">สองเว็บที่มีหมวดหมู่น้อยที่สุดคือ The Standard Wealth และลงทุนแมน ไม่มีหมวดย่อยเลย กดหมวดแล้วเข้าถึงบทความได้ทันที ส่วนประชาชาติธุรกิจมี 19 หมวด และยังมี section ย่อยกับ sub brand ซ้อนอยู่อีกชั้น ทำให้เข้าถึงได้ยากกว่า</span></p>
+
+                <h3 class="sub"><span lang="en">What we noticed</span><span lang="th">สิ่งที่สังเกตเห็น</span></h3>
+                <ul class="takeaways">
+                    <li>
+                        <h4><span lang="en">Clear, simple categories</span><span lang="th">แบ่งหมวดหมู่ให้ชัดและเข้าใจง่าย</span></h4>
+                        <p><span lang="en">Most competitor sites are complex and too broad, which makes it hard to reach the content you came for.</span><span lang="th">เว็บคู่แข่งส่วนใหญ่ค่อนข้างซับซ้อนและกว้างเกินไป ทำให้ผู้ใช้เข้าถึงคอนเทนต์ที่ต้องการได้ยาก</span></p>
+                    </li>
+                    <li>
+                        <h4><span lang="en">A brand of its own</span><span lang="th">Branding ที่ชัดเจน</span></h4>
+                        <p><span lang="en">A clear identity strengthens the image, as The Standard Wealth, Longtunman and Money Buffalo show.</span><span lang="th">แบรนด์ที่ชัดเจนช่วยเสริมภาพลักษณ์ได้ดี เห็นได้จาก The Standard Wealth ลงทุนแมน และ Money Buffalo</span></p>
+                    </li>
+                    <li>
+                        <h4><span lang="en">Features beyond articles</span><span lang="th">ฟีเจอร์เสริมนอกเหนือจากบทความ</span></h4>
+                        <p><span lang="en">Calculators, charts and exchange-rate tables give the site more to offer, and they support SEO traffic.</span><span lang="th">เครื่องคำนวณ กราฟ และตารางอัตราแลกเปลี่ยน ทำให้เว็บมีอะไรให้ใช้มากขึ้น และช่วยสนับสนุน SEO เพื่อสร้าง traffic</span></p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="gold-divider"></div>
+
+        <!-- 01 EMPATHIZE: INTERVIEWS -->
+        <section id="interviews" class="band-deep">
+            <div class="wrap">
+                <header class="head">
+                    <span class="label"><span lang="en">01 Empathize: in-depth interviews</span><span lang="th">01 Empathize เข้าใจผู้ใช้: สัมภาษณ์เชิงลึก</span></span>
+                    <h2 class="title"><span lang="en">How investors really follow the news</span><span lang="th">นักลงทุนเสพข่าวกันอย่างไรจริง ๆ</span></h2>
+                    <p class="lede"><span lang="en">Thirteen one-to-one interviews with people who invest, recruited across three experience levels. Everyone takes in investment news more than 2 to 3 times a week.</span><span lang="th">สัมภาษณ์ตัวต่อตัวกับผู้ที่ลงทุนจริง 13 คน คัดเลือกจากประสบการณ์การลงทุน 3 ระดับ ทุกคนเสพข่าวการลงทุนมากกว่า 2–3 ครั้งต่อสัปดาห์</span></p>
+                </header>
+
+                <ul class="segments">
+                    <li class="segment">
+                        <h4><span lang="en">Just starting</span><span lang="th">เพิ่งเริ่มลงทุน</span></h4>
+                        <p><span lang="en">Under 2 years of investing. 2 interviewed.</span><span lang="th">ลงทุนมาน้อยกว่า 2 ปี สัมภาษณ์ 2 คน</span></p>
+                        <div class="dots" aria-hidden="true"><i></i><i></i><i class="off"></i><i class="off"></i><i class="off"></i><i class="off"></i></div>
+                    </li>
+                    <li class="segment">
+                        <h4><span lang="en">Investing for a while</span><span lang="th">ลงทุนมาสักระยะ</span></h4>
+                        <p><span lang="en">2 to 5 years of investing. 6 interviewed.</span><span lang="th">ลงทุนมา 2–5 ปี สัมภาษณ์ 6 คน</span></p>
+                        <div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                    </li>
+                    <li class="segment">
+                        <h4><span lang="en">Experienced</span><span lang="th">ลงทุนอย่างชำนาญ</span></h4>
+                        <p><span lang="en">5 years or more. 5 interviewed.</span><span lang="th">ลงทุนมา 5 ปีขึ้นไป สัมภาษณ์ 5 คน</span></p>
+                        <div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i class="off"></i></div>
+                    </li>
+                </ul>
+                <p class="fine"><span lang="en">Each dot is one participant; the recruiting target was six per group. Participants' names and photos are left out of this page.</span><span lang="th">หนึ่งจุดแทนผู้ให้สัมภาษณ์ 1 คน โดยตั้งเป้าไว้กลุ่มละ 6 คน หน้านี้ไม่แสดงชื่อและรูปของผู้ให้สัมภาษณ์</span></p>
+
+            </div>
+        </section>
+
+        <div class="gold-divider"></div>
+
+        <!-- 01 EMPATHIZE: SURVEY -->
+        <section id="survey" class="band-dark">
+            <div class="wrap">
+                <header class="head">
+                    <span class="label"><span lang="en">01 Empathize: online survey</span><span lang="th">01 Empathize เข้าใจผู้ใช้: แบบสอบถามออนไลน์</span></span>
+                    <h2 class="title"><span lang="en">What the people buying ads expect</span><span lang="th">คนที่ซื้อโฆษณาคาดหวังอะไร</span></h2>
+                    <p class="lede"><span lang="en">A questionnaire for executive-level people, on what drives their media buying and how they follow finance and investment content. 23 responded. We wanted to know their ad-buying factors, their attitude to buying ads, how they read the news, and how they choose what to follow.</span><span lang="th">แบบสอบถามสำหรับระดับผู้บริหาร เพื่อศึกษาปัจจัยในการเลือกซื้อสื่อและการติดตามเนื้อหาด้านการเงินการลงทุน มีผู้ตอบ 23 คน โดยต้องการทราบปัจจัยและทัศนคติต่อการซื้อโฆษณา พฤติกรรมการอ่านข่าว และปัจจัยในการเลือกติดตามสื่อ</span></p>
+                </header>
+
+                <ul class="keyfacts">
+                    <li class="keyfact"><b>100%</b><span><span lang="en">follow business news on a mobile phone</span><span lang="th">ติดตามข่าวธุรกิจผ่านมือถือ</span></span></li>
+                    <li class="keyfact"><b>60.9%</b><span><span lang="en">follow it every day</span><span lang="th">ติดตามทุกวัน</span></span></li>
+                    <li class="keyfact"><b>78.3%</b><span><span lang="en">earn more than 100,000 baht a month</span><span lang="th">มีรายได้มากกว่า 100,000 บาทต่อเดือน</span></span></li>
+                </ul>
+
+                <div class="charts">
+                    <figure class="chart">
+                        <h4><span lang="en">Where they follow the news</span><span lang="th">ช่องทางที่ใช้ติดตามข่าว</span></h4>
+                        <p class="chart-sub"><span lang="en">Share of 23 respondents. More than one answer allowed.</span><span lang="th">สัดส่วนจากผู้ตอบ 23 คน เลือกได้มากกว่า 1 คำตอบ</span></p>
+                        <ul class="bars">
+                            <li><span class="n">Facebook</span><span class="t"><span class="f" style="width:82.6%"></span></span><span class="v">82.6%</span></li>
+                            <li><span class="n">YouTube</span><span class="t"><span class="f" style="width:73.9%"></span></span><span class="v">73.9%</span></li>
+                            <li><span class="n"><span lang="en">Website</span><span lang="th">เว็บไซต์</span></span><span class="t"><span class="f" style="width:69.6%"></span></span><span class="v">69.6%</span></li>
+                            <li><span class="n">Podcast</span><span class="t"><span class="f" style="width:56.5%"></span></span><span class="v">56.5%</span></li>
+                            <li><span class="n"><span lang="en">Seminars</span><span lang="th">งานสัมมนา</span></span><span class="t"><span class="f" style="width:52.2%"></span></span><span class="v">52.2%</span></li>
+                            <li><span class="n">Twitter</span><span class="t"><span class="f" style="width:30.4%"></span></span><span class="v">30.4%</span></li>
+                            <li><span class="n">TikTok</span><span class="t"><span class="f" style="width:13%"></span></span><span class="v">13.0%</span></li>
+                            <li><span class="n"><span lang="en">Foreign publisher subscription</span><span lang="th">สมัครสมาชิก Publisher ต่างชาติ</span></span><span class="t"><span class="f" style="width:4.3%"></span></span><span class="v">4.3%</span></li>
+                        </ul>
+                    </figure>
+
+                    <figure class="chart">
+                        <h4><span lang="en">Why they follow it</span><span lang="th">เหตุผลที่ติดตาม</span></h4>
+                        <p class="chart-sub"><span lang="en">Share of 23 respondents. More than one answer allowed.</span><span lang="th">สัดส่วนจากผู้ตอบ 23 คน เลือกได้มากกว่า 1 คำตอบ</span></p>
+                        <ul class="bars">
+                            <li><span class="n"><span lang="en">To keep up with what's happening</span><span lang="th">เพื่อให้ทันต่อสถานการณ์</span></span><span class="t"><span class="f" style="width:87%"></span></span><span class="v">87.0%</span></li>
+                            <li><span class="n"><span lang="en">To build their own knowledge</span><span lang="th">เสริมความรู้ให้กับตัวเอง</span></span><span class="t"><span class="f" style="width:78.3%"></span></span><span class="v">78.3%</span></li>
+                            <li><span class="n"><span lang="en">To know the trends</span><span lang="th">เพื่อให้รู้เทรนด์</span></span><span class="t"><span class="f" style="width:73.9%"></span></span><span class="v">73.9%</span></li>
+                            <li><span class="n"><span lang="en">To plan their organisation's strategy</span><span lang="th">นำไปวางกลยุทธ์องค์กร</span></span><span class="t"><span class="f" style="width:73.9%"></span></span><span class="v">73.9%</span></li>
+                            <li><span class="n"><span lang="en">To spot growth opportunities</span><span lang="th">เพื่อให้เห็นโอกาสการเติบโต</span></span><span class="t"><span class="f" style="width:60.9%"></span></span><span class="v">60.9%</span></li>
+                            <li><span class="n"><span lang="en">To look up what they're curious about</span><span lang="th">สืบค้นข้อมูลที่ตนเองสงสัย</span></span><span class="t"><span class="f" style="width:56.5%"></span></span><span class="v">56.5%</span></li>
+                            <li><span class="n"><span lang="en">To pass the information on</span><span lang="th">เพื่อนำข้อมูลไปบอกต่อ</span></span><span class="t"><span class="f" style="width:17.4%"></span></span><span class="v">17.4%</span></li>
+                        </ul>
+                    </figure>
+
+                    <figure class="chart">
+                        <h4><span lang="en">Problems they've had buying ads</span><span lang="th">ปัญหาที่เคยพบจากการซื้อโฆษณา</span></h4>
+                        <p class="chart-sub"><span lang="en">Share of 23 respondents. More than one answer allowed.</span><span lang="th">สัดส่วนจากผู้ตอบ 23 คน เลือกได้มากกว่า 1 คำตอบ</span></p>
+                        <ul class="bars">
+                            <li><span class="n"><span lang="en">Results weren't what they wanted</span><span lang="th">ผลลัพธ์ไม่ได้อย่างที่ต้องการ</span></span><span class="t"><span class="f" style="width:78.3%"></span></span><span class="v">78.3%</span></li>
+                            <li><span class="n"><span lang="en">Channel didn't match the target audience</span><span lang="th">ช่องทางไม่ตรงกับกลุ่มเป้าหมาย</span></span><span class="t"><span class="f" style="width:65.2%"></span></span><span class="v">65.2%</span></li>
+                            <li><span class="n"><span lang="en">The media wasn't engaging</span><span lang="th">สื่อที่ใช้ไม่มีความน่าสนใจ</span></span><span class="t"><span class="f" style="width:43.5%"></span></span><span class="v">43.5%</span></li>
+                            <li><span class="n"><span lang="en">Unsuitable duration</span><span lang="th">ระยะเวลาไม่เหมาะสม</span></span><span class="t"><span class="f" style="width:21.7%"></span></span><span class="v">21.7%</span></li>
+                            <li><span class="n"><span lang="en">Production ran late</span><span lang="th">ผลิตชิ้นงานไม่ตรงเวลา</span></span><span class="t"><span class="f" style="width:8.7%"></span></span><span class="v">8.7%</span></li>
+                            <li><span class="n"><span lang="en">Display schedule got moved</span><span lang="th">เลื่อนเวลาการแสดงชิ้นงาน</span></span><span class="t"><span class="f" style="width:8.7%"></span></span><span class="v">8.7%</span></li>
+                            <li><span class="n"><span lang="en">Can't measure results</span><span lang="th">วัดผลไม่ได้</span></span><span class="t"><span class="f" style="width:4.3%"></span></span><span class="v">4.3%</span></li>
+                            <li><span class="n"><span lang="en">Content quality</span><span lang="th">คุณภาพของเนื้อหา</span></span><span class="t"><span class="f" style="width:4.3%"></span></span><span class="v">4.3%</span></li>
+                        </ul>
+                    </figure>
+
+                    <figure class="chart">
+                        <h4><span lang="en">Formats they want more of</span><span lang="th">รูปแบบเนื้อหาที่อยากให้มีเพิ่ม</span></h4>
+                        <p class="chart-sub"><span lang="en">Share of 23 respondents. More than one answer allowed.</span><span lang="th">สัดส่วนจากผู้ตอบ 23 คน เลือกได้มากกว่า 1 คำตอบ</span></p>
+                        <ul class="bars">
+                            <li><span class="n"><span lang="en">Short video (TikTok, Reels)</span><span lang="th">วิดีโอสั้น (TikTok, Reels)</span></span><span class="t"><span class="f" style="width:69.6%"></span></span><span class="v">69.6%</span></li>
+                            <li><span class="n">Podcast</span><span class="t"><span class="f" style="width:52.2%"></span></span><span class="v">52.2%</span></li>
+                            <li><span class="n">Community</span><span class="t"><span class="f" style="width:39.1%"></span></span><span class="v">39.1%</span></li>
+                            <li><span class="n"><span lang="en">Executive interview articles</span><span lang="th">บทความสัมภาษณ์ผู้บริหาร</span></span><span class="t"><span class="f" style="width:30.4%"></span></span><span class="v">30.4%</span></li>
+                            <li><span class="n"><span lang="en">Executive interview clips</span><span lang="th">คลิปสัมภาษณ์ผู้บริหาร</span></span><span class="t"><span class="f" style="width:30.4%"></span></span><span class="v">30.4%</span></li>
+                            <li><span class="n"><span lang="en">Seminars</span><span lang="th">งานสัมมนา</span></span><span class="t"><span class="f" style="width:26.1%"></span></span><span class="v">26.1%</span></li>
+                            <li><span class="n">Twitter</span><span class="t"><span class="f" style="width:21.7%"></span></span><span class="v">21.7%</span></li>
+                            <li><span class="n"><span lang="en">Long video</span><span lang="th">วิดีโอยาว</span></span><span class="t"><span class="f" style="width:17.4%"></span></span><span class="v">17.4%</span></li>
+                        </ul>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <div class="gold-divider"></div>
+
+        <!-- 02 DEFINE -->
+        <section id="define" class="band-deep">
+            <div class="wrap">
+                <header class="head">
+                    <span class="label"><span lang="en">02 Define: frame the problem</span><span lang="th">02 Define กำหนดปัญหา</span></span>
+                    <h2 class="title"><span lang="en">Making sense of what we heard</span><span lang="th">สรุปสิ่งที่ได้ยินให้เป็นโจทย์ที่ชัด</span></h2>
+                    <p class="lede"><span lang="en">We turned interviews and survey answers into models of who our users are, how their day runs and how they decide. Then we framed the problems to solve as How Might We questions.</span><span lang="th">เรานำผลสัมภาษณ์และแบบสอบถามมาสังเคราะห์เป็นภาพของผู้ใช้ ว่าเขาเป็นใคร ใช้ชีวิตในแต่ละวันอย่างไร และตัดสินใจอย่างไร จากนั้นตั้งโจทย์ที่ต้องแก้เป็นคำถาม How Might We</span></p>
+                </header>
+
+                <!-- Personas -->
+                <h3 class="sub first"><span lang="en">Personas</span><span lang="th">Persona</span></h3>
+                <p class="sub-note"><span lang="en">Two patterns came out of the interviews. They want the same things from content (information they can trust, in a form that's easy to digest) but they live on different clocks.</span><span lang="th">จากการสัมภาษณ์พบพฤติกรรม 2 รูปแบบ ทั้งคู่ต้องการสิ่งเดียวกันจากคอนเทนต์ คือข้อมูลที่น่าเชื่อถือและย่อยง่าย แต่ใช้เวลาในแต่ละวันต่างกัน</span></p>
+
+                <div class="personas">
+                    <article class="persona">
+                        <div class="persona-top">
+                            <div class="avatar" aria-hidden="true"><span lang="en">S</span><span lang="th">ส</span></div>
+                            <div>
+                                <p class="persona-type"><span lang="en">DCA and mutual funds</span><span lang="th">DCA และกองทุนรวม</span></p>
+                                <h4><span lang="en">Sunee</span><span lang="th">สุนีย์</span></h4>
+                                <p class="persona-meta"><span lang="en">Mid-level employee, 38, bachelor's degree, Bangkok</span><span lang="th">พนักงานบริษัทระดับ Mid-level อายุ 38 ปี ปริญญาตรี อาศัยในกรุงเทพฯ</span></p>
+                            </div>
+                        </div>
+                        <blockquote><span lang="en">“I want money to live on when I retire.”</span><span lang="th">“อยากมีเงินไว้ใช้ในตอนเกษียณ”</span></blockquote>
+                        <p class="persona-bg"><span lang="en">About five years of investing across several asset types. After a while she started thinking about retirement, and found mutual funds the best fit, with a tax deduction on top. She understands each type of investment well.</span><span lang="th">ลงทุนมาประมาณ 5 ปี ผ่านมาแล้วหลายประเภท พอลงทุนได้สักระยะก็เริ่มอยากมีเงินก้อนไว้ใช้ตอนเกษียณ จึงพบว่ากองทุนเหมาะกับตัวเองที่สุด และยังนำไปลดหย่อนภาษีได้ เป็นกลุ่มที่เข้าใจการลงทุนแต่ละประเภทเป็นอย่างดี</span></p>
+                        <div class="persona-cols">
+                            <div>
+                                <h5 class="small-head"><span lang="en">Wants and needs</span><span lang="th">สิ่งที่ต้องการ</span></h5>
+                                <ul class="dash-list">
+                                    <li><span lang="en">Information she can trust</span><span lang="th">ข้อมูลที่น่าเชื่อถือ</span></li>
+                                    <li><span lang="en">Easy to digest and understand</span><span lang="th">ข้อมูลย่อยง่าย ทำความเข้าใจได้ไม่ยาก</span></li>
+                                    <li><span lang="en">Usable for her financial planning</span><span lang="th">นำไปใช้วางแผนการเงินต่อได้</span></li>
+                                    <li><span lang="en">Access to financial opportunities</span><span lang="th">เข้าถึงโอกาสทางการเงิน</span></li>
+                                    <li><span lang="en">Coverage of every economic topic</span><span lang="th">เนื้อหาครอบคลุมทุกเรื่องเศรษฐกิจ</span></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="small-head"><span lang="en">Frustrations</span><span lang="th">สิ่งที่ทำให้หงุดหงิด</span></h5>
+                                <ul class="dash-list">
+                                    <li><span lang="en">Language that's too hard to follow</span><span lang="th">ภาษาที่เข้าใจยากเกินไป</span></li>
+                                    <li><span lang="en">Articles or clips that run too long get skipped</span><span lang="th">ข้อมูลหรือคลิปที่ยาวเกินไปจะไม่อ่านหรือไม่ดู</span></li>
+                                    <li><span lang="en">A website that's hard to use doesn't get visited</span><span lang="th">เว็บไซต์ที่ใช้งานยากจะไม่เข้าดูเลย</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="persona-foot">
+                            <div>
+                                <h5 class="small-head"><span lang="en">Content she follows</span><span lang="th">เนื้อหาที่ติดตาม</span></h5>
+                                <ul class="chips"><li><span lang="en">Stocks</span><span lang="th">หุ้น</span></li><li><span lang="en">Funds</span><span lang="th">กองทุน</span></li><li><span lang="en">Economy overview</span><span lang="th">เศรษฐกิจภาพรวม</span></li></ul>
+                            </div>
+                            <p class="follows"><span lang="en"><b>Where:</b> Facebook and LINE; the podcasts The Secret Sauce and Mission to the Moon; the Longtunman and The Standard pages; investing.com, thestandard.co and kaohoon.com.</span><span lang="th"><b>ช่องทาง:</b> Facebook และ LINE, Podcast อย่าง The Secret Sauce และ Mission to the Moon, เพจลงทุนแมนและ The Standard, เว็บไซต์ investing.com, thestandard.co และ kaohoon.com</span></p>
+                        </div>
+                    </article>
+
+                    <article class="persona">
+                        <div class="persona-top">
+                            <div class="avatar" aria-hidden="true"><span lang="en">T</span><span lang="th">ธ</span></div>
+                            <div>
+                                <p class="persona-type"><span lang="en">Day trade</span><span lang="th">Day trade</span></p>
+                                <h4><span lang="en">Theera</span><span lang="th">ธีระ</span></h4>
+                                <p class="persona-meta"><span lang="en">Junior-level employee, 27, bachelor's degree, Bangkok</span><span lang="th">พนักงานบริษัทระดับ Junior อายุ 27 ปี ปริญญาตรี อาศัยในกรุงเทพฯ</span></p>
+                            </div>
+                        </div>
+                        <blockquote><span lang="en">“I want to make a lot of money, and not take long doing it.”</span><span lang="th">“อยากมีเงินเยอะ ๆ และใช้เวลาไม่นาน”</span></blockquote>
+                        <p class="persona-bg"><span lang="en">Interested in many kinds of investing and ready to study new ones. He started because he saw inflation eating into what he owns. He understands the basics, has tried several approaches, and rates his own knowledge as moderate.</span><span lang="th">สนใจการลงทุนหลายรูปแบบและพร้อมศึกษารูปแบบใหม่ ๆ เริ่มลงทุนเพราะเห็นว่าเงินเฟ้อกระทบทรัพย์สินที่มีอยู่ เข้าใจพื้นฐานการลงทุน เคยลองมาแล้วหลายรูปแบบ และมองว่าตัวเองมีความรู้กับประสบการณ์ในระดับหนึ่ง</span></p>
+                        <div class="persona-cols">
+                            <div>
+                                <h5 class="small-head"><span lang="en">Wants and needs</span><span lang="th">สิ่งที่ต้องการ</span></h5>
+                                <ul class="dash-list">
+                                    <li><span lang="en">Information he can trust</span><span lang="th">ข้อมูลที่น่าเชื่อถือ</span></li>
+                                    <li><span lang="en">Up to date and fast</span><span lang="th">ข้อมูลที่ทันสมัย รวดเร็ว</span></li>
+                                    <li><span lang="en">Easy to digest and understand</span><span lang="th">ข้อมูลย่อยง่าย ทำความเข้าใจได้ไม่ยาก</span></li>
+                                    <li><span lang="en">Something he can act on right away</span><span lang="th">นำไปใช้ต่อได้ทันที</span></li>
+                                    <li><span lang="en">Managing his own money better</span><span lang="th">บริหารการเงินของตัวเองให้ดีขึ้น</span></li>
+                                    <li><span lang="en">Access to new investment opportunities</span><span lang="th">เข้าถึงโอกาสการลงทุนใหม่ ๆ</span></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="small-head"><span lang="en">Frustrations</span><span lang="th">สิ่งที่ทำให้หงุดหงิด</span></h5>
+                                <ul class="dash-list">
+                                    <li><span lang="en">Articles or clips that run too long get skipped</span><span lang="th">ข้อมูลหรือคลิปที่ยาวเกินไปจะไม่อ่านหรือไม่ดู</span></li>
+                                    <li><span lang="en">Language that's too hard to follow</span><span lang="th">ภาษาที่เข้าใจยากเกินไป</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="persona-foot">
+                            <div>
+                                <h5 class="small-head"><span lang="en">Content he follows</span><span lang="th">เนื้อหาที่ติดตาม</span></h5>
+                                <ul class="chips"><li><span lang="en">Stocks</span><span lang="th">หุ้น</span></li><li><span lang="en">Funds</span><span lang="th">กองทุน</span></li><li><span lang="en">Crypto</span><span lang="th">คริปโต</span></li><li><span lang="en">Economy overview</span><span lang="th">เศรษฐกิจภาพรวม</span></li></ul>
+                            </div>
+                            <p class="follows"><span lang="en"><b>Where:</b> Facebook and LINE; the podcasts The Secret Sauce and Wealth Me Up; the Longtunman and The Standard pages; investing.com and thestandard.co.</span><span lang="th"><b>ช่องทาง:</b> Facebook และ LINE, Podcast อย่าง The Secret Sauce และ Wealth Me Up, เพจลงทุนแมนและ The Standard, เว็บไซต์ investing.com และ thestandard.co</span></p>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Journey maps -->
+                <h3 class="sub"><span lang="en">A day of investment content</span><span lang="th">หนึ่งวันกับคอนเทนต์การลงทุน</span></h3>
+                <p class="sub-note"><span lang="en">Customer journey maps of daily life. The counts show how many interviewees mentioned each channel at that moment.</span><span lang="th">Customer journey ในชีวิตประจำวัน ตัวเลขคือจำนวนผู้ให้สัมภาษณ์ที่พูดถึงช่องทางนั้นในช่วงเวลาดังกล่าว</span></p>
+
+                <div class="tabs" role="tablist" data-i18n-attr="aria-label" data-en="Journey map by investor type" data-th="Journey map แยกตามประเภทนักลงทุน" aria-label="Journey map by investor type">
+                    <button type="button" role="tab" id="tab-dca" aria-controls="journey-dca" aria-selected="true"><span lang="en">DCA and mutual funds</span><span lang="th">DCA และกองทุนรวม</span></button>
+                    <button type="button" role="tab" id="tab-day" aria-controls="journey-day" aria-selected="false" tabindex="-1"><span lang="en">Day trade</span><span lang="th">Day trade</span></button>
+                </div>
+
+                <div class="journey" id="journey-dca" role="tabpanel" aria-labelledby="tab-dca">
+                    <p class="journey-title"><span lang="en">DCA and mutual funds</span><span lang="th">DCA และกองทุนรวม</span></p>
+                    <div class="period">
+                        <h4><span lang="en">Morning</span><span lang="th">เช้า</span></h4>
+                        <div class="moment">
+                            <h5><span lang="en">Driving to work</span><span lang="th">ขับรถไปทำงาน</span></h5>
+                            <p><span lang="en">Plays the latest podcast episode or a topic of interest. If it ends before they arrive, they pick another topic.</span><span lang="th">ฟัง Podcast ตอนล่าสุดหรือหัวข้อที่สนใจ ถ้าฟังจบแล้วยังขับไม่ถึงที่ทำงานก็ฟังหัวข้ออื่นต่อ</span></p>
+                            <ul class="chips"><li>Podcast 4</li><li>YouTube 1</li><li><span lang="en">Radio 1</span><span lang="th">วิทยุ 1</span></li></ul>
+                        </div>
+                        <div class="moment">
+                            <h5><span lang="en">Before starting work</span><span lang="th">ก่อนเริ่มทำงาน</span></h5>
+                            <p><span lang="en">Scrolls the feed and stops at investment posts, articles or summaries from pages they follow. Taps through when a news link looks interesting.</span><span lang="th">ไถฟีดแล้วเจอโพสต์การลงทุน บทความ หรือสรุปจากเพจที่ติดตามไว้ ถ้ามีลิงก์ข่าวที่สนใจจะกดไปอ่านต่อ</span></p>
+                            <ul class="chips"><li>Facebook 2</li><li>Twitter 1</li></ul>
+                        </div>
+                        <div class="goal">
+                            <h5 class="small-head"><span lang="en">Goal</span><span lang="th">เป้าหมาย</span></h5>
+                            <ul class="dash-list"><li><span lang="en">Catch up on the news</span><span lang="th">อัปเดตข่าวสาร</span></li><li><span lang="en">Check trends and market movement</span><span lang="th">เช็กแนวโน้มและความเคลื่อนไหวการลงทุน</span></li></ul>
+                        </div>
+                    </div>
+                    <div class="period">
+                        <h4><span lang="en">Afternoon</span><span lang="th">กลางวัน</span></h4>
+                        <div class="moment">
+                            <h5><span lang="en">Lunch break</span><span lang="th">พักกลางวัน</span></h5>
+                            <p><span lang="en">Scrolls the feed or checks LINE and finds investment posts and summaries from followed pages. Taps through when interested.</span><span lang="th">ไถฟีดหรือเช็กไลน์ แล้วเจอโพสต์การลงทุน บทความ หรือสรุปจากเพจที่ติดตามไว้ ถ้าสนใจจะกดไปอ่านต่อ</span></p>
+                            <ul class="chips"><li>Facebook 3</li><li>LINE 2</li><li>Twitter 1</li></ul>
+                        </div>
+                        <div class="goal">
+                            <h5 class="small-head"><span lang="en">Goal</span><span lang="th">เป้าหมาย</span></h5>
+                            <ul class="dash-list"><li><span lang="en">Catch up on the news</span><span lang="th">อัปเดตข่าวสาร</span></li></ul>
+                        </div>
+                    </div>
+                    <div class="period">
+                        <h4><span lang="en">Evening</span><span lang="th">เย็น</span></h4>
+                        <div class="moment">
+                            <h5><span lang="en">Driving home</span><span lang="th">ขับรถกลับบ้าน</span></h5>
+                            <p><span lang="en">Back to podcasts: the latest episode or a topic of interest.</span><span lang="th">กลับมาฟัง Podcast ตอนล่าสุดหรือหัวข้อที่สนใจ</span></p>
+                            <ul class="chips"><li>Podcast 3</li></ul>
+                        </div>
+                        <div class="moment">
+                            <h5><span lang="en">Free time</span><span lang="th">เวลาว่าง</span></h5>
+                            <p><span lang="en">Scrolls social feeds, or looks for clips that teach the investment topic they're into right now.</span><span lang="th">ไถฟีดโซเชียล หรือหาคลิปความรู้เรื่องการลงทุนที่กำลังสนใจ</span></p>
+                            <ul class="chips"><li>Facebook 2</li><li>Twitter 1</li></ul>
+                        </div>
+                        <div class="goal">
+                            <h5 class="small-head"><span lang="en">Goal</span><span lang="th">เป้าหมาย</span></h5>
+                            <ul class="dash-list"><li><span lang="en">Catch up on the news</span><span lang="th">อัปเดตข่าวสาร</span></li><li><span lang="en">Learn about investing</span><span lang="th">หาความรู้การลงทุน</span></li></ul>
+                        </div>
+                    </div>
+                    <div class="period">
+                        <h4><span lang="en">Night</span><span lang="th">กลางคืน</span></h4>
+                        <div class="moment">
+                            <h5><span lang="en">Before bed</span><span lang="th">ก่อนนอน</span></h5>
+                            <p><span lang="en">Social and entertainment time. Scrolls the feed, or watches clips on the investment topic they're into.</span><span lang="th">ช่วงโซเชียลและความบันเทิง ไถฟีด หรือดูคลิปความรู้เรื่องการลงทุนที่กำลังสนใจ</span></p>
+                            <ul class="chips"><li>Facebook 2</li><li>YouTube 2</li><li>Twitter 1</li></ul>
+                        </div>
+                        <div class="goal">
+                            <h5 class="small-head"><span lang="en">Goal</span><span lang="th">เป้าหมาย</span></h5>
+                            <ul class="dash-list"><li><span lang="en">Catch up on the news</span><span lang="th">อัปเดตข่าวสาร</span></li><li><span lang="en">Learn about investing</span><span lang="th">หาความรู้การลงทุน</span></li></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="journey" id="journey-day" role="tabpanel" aria-labelledby="tab-day" hidden>
+                    <p class="journey-title"><span lang="en">Day trade</span><span lang="th">Day trade</span></p>
+                    <div class="period">
+                        <h4><span lang="en">Morning</span><span lang="th">เช้า</span></h4>
+                        <div class="moment">
+                            <h5><span lang="en">Before starting work</span><span lang="th">ก่อนเริ่มทำงาน</span></h5>
+                            <p><span lang="en">Goes through investment pages, Facebook groups, podcasts and stock charts. Opens the trading app for any stock that looks interesting.</span><span lang="th">ดูเพจการลงทุน กลุ่ม Facebook ฟัง Podcast และเช็กกราฟหุ้น ถ้าเจอหุ้นตัวที่น่าสนใจจะเข้าไปดูต่อในแอปเทรด</span></p>
+                            <ul class="chips"><li>Podcast 2</li><li>Facebook 1</li></ul>
+                        </div>
+                        <div class="moment">
+                            <h5><span lang="en">Market opens, 10:00</span><span lang="th">ตลาดหุ้นเปิด 10.00 น.</span></h5>
+                            <p><span lang="en">Buys and sells in the trading app.</span><span lang="th">ซื้อขายหุ้นในแอปเทรด</span></p>
+                        </div>
+                        <div class="goal">
+                            <h5 class="small-head"><span lang="en">Goal</span><span lang="th">เป้าหมาย</span></h5>
+                            <ul class="dash-list"><li><span lang="en">Read the state of the market</span><span lang="th">อัปเดตสถานการณ์ในตลาดหุ้น</span></li><li><span lang="en">Find new stocks worth a look</span><span lang="th">หาหุ้นตัวใหม่ที่น่าสนใจ</span></li><li><span lang="en">Trade</span><span lang="th">ซื้อขายหุ้น</span></li></ul>
+                        </div>
+                    </div>
+                    <div class="period">
+                        <h4><span lang="en">Afternoon</span><span lang="th">บ่าย</span></h4>
+                        <div class="moment">
+                            <h5><span lang="en">Before the close, around 16:00 to 17:00</span><span lang="th">ก่อนตลาดปิด ประมาณ 16.00–17.00 น.</span></h5>
+                            <p><span lang="en">Back in the trading app to buy and sell.</span><span lang="th">กลับเข้าแอปเทรดเพื่อซื้อขายหุ้น</span></p>
+                        </div>
+                        <div class="goal">
+                            <h5 class="small-head"><span lang="en">Goal</span><span lang="th">เป้าหมาย</span></h5>
+                            <ul class="dash-list"><li><span lang="en">Trade</span><span lang="th">ซื้อขายหุ้น</span></li></ul>
+                        </div>
+                    </div>
+                    <div class="period">
+                        <h4><span lang="en">Evening</span><span lang="th">เย็น</span></h4>
+                        <div class="moment">
+                            <h5><span lang="en">Free time</span><span lang="th">เวลาว่าง</span></h5>
+                            <p><span lang="en">Looks on YouTube for clips on the topic they're into. If a clip doesn't explain enough, they look for a course-style one.</span><span lang="th">หาคลิปความรู้เรื่องการลงทุนที่กำลังสนใจใน YouTube ถ้าคลิปอธิบายไม่ละเอียดก็จะหาคลิปที่เป็นคอร์สสอนแทน</span></p>
+                            <ul class="chips"><li>YouTube 2</li></ul>
+                        </div>
+                        <div class="goal">
+                            <h5 class="small-head"><span lang="en">Goal</span><span lang="th">เป้าหมาย</span></h5>
+                            <ul class="dash-list"><li><span lang="en">Learn about investing</span><span lang="th">หาความรู้การลงทุน</span></li></ul>
+                        </div>
+                    </div>
+                    <div class="period">
+                        <h4><span lang="en">Night</span><span lang="th">กลางคืน</span></h4>
+                        <div class="moment">
+                            <h5><span lang="en">22:00 to 23:00</span><span lang="th">22.00–23.00 น.</span></h5>
+                            <p><span lang="en">Leaves the TV on in the background and listens when economic news comes up. Checks the charts of stocks they hold, and opens a website when they want to know more.</span><span lang="th">เปิดทีวีทิ้งไว้ไม่ให้ห้องเงียบ ถ้ามีข่าวเศรษฐกิจก็จะฟัง เช็กกราฟหุ้นของตัวเอง และถ้าอยากรู้เพิ่มจะเปิดเว็บไซต์เข้าไปดู</span></p>
+                            <ul class="chips"><li><span lang="en">Website 1</span><span lang="th">เว็บไซต์ 1</span></li></ul>
+                        </div>
+                        <div class="goal">
+                            <h5 class="small-head"><span lang="en">Goal</span><span lang="th">เป้าหมาย</span></h5>
+                            <ul class="dash-list"><li><span lang="en">Check the chart trend of their stocks</span><span lang="th">เช็กแนวโน้มกราฟของหุ้นที่ลงทุน</span></li><li><span lang="en">Catch up on economic news</span><span lang="th">อัปเดตข่าวสารเศรษฐกิจ</span></li></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Decision flows -->
+                <h3 class="sub"><span lang="en">How an investment decision gets made</span><span lang="th">การตัดสินใจลงทุนเกิดขึ้นอย่างไร</span></h3>
+                <p class="sub-note"><span lang="en">Four decision flows from the interviews. In three of them the first step is a piece of content: a post, a podcast mention or an alert. The trading app is where the decision lands.</span><span lang="th">ขั้นตอนการตัดสินใจ 4 แบบจากการสัมภาษณ์ โดย 3 ใน 4 แบบเริ่มต้นจากคอนเทนต์ ไม่ว่าจะเป็นโพสต์ การพูดถึงใน Podcast หรือการแจ้งเตือน ส่วนการตัดสินใจจริงไปจบที่แอปเทรด</span></p>
+
+                <div class="flows">
+                    <div class="flow">
+                        <div>
+                            <h4><span lang="en">Mutual funds</span><span lang="th">กองทุนรวม</span></h4>
+                            <p class="flow-meta"><span lang="en"><b>Goal:</b> tax deduction<br><b>How often:</b> monthly, or once a year</span><span lang="th"><b>เป้าหมาย:</b> ลดหย่อนภาษี<br><b>ความถี่:</b> ทุกเดือน หรือปีละครั้ง</span></p>
+                        </div>
+                        <ol>
+                            <li><b><span lang="en">Starts with</span><span lang="th">เริ่มจาก</span></b><span lang="en">Searching for funds in the app of the bank where they already hold an account, or on a fund site they like.</span><span lang="th">ค้นหากองทุนจากแอปของธนาคารที่เปิดบัญชีไว้ หรือเว็บไซต์กองทุนที่สนใจ</span></li>
+                            <li><b><span lang="en">Weighs up</span><span lang="th">พิจารณา</span></b><span lang="en">The fund's fundamentals and risk. Returns came up most (3 people), then growth outlook, stability and volatility, tax eligibility and dividends.</span><span lang="th">ข้อมูลพื้นฐานและความเสี่ยงของกองทุน ผลตอบแทนถูกพูดถึงมากที่สุด (3 คน) รองลงมาคือแนวโน้มการเติบโต ความมั่นคงและความผันผวน การลดหย่อนภาษี และปันผล</span></li>
+                        </ol>
+                    </div>
+                    <div class="flow">
+                        <div>
+                            <h4><span lang="en">DCA stocks</span><span lang="th">หุ้น DCA</span></h4>
+                            <p class="flow-meta"><span lang="en"><b>Goal:</b> future spending or an emergency fund<br><b>How often:</b> monthly</span><span lang="th"><b>เป้าหมาย:</b> เงินใช้จ่ายในอนาคต หรือเงินฉุกเฉิน<br><b>ความถี่:</b> ทุกเดือน</span></p>
+                        </div>
+                        <ol>
+                            <li><b><span lang="en">Starts with</span><span lang="th">เริ่มจาก</span></b><span lang="en">A post about an interesting long-term stock, from a page they follow or a LINE group.</span><span lang="th">เจอโพสต์หุ้นระยะยาวที่น่าสนใจ จากเพจที่ติดตามหรือกลุ่มไลน์</span></li>
+                            <li><b><span lang="en">Looks up</span><span lang="th">หาข้อมูลเพิ่ม</span></b><span lang="en">Chart support and resistance (2 people), stability, company background, returns, price, news and politics, dividend history, analysts' views.</span><span lang="th">กราฟแนวต้านแนวรับ (2 คน) ความมั่นคง ข้อมูลบริษัท ผลตอบแทน ราคา ข่าวและสถานการณ์บ้านเมือง ประวัติการจ่ายปันผล และความเห็นนักวิเคราะห์</span></li>
+                            <li><b><span lang="en">Decides</span><span lang="th">ตัดสินใจ</span></b><span lang="en">Sets a monthly budget and buys in the trading app.</span><span lang="th">กำหนด budget ที่จะซื้อในแต่ละเดือน แล้วซื้อในแอปเทรด</span></li>
+                        </ol>
+                    </div>
+                    <div class="flow">
+                        <div>
+                            <h4><span lang="en">Day trade</span><span lang="th">หุ้น Day trade</span></h4>
+                            <p class="flow-meta"><span lang="en"><b>Goal:</b> extra income<br><b>How often:</b> weekly</span><span lang="th"><b>เป้าหมาย:</b> รายได้เสริม<br><b>ความถี่:</b> อาทิตย์ละครั้ง</span></p>
+                        </div>
+                        <ol>
+                            <li><b><span lang="en">Starts with</span><span lang="th">เริ่มจาก</span></b><span lang="en">Alerts from investment pages or groups they follow, and a check on stocks they hold or have favourited in the trading app.</span><span lang="th">ดูแจ้งเตือนจากเพจหรือกลุ่มลงทุนที่ติดตามไว้ และเช็กหุ้นที่ถืออยู่หรือที่ favorite ไว้ในแอปเทรด</span></li>
+                            <li><b><span lang="en">Looks up</span><span lang="th">หาข้อมูลเพิ่ม</span></b><span lang="en">The chart: support, resistance and breakouts (3 people). Volume, to confirm real trading (2 people). The price that gives a 7 to 8% profit.</span><span lang="th">กราฟแนวต้านแนวรับและจุดเบรก (3 คน) volume ว่ามีคนซื้อขายจริง (2 คน) และราคาที่เหมาะจะทำกำไร 7–8%</span></li>
+                            <li><b><span lang="en">Decides</span><span lang="th">ตัดสินใจ</span></b><span lang="en">Buys when the price is under their threshold. Sells at a 5 to 7% profit.</span><span lang="th">ซื้อเมื่อราคาต่ำกว่าเกณฑ์ที่ตั้งไว้ และขายเมื่อได้กำไร 5–7%</span></li>
+                        </ol>
+                    </div>
+                    <div class="flow">
+                        <div>
+                            <h4><span lang="en">Value investing (VI)</span><span lang="th">หุ้น VI</span></h4>
+                            <p class="flow-meta"><span lang="en"><b>Goal:</b> extra income<br><b>How often:</b> weekly</span><span lang="th"><b>เป้าหมาย:</b> รายได้เสริม<br><b>ความถี่:</b> อาทิตย์ละครั้ง</span></p>
+                        </div>
+                        <ol>
+                            <li><b><span lang="en">Starts with</span><span lang="th">เริ่มจาก</span></b><span lang="en">A Facebook post, a podcast that mentions a stock they're watching, or a bank's daily report with a stock pick.</span><span lang="th">เห็นโพสต์ Facebook รายการ Podcast ที่พูดถึงหุ้นที่สนใจอยู่ หรือ daily report ของธนาคารที่แนะนำหุ้นประจำวัน</span></li>
+                            <li><b><span lang="en">Looks up</span><span lang="th">หาข้อมูลเพิ่ม</span></b><span lang="en">The stock's fundamentals, dividend history and company results (2 people each), then business direction, expert shows and advice from people who know.</span><span lang="th">พื้นฐานของหุ้น ประวัติการจ่ายปันผล และผลประกอบการของบริษัท (อย่างละ 2 คน) รวมถึงทิศทางธุรกิจ รายการจากผู้เชี่ยวชาญ และการปรึกษาผู้มีความรู้</span></li>
+                            <li><b><span lang="en">Decides</span><span lang="th">ตัดสินใจ</span></b><span lang="en">Buys in the trading app.</span><span lang="th">ตัดสินใจซื้อในแอปเทรด</span></li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Key insights -->
+                <h3 class="sub"><span lang="en">Key insights</span><span lang="th">Insight สำคัญ</span></h3>
+                <div class="insight-groups">
+                    <div>
+                        <h4 class="small-head"><span lang="en">Readers who invest, from the interviews</span><span lang="th">ผู้อ่านที่ลงทุน จากการสัมภาษณ์</span></h4>
+                        <ol class="findings">
+                    <li><span lang="en"><strong>People choose content that's already condensed.</strong> A summary in a few lines, or an easy-to-read infographic. If the topic really interests them, they tap the link to read on.</span><span lang="th"><strong>ผู้ใช้เลือกอ่านเนื้อหาที่ย่อยมาแล้ว</strong> เช่น สรุปจบในไม่กี่บรรทัด หรือ infographic ที่อ่านง่าย ถ้าเป็นเรื่องที่สนใจเป็นพิเศษจึงจะกดลิงก์ไปอ่านต่อ</span></li>
+                    <li><span lang="en"><strong>Social, podcasts and YouTube carry most of it.</strong> Most interviewees take in investment content through these three.</span><span lang="th"><strong>Social, Podcast และ YouTube คือช่องทางหลัก</strong> คนส่วนใหญ่ที่สัมภาษณ์เสพเนื้อหาการลงทุนผ่านสามช่องทางนี้</span></li>
+                    <li><span lang="en"><strong>Mornings belong to podcasts.</strong> Most drive to work; those who don't scroll social instead. The heaviest session comes after work, on social and YouTube.</span><span lang="th"><strong>ช่วงเช้าเป็นเวลาของ Podcast</strong> เพราะกลุ่มเป้าหมายส่วนใหญ่ขับรถไปทำงาน คนที่ไม่ขับจะไถฟีดโซเชียลแทน และจะเสพหนักอีกครั้งหลังเลิกงาน ผ่าน Social และ YouTube</span></li>
+                    <li><span lang="en"><strong>Experienced investors have usually day-traded before.</strong></span><span lang="th"><strong>คนที่ลงทุนอย่างชำนาญมักผ่านการ Day trade มาก่อน</strong></span></li>
+                        </ol>
+                    </div>
+                    <div>
+                        <h4 class="small-head"><span lang="en">Executives who buy media, from the survey</span><span lang="th">ผู้บริหารที่ซื้อสื่อ จากแบบสอบถาม</span></h4>
+                        <ol class="findings">
+                    <li><span lang="en"><strong>Media is bought for awareness and credibility.</strong> Executives want the product to become known and trusted, and expect people to understand the product or business better afterwards.</span><span lang="th"><strong>ซื้อสื่อเพื่อให้เป็นที่รู้จักและน่าเชื่อถือ</strong> ผู้บริหารมองเรื่องการทำให้สินค้าเป็นที่รู้จักและสร้างความน่าเชื่อถือ โดยคาดหวังให้คนเข้าใจตัวผลิตภัณฑ์หรือธุรกิจมากขึ้น</span></li>
+                    <li><span lang="en"><strong>The two biggest problems are results and reach.</strong> 78.3% got results that weren't what they wanted, and 65.2% found the channel didn't match their audience. Good customer data is a way to fix the second.</span><span lang="th"><strong>ปัญหาใหญ่สองข้อคือผลลัพธ์และการเข้าถึง</strong> 78.3% ได้ผลลัพธ์ไม่ตรงกับที่ต้องการ และ 65.2% พบว่าช่องทางไม่ตรงกลุ่มเป้าหมาย ซึ่งการใช้ customer data ที่ดีเป็นโอกาสช่วยแก้ปัญหาข้อหลังได้</span></li>
+                    <li><span lang="en"><strong>They want vision, innovation and depth.</strong> Vision interviews (82.6%), new innovation (73.9%) and in-depth articles (65.2%) top the topics they want more of. Community came up too.</span><span lang="th"><strong>อยากได้เนื้อหาเชิงวิสัยทัศน์ นวัตกรรม และเชิงลึก</strong> บทสัมภาษณ์เชิงวิสัยทัศน์ (82.6%) นวัตกรรมใหม่ (73.9%) และบทความเชิงลึก (65.2%) คือหัวข้อที่อยากให้มีมากขึ้น และมีการพูดถึง community ด้วย</span></li>
+                    <li><span lang="en"><strong>Longtunman and The Standard Wealth come to mind first.</strong> Named by 82.6% and 69.6% when asked about online business media. 78.3% also see infographic business summaries as a gap in Thai content.</span><span lang="th"><strong>ลงทุนแมนและ The Standard Wealth คือสื่อที่นึกถึงเป็นอันดับต้น</strong> มีผู้นึกถึง 82.6% และ 69.6% ตามลำดับ นอกจากนี้ 78.3% มองว่า infographic สรุปเรื่องธุรกิจเป็นสิ่งที่ตลาดคอนเทนต์ไทยยังขาด</span></li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- How might we -->
+                <h3 class="sub"><span lang="en">How might we…</span><span lang="th">How Might We…</span></h3>
+                <p class="sub-note"><span lang="en">The insights, reframed as five problems to design for.</span><span lang="th">นำ insight มาตั้งเป็นโจทย์ออกแบบ 5 ข้อ</span></p>
+                <div class="hyps hmw hmw-grid">
+                    <div class="hyp">
+                        <span class="hyp-tag" aria-hidden="true">HMW 1</span>
+                        <p><span lang="en">How might we help investors reach the content they want without digging through complex menus?</span><span lang="th">เราจะช่วยให้นักลงทุนเข้าถึงเนื้อหาที่ต้องการได้ โดยไม่ต้องไล่หาในเมนูที่ซับซ้อนได้อย่างไร</span></p>
+                    </div>
+                    <div class="hyp">
+                        <span class="hyp-tag" aria-hidden="true">HMW 2</span>
+                        <p><span lang="en">How might we deliver investment news in a form people can take in within a few lines, at the moments they actually have?</span><span lang="th">เราจะนำเสนอข่าวการลงทุนให้เข้าใจได้ในไม่กี่บรรทัด ในช่วงเวลาที่ผู้อ่านมีจริง ๆได้อย่างไร</span></p>
+                    </div>
+                    <div class="hyp">
+                        <span class="hyp-tag" aria-hidden="true">HMW 3</span>
+                        <p><span lang="en">How might we make the Business section a source people trust and name first?</span><span lang="th">เราจะทำให้หมวด Business เป็นแหล่งข้อมูลที่ผู้อ่านเชื่อถือและนึกถึงเป็นอันดับแรกได้อย่างไร</span></p>
+                    </div>
+                    <div class="hyp">
+                        <span class="hyp-tag" aria-hidden="true">HMW 4</span>
+                        <p><span lang="en">How might we support the step between seeing a piece of content and making a decision, so readers don't have to leave to find the numbers?</span><span lang="th">เราจะช่วยในช่วงระหว่างเห็นคอนเทนต์กับการตัดสินใจ เพื่อให้ผู้อ่านไม่ต้องออกไปหาตัวเลขที่อื่นได้อย่างไร</span></p>
+                    </div>
+                    <div class="hyp">
+                        <span class="hyp-tag" aria-hidden="true">HMW 5</span>
+                        <p><span lang="en">How might we give advertisers awareness and credibility in front of an audience that matches their target?</span><span lang="th">เราจะให้ผู้ลงโฆษณาได้ทั้งการรับรู้และความน่าเชื่อถือ ต่อหน้ากลุ่มผู้อ่านที่ตรงกับเป้าหมายของเขาได้อย่างไร</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="gold-divider"></div>
+
+        <!-- 03 IDEATE -->
+        <section id="ideate" class="band-dark">
+            <div class="wrap">
+                <header class="head">
+                    <span class="label"><span lang="en">03 Ideate: generate directions</span><span lang="th">03 Ideate สร้างไอเดีย</span></span>
+                    <h2 class="title"><span lang="en">From insight to idea</span><span lang="th">จาก insight สู่ไอเดีย</span></h2>
+                    <p class="lede"><span lang="en">Each How Might We question got a design direction. Every direction traces back to something the research showed.</span><span lang="th">คำถาม How Might We แต่ละข้อได้แนวทางออกแบบของตัวเอง และทุกแนวทางย้อนกลับไปหาสิ่งที่งานวิจัยพบได้</span></p>
+                </header>
+
+                <div class="pairs">
+                    <div class="pair pair-head" aria-hidden="true">
+                        <div><span lang="en">What the research showed</span><span lang="th">สิ่งที่งานวิจัยพบ</span></div><div></div><div><span lang="en">Idea we proposed</span><span lang="th">ไอเดียที่เสนอ</span></div>
+                    </div>
+                    <div class="pair">
+                        <p class="ev"><span lang="en">Competitor sites are complex and too broad, with up to 19 menu categories and more nested below. Readers struggle to reach what they want.</span><span lang="th">เว็บคู่แข่งซับซ้อนและกว้างเกินไป มีหมวดหมู่มากถึง 19 หมวดและยังมีหมวดย่อยซ้อนอีก ผู้อ่านจึงเข้าถึงสิ่งที่ต้องการได้ยาก</span><small><span lang="en">Source: competitor analysis</span><span lang="th">ที่มา: วิเคราะห์คู่แข่ง</span></small></p>
+                        <i class="fas fa-arrow-right arrow" aria-hidden="true"></i>
+                        <div class="dir">
+                            <span class="hmw-ref">HMW 1</span>
+                            <h4><span lang="en">Improve the content structure</span><span lang="th">ปรับโครงสร้างเนื้อหา</span></h4>
+                            <p><span lang="en">Make navigation more intuitive and cut the complexity, with clear, easy-to-understand categories.</span><span lang="th">ทำให้การนำทางเข้าใจง่ายขึ้นและลดความซับซ้อน ด้วยหมวดหมู่ที่ชัดเจน</span></p>
+                        </div>
+                    </div>
+                    <div class="pair">
+                        <p class="ev"><span lang="en">Investors pick content that's already condensed, and skip anything long or hard to read. Their days split between podcasts on the drive and social or YouTube after work. Executives ask for short video (69.6%) and podcasts (52.2%).</span><span lang="th">นักลงทุนเลือกเนื้อหาที่ย่อยมาแล้ว และข้ามเนื้อหาที่ยาวหรืออ่านยาก ในหนึ่งวันจะฟัง Podcast ตอนขับรถ และเล่น Social กับ YouTube หลังเลิกงาน ส่วนผู้บริหารอยากได้วิดีโอสั้น (69.6%) และ Podcast (52.2%)</span><small><span lang="en">Source: interviews, survey</span><span lang="th">ที่มา: การสัมภาษณ์ และแบบสอบถาม</span></small></p>
+                        <i class="fas fa-arrow-right arrow" aria-hidden="true"></i>
+                        <div class="dir">
+                            <span class="hmw-ref">HMW 2</span>
+                            <h4><span lang="en">Formats that fit the moment</span><span lang="th">รูปแบบเนื้อหาที่เข้ากับช่วงเวลา</span></h4>
+                            <p><span lang="en">Short summaries and infographics first, with a link to the full piece. Podcasts and short video for the times a screen full of text doesn't work.</span><span lang="th">นำด้วยสรุปสั้นและ infographic พร้อมลิงก์ไปอ่านฉบับเต็ม และมี Podcast กับวิดีโอสั้นสำหรับช่วงเวลาที่ไม่สะดวกอ่านข้อความยาว ๆ</span></p>
+                        </div>
+                    </div>
+                    <div class="pair">
+                        <p class="ev"><span lang="en">The brands with a clear identity are the ones executives name first, and the ones interviewees already follow.</span><span lang="th">แบรนด์ที่มีตัวตนชัดเจนคือแบรนด์ที่ผู้บริหารนึกถึงเป็นอันดับแรก และเป็นแบรนด์ที่ผู้ให้สัมภาษณ์ติดตามอยู่แล้ว</span><small><span lang="en">Source: competitor analysis, interviews, survey</span><span lang="th">ที่มา: วิเคราะห์คู่แข่ง การสัมภาษณ์ และแบบสอบถาม</span></small></p>
+                        <i class="fas fa-arrow-right arrow" aria-hidden="true"></i>
+                        <div class="dir">
+                            <span class="hmw-ref">HMW 3</span>
+                            <h4><span lang="en">Strengthen the branding</span><span lang="th">เสริมความชัดเจนของแบรนด์</span></h4>
+                            <p><span lang="en">Position the Business section as a trusted source in its own right, the way Longtunman, The Standard Wealth and Money Buffalo are.</span><span lang="th">วางตำแหน่งหมวด Business ให้เป็นแหล่งข้อมูลที่น่าเชื่อถือในตัวเอง เช่นเดียวกับลงทุนแมน The Standard Wealth และ Money Buffalo</span></p>
+                        </div>
+                    </div>
+                    <div class="pair">
+                        <p class="ev"><span lang="en">Between seeing a piece of content and deciding, investors go looking for charts, prices and background. Competitors that offer calculators and rate tables give people more reasons to visit.</span><span lang="th">ระหว่างเห็นคอนเทนต์กับการตัดสินใจ นักลงทุนจะไปหากราฟ ราคา และข้อมูลพื้นฐานเพิ่ม คู่แข่งที่มีเครื่องคำนวณและตารางอัตราต่าง ๆ จึงมีเหตุผลให้คนเข้าเว็บมากกว่า</span><small><span lang="en">Source: interviews, competitor analysis</span><span lang="th">ที่มา: การสัมภาษณ์ และวิเคราะห์คู่แข่ง</span></small></p>
+                        <i class="fas fa-arrow-right arrow" aria-hidden="true"></i>
+                        <div class="dir">
+                            <span class="hmw-ref">HMW 4</span>
+                            <h4><span lang="en">Add financial tools</span><span lang="th">เพิ่มเครื่องมือทางการเงิน</span></h4>
+                            <p><span lang="en">Exchange-rate tables and investment calculators that add value beyond articles and support SEO traffic.</span><span lang="th">ตารางอัตราแลกเปลี่ยนและเครื่องคำนวณการลงทุน ที่เพิ่มคุณค่านอกเหนือจากบทความและช่วยเรื่อง SEO</span></p>
+                        </div>
+                    </div>
+                    <div class="pair">
+                        <p class="ev"><span lang="en">Advertisers buy for awareness, image and credibility. Their top complaints are results that miss expectations (78.3%) and channels that miss the audience (65.2%).</span><span lang="th">ผู้ลงโฆษณาซื้อสื่อเพื่อการเป็นที่รู้จัก ภาพลักษณ์ และความน่าเชื่อถือ ปัญหาอันดับต้นคือผลลัพธ์ไม่ตรงกับที่คาดหวัง (78.3%) และช่องทางไม่ตรงกลุ่มเป้าหมาย (65.2%)</span><small><span lang="en">Source: survey</span><span lang="th">ที่มา: แบบสอบถาม</span></small></p>
+                        <i class="fas fa-arrow-right arrow" aria-hidden="true"></i>
+                        <div class="dir">
+                            <span class="hmw-ref">HMW 5</span>
+                            <h4><span lang="en">Shape ads around what advertisers need</span><span lang="th">ปรับโฆษณาให้ตรงกับที่ผู้ลงโฆษณาต้องการ</span></h4>
+                            <p><span lang="en">Build the ad offering on awareness and credibility, refine placements, and use customer data to match channel to audience.</span><span lang="th">ออกแบบข้อเสนอโฆษณาโดยเน้นการรับรู้และความน่าเชื่อถือ ปรับตำแหน่งโฆษณา และใช้ customer data เพื่อให้ช่องทางตรงกับกลุ่มเป้าหมาย</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="gold-divider"></div>
+
+        <!-- 04 PROTOTYPE -->
+        <section id="prototype" class="band-deep">
+            <div class="wrap">
+                <header class="head">
+                    <span class="label"><span lang="en">04 Prototype: make it real</span><span lang="th">04 Prototype สร้างต้นแบบ</span></span>
+                    <h2 class="title"><span lang="en">Into the product</span><span lang="th">จากไอเดียสู่ผลิตภัณฑ์</span></h2>
+                    <p class="lede"><span lang="en">The research didn't stop at a report. Its insights went to the other teams as input for how information is laid out on the website, and the directions can be seen in the mobile design of Thairath Money's Investment section.</span><span lang="th">งานวิจัยไม่ได้จบที่รายงาน insight ถูกส่งต่อให้ทีมต่าง ๆ เป็น input ในการวางข้อมูลบนเว็บไซต์ และเห็นแนวทางเหล่านั้นได้ในดีไซน์หมวด Investment ของ Thairath Money บนมือถือ</span></p>
+                </header>
+
+                <div class="proto">
+                    <div>
+                        <h3 class="small-head"><span lang="en">Two notes that went with the handoff</span><span lang="th">ข้อสังเกต 2 ข้อที่ส่งไปพร้อมงาน</span></h3>
+                        <ul class="dash-list">
+                            <li><span lang="en"><strong>Investors and executives read in much the same way, but need different information.</strong> Executives look for what helps their organisation.</span><span lang="th"><strong>นักลงทุนและผู้บริหารอ่านด้วยรูปแบบที่ไม่ต่างกันมาก แต่ต้องการข้อมูลต่างกัน</strong> ผู้บริหารจะมองหาสิ่งที่นำไปใช้เสริมองค์กรได้</span></li>
+                            <li><span lang="en"><strong>Social media is still where most readers spend their time,</strong> but in some contexts, like driving, a format like the podcast stands out.</span><span lang="th"><strong>Social media ยังเป็นช่องทางที่ผู้อ่านส่วนใหญ่ใช้เวลามากที่สุด</strong> แต่ในบางบริบท เช่น ระหว่างขับรถ สื่ออย่าง Podcast จะโดดเด่นขึ้นมา</span></li>
+                        </ul>
+                    </div>
+
+                    <figure class="proto-phone">
+                        <img src="assets/images/thairath-money/thairath-money-mobile.webp" width="640" height="1158" loading="lazy"
+                             data-i18n-attr="alt"
+                             data-en="Thairath Money mobile design of the Investment section's Gold page, with numbered callouts."
+                             data-th="ดีไซน์ Thairath Money บนมือถือ หน้า Gold ในหมวด Investment พร้อมหมายเลขกำกับ"
+                             alt="Thairath Money mobile design of the Investment section's Gold page, with numbered callouts.">
+                        <span class="pin" style="top:20.7%" aria-hidden="true">1</span>
+                        <span class="pin" style="top:33.8%" aria-hidden="true">2</span>
+                        <span class="pin" style="top:66%" aria-hidden="true">3</span>
+                        <span class="pin" style="top:82.6%" aria-hidden="true">4</span>
+                    </figure>
+
+                    <ol class="pins">
+                        <li><p><span lang="en"><b>Breadcrumb, Investment › Gold.</b> Readers can see where they are in the structure.</span><span lang="th"><b>Breadcrumb Investment › Gold</b> ผู้อ่านรู้ว่าตัวเองอยู่ตรงไหนของโครงสร้าง</span><small><span lang="en">Content structure, HMW 1</span><span lang="th">โครงสร้างเนื้อหา HMW 1</span></small></p></li>
+                        <li><p><span lang="en"><b>Tabs for All, Stocks, Fund, Gold and Oil.</b> One tap to switch topic, no menu to dig through.</span><span lang="th"><b>แท็บ All, Stocks, Fund, Gold และ Oil</b> เปลี่ยนหัวข้อได้ในแตะเดียว ไม่ต้องไล่หาในเมนู</span><small><span lang="en">Content structure, HMW 1</span><span lang="th">โครงสร้างเนื้อหา HMW 1</span></small></p></li>
+                        <li><p><span lang="en"><b>Lead story as one image and a headline.</b> The news at a glance, with a tap through for more.</span><span lang="th"><b>ข่าวเด่นเป็นภาพเดียวกับพาดหัว</b> เห็นใจความได้ในแวบเดียว แล้วค่อยกดอ่านต่อ</span><small><span lang="en">Formats that fit the moment, HMW 2</span><span lang="th">รูปแบบเนื้อหาที่เข้ากับช่วงเวลา HMW 2</span></small></p></li>
+                        <li><p><span lang="en"><b>Today's gold price on the page.</b> The number readers would otherwise go elsewhere to find.</span><span lang="th"><b>ราคาทองวันนี้อยู่ในหน้า</b> ตัวเลขที่ผู้อ่านเคยต้องออกไปหาจากที่อื่น</span><small><span lang="en">Financial tools, HMW 4</span><span lang="th">เครื่องมือทางการเงิน HMW 4</span></small></p></li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <div class="gold-divider"></div>
+
+        <!-- 05 TEST -->
+        <section id="test" class="band-dark">
+            <div class="wrap">
+                <header class="head">
+                    <span class="label"><span lang="en">05 Test: check it works</span><span lang="th">05 Test ทดสอบ</span></span>
+                    <h2 class="title"><span lang="en">How we'd know it worked</span><span lang="th">จะรู้ได้อย่างไรว่าได้ผล</span></h2>
+                    <p class="lede"><span lang="en">Testing sat outside this research project. These are the checks I'd run next, built on the two starting hypotheses and the people we interviewed.</span><span lang="th">การทดสอบอยู่นอกขอบเขตของโปรเจกต์วิจัยนี้ ด้านล่างคือสิ่งที่ผมจะทดสอบเป็นขั้นถัดไป โดยตั้งจากสมมติฐานตั้งต้นทั้ง 2 ข้อ และกลุ่มคนที่เราสัมภาษณ์</span></p>
+                </header>
+
+                <ul class="takeaways">
+                    <li>
+                        <span class="tag">H1</span>
+                        <h4><span lang="en">Usability test with the personas' tasks</span><span lang="th">Usability test ด้วยงานของ Persona</span></h4>
+                        <p><span lang="en">Ask investors from each experience level to find a fund article, check today's gold price and switch category. Measure task success and time on task.</span><span lang="th">ให้นักลงทุนแต่ละระดับประสบการณ์ลองหาบทความกองทุน เช็กราคาทองวันนี้ และเปลี่ยนหมวด แล้ววัดอัตราทำสำเร็จและเวลาที่ใช้</span></p>
+                    </li>
+                    <li>
+                        <span class="tag">H1</span>
+                        <h4><span lang="en">Engagement before and after</span><span lang="th">เทียบ engagement ก่อนและหลัง</span></h4>
+                        <p><span lang="en">Compare engagement and return visits in the Business section before and after the change, and how readers move between categories.</span><span lang="th">เปรียบเทียบ engagement และการกลับมาเข้าซ้ำของหมวด Business ก่อนและหลังปรับ รวมถึงการเคลื่อนที่ของผู้อ่านระหว่างหมวด</span></p>
+                    </li>
+                    <li>
+                        <span class="tag">H2</span>
+                        <h4><span lang="en">Advertiser follow-up</span><span lang="th">ติดตามผลกับผู้ลงโฆษณา</span></h4>
+                        <p><span lang="en">Check with advertisers whether campaigns reached their target audience and met their goals, the two problems they reported most.</span><span lang="th">สอบถามผู้ลงโฆษณาว่าแคมเปญเข้าถึงกลุ่มเป้าหมายและได้ผลตามที่ต้องการหรือไม่ ซึ่งเป็นสองปัญหาที่พบมากที่สุด</span></p>
+                    </li>
+                </ul>
+                <p class="next-note"><i class="fas fa-flag" aria-hidden="true" style="font-size:11px;"></i><span lang="en">Proposed next step, not yet run</span><span lang="th">ข้อเสนอสำหรับขั้นถัดไป ยังไม่ได้ทดสอบจริง</span></p>
+            </div>
+        </section>
+
+
+        <div class="gold-divider"></div>
+
+        <!-- LEARNINGS -->
+        <section id="learnings" class="band-deep">
+            <div class="wrap">
+                <header class="head">
+                    <span class="label"><span lang="en">Reflection</span><span lang="th">บทเรียน</span></span>
+                    <h2 class="title"><span lang="en">What I learned as a UX designer</span><span lang="th">สิ่งที่ได้เรียนรู้ในฐานะ UX Designer</span></h2>
+                </header>
+
+                <div class="learn">
+                    <div>
+                        <h3><span lang="en">Challenges</span><span lang="th">ความท้าทาย</span></h3>
+                        <ul class="dash-list">
+                            <li><span lang="en"><strong>Balancing reading experience with ad revenue,</strong> so that ad placements follow how people actually behave.</span><span lang="th"><strong>สร้างสมดุลระหว่างประสบการณ์ผู้ใช้กับรายได้โฆษณา</strong> ให้ตำแหน่งโฆษณาสอดคล้องกับพฤติกรรมจริงของผู้ใช้</span></li>
+                            <li><span lang="en"><strong>Understanding how advertisers judge a digital media buy,</strong> and lining up what the site offers with that.</span><span lang="th"><strong>เข้าใจว่าผู้ลงโฆษณาประเมินการซื้อสื่อดิจิทัลอย่างไร</strong> และปรับสิ่งที่เว็บไซต์นำเสนอให้สอดคล้องกัน</span></li>
+                        </ul>
+                    </div>
+                    <ul class="lessons">
+                        <li>
+                            <h4><span lang="en">Behaviour changes with experience</span><span lang="th">พฤติกรรมเปลี่ยนตามระดับประสบการณ์</span></h4>
+                            <p><span lang="en">Beginners, intermediate and expert investors each need content shaped for them.</span><span lang="th">นักลงทุนมือใหม่ ระดับกลาง และระดับชำนาญ ต้องการรูปแบบเนื้อหาที่ต่างกัน</span></p>
+                        </li>
+                        <li>
+                            <h4><span lang="en">Format drives engagement</span><span lang="th">รูปแบบเนื้อหามีผลต่อการมีส่วนร่วม</span></h4>
+                            <p><span lang="en">Infographics, short videos and podcasts make content easier to read and remember.</span><span lang="th">Infographic วิดีโอสั้น และ Podcast ช่วยให้อ่านง่ายและจดจำได้ดีขึ้น</span></p>
+                        </li>
+                        <li>
+                            <h4><span lang="en">Ad buying follows brand awareness</span><span lang="th">การซื้อโฆษณาขับเคลื่อนด้วยการรับรู้แบรนด์</span></h4>
+                            <p><span lang="en">Advertisers put audience fit and credibility first when choosing a placement.</span><span lang="th">ผู้ลงโฆษณาให้ความสำคัญกับความตรงกลุ่มเป้าหมายและความน่าเชื่อถือเป็นอันดับแรก</span></p>
+                        </li>
+                        <li>
+                            <h4><span lang="en">Clear structure is accessibility</span><span lang="th">โครงสร้างที่ชัดเจนช่วยให้เข้าถึงง่าย</span></h4>
+                            <p><span lang="en">Well-organised content and intuitive navigation improve the whole experience.</span><span lang="th">เนื้อหาที่จัดระเบียบดีและการนำทางที่เข้าใจง่ายทำให้ประสบการณ์โดยรวมดีขึ้น</span></p>
+                        </li>
+                        <li>
+                            <h4><span lang="en">UX has to serve the business too</span><span lang="th">UX ต้องตอบเป้าหมายธุรกิจด้วย</span></h4>
+                            <p><span lang="en">The work only holds if usability and revenue are kept in balance.</span><span lang="th">งานจะไปต่อได้ก็ต่อเมื่อรักษาสมดุลระหว่างการใช้งานและรายได้</span></p>
+                        </li>
+                        <li>
+                            <h4><span lang="en">Decisions come from data</span><span lang="th">ตัดสินใจจากข้อมูล</span></h4>
+                            <p><span lang="en">Insights from user behaviour and advertiser surveys are what make design decisions effective.</span><span lang="th">ข้อมูลเชิงลึกจากพฤติกรรมผู้ใช้และแบบสอบถามผู้ลงโฆษณาคือสิ่งที่ทำให้การตัดสินใจด้านออกแบบได้ผล</span></p>
+                        </li>
+                    </ul>
+                </div>
+
+                <p class="closing"><span lang="en">This project sharpened how I use research insights, shape content for engagement, and design experiences that serve both user needs and business success.</span><span lang="th">โปรเจกต์นี้ทำให้ผมใช้ข้อมูลเชิงลึกจากงานวิจัยได้คมขึ้น ปรับเนื้อหาให้คนอยากมีส่วนร่วม และออกแบบประสบการณ์ที่ตอบทั้งความต้องการของผู้ใช้และความสำเร็จของธุรกิจ</span></p>
+
+                <div class="cta-row">
+                    <a href="https://1drv.ms/b/c/fb3c41a68604adb1/ERU7LRoAhR9ErwoHcGh9FnIB_YBw--tP-RQPyS0S7IF-xw?e=4ERVSl" target="_blank" rel="noopener" class="btn-primary">
+                        <span lang="en">Read the full research report</span><span lang="th">อ่านรายงานวิจัยฉบับเต็ม</span> <i class="fas fa-external-link-alt" aria-hidden="true" style="font-size:11px;"></i>
+                    </a>
+                    <a href="index.html#mu-portfolio" class="btn-outline">
+                        <i class="fas fa-arrow-left" aria-hidden="true" style="font-size:11px;"></i> <span lang="en">Back to Key Initiatives</span><span lang="th">กลับไปหน้า Key Initiatives</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="mu-footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Khanadech Khongsombhatt</h3>
+                    <p><span lang="en">"A leader who blends Product Strategy with User Experience to build measurable digital solutions."</span><span lang="th">“ผู้นำที่ผสาน Product Strategy เข้ากับ User Experience เพื่อสร้างโซลูชันดิจิทัลที่วัดผลได้”</span></p>
+                </div>
+
+                <div class="footer-col">
+                    <h4><span lang="en">Get in Touch</span><span lang="th">ติดต่อ</span></h4>
+                    <ul class="footer-links">
+                        <li><a href="tel:+66830822189"><i class="fa fa-phone" aria-hidden="true"></i>(+66) 830822189</a></li>
+                        <li><a href="mailto:KHANADETKH@HOTMAIL.COM"><i class="fa fa-envelope" aria-hidden="true"></i>KHANADETKH@HOTMAIL.COM</a></li>
+                        <li><a href="https://khanadetkh.github.io" target="_blank" rel="noopener"><i class="fas fa-link" aria-hidden="true"></i>KHANADETKH.GITHUB.IO</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4><span lang="en">Connect</span><span lang="th">ช่องทางอื่น</span></h4>
+                    <div class="footer-socials">
+                        <a href="https://github.com/khanadetkh" target="_blank" rel="noopener" class="social-icon" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+                        <a href="https://linkedin.com/in/khanadetkh" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Khanadech Khongsombhatt — Product/UX Portfolio</p>
+                <p style="letter-spacing:0.1em; font-size:0.7rem;">ALL RIGHTS RESERVED</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            var root = document.documentElement;
+            var TITLES = {
+                en: 'Thairath Money: UX Case Study | Khanadech Khongsombhatt',
+                th: 'Thairath Money: กรณีศึกษา UX | Khanadech Khongsombhatt'
+            };
+
+            /* ── Language ── */
+            function setLang(lang, remember) {
+                root.lang = lang;
+                root.setAttribute('data-lang', lang);
+                document.title = TITLES[lang];
+                document.querySelectorAll('[data-set-lang]').forEach(function (b) {
+                    b.setAttribute('aria-pressed', String(b.getAttribute('data-set-lang') === lang));
+                });
+                document.querySelectorAll('[data-i18n-attr]').forEach(function (el) {
+                    var v = el.getAttribute('data-' + lang);
+                    if (v) el.setAttribute(el.getAttribute('data-i18n-attr'), v);
+                });
+                if (remember) { try { localStorage.setItem('kk-lang', lang); } catch (e) {} }
+            }
+            document.querySelectorAll('[data-set-lang]').forEach(function (b) {
+                b.addEventListener('click', function () { setLang(b.getAttribute('data-set-lang'), true); });
+            });
+            setLang(root.getAttribute('data-lang') === 'th' ? 'th' : 'en', false);
+
+            /* ── Mobile menu ── */
+            var toggle = document.getElementById('menu-toggle');
+            var mobileNav = document.getElementById('mobile-nav');
+            function closeMenu() { mobileNav.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }
+            toggle.addEventListener('click', function () {
+                var open = mobileNav.classList.toggle('open');
+                toggle.setAttribute('aria-expanded', String(open));
+            });
+            mobileNav.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeMenu); });
+
+            /* ── Journey tabs ── */
+            var tabs = Array.prototype.slice.call(document.querySelectorAll('.tabs [role="tab"]'));
+            function selectTab(tab, focus) {
+                tabs.forEach(function (t) {
+                    var on = t === tab;
+                    t.setAttribute('aria-selected', String(on));
+                    t.tabIndex = on ? 0 : -1;
+                    document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+                });
+                if (focus) tab.focus();
+            }
+            tabs.forEach(function (tab, i) {
+                tab.addEventListener('click', function () { selectTab(tab, false); });
+                tab.addEventListener('keydown', function (e) {
+                    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        var next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+                        selectTab(next, true);
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
